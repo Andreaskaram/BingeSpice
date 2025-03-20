@@ -1,3 +1,4 @@
 # BingeSpice
-An app that tracks the progression of TV series you are watching so you always know whats next!
-Related to a University Project
+**BingeSpice** – Spice Up Your Watchlist! 🍿🔥  
+
+Never lose track of your shows again—whether you're juggling ten dramas or speed-running a sitcom, BingeSpice keeps you on top of what’s next. No more “Wait… where was I?” Just hit play and let the binge begin! 📺✨
