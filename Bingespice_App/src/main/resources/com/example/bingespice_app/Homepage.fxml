@@ -169,15 +169,15 @@
                      </font>
                   </Text>
                   <FlowPane hgap="20" prefWrapLength="1000" vgap="20">
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
+                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;" visible="false">
                         <children>
                            <ImageView fitHeight="349.0" fitWidth="300.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                         </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
+                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;" visible="false">
                         <children>
                            <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
                         </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
+                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;" visible="false">
                         <children>
                            <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
                         </children></Pane>
@@ -192,15 +192,15 @@
                      </font>
                   </Text>
                   <FlowPane hgap="20" prefWrapLength="1000" vgap="20">
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
+                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;" visible="false">
                         <children>
                            <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
                         </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
+                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;" visible="false">
                         <children>
                            <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
                         </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
+                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;" visible="false">
                         <children>
                            <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
                         </children></Pane>
