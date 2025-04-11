@@ -3,3 +3,4 @@
 [ ] - Δημιουργία use case "Προβολή Watchlist"
 [ ] - Δημιουργία use case "Create/Join σε shared watchlist"
 [ ] - Τροποποίηση "Add to watchlist"
+[ ] - Να ενώσουμε τις ροές
