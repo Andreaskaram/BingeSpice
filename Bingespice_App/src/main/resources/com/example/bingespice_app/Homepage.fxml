@@ -128,12 +128,12 @@
          <VBox spacing="30" style="-fx-padding: 20; -fx-background-color: #2C2D40;">
             <!-- Search Bar -->
             <HBox alignment="CENTER" spacing="15" style="-fx-padding: 0 0 20 0;">
-               <MenuButton mnemonicParsing="false" style="-fx-background-color: #2A2035;" text="Search options" textFill="#fd6108">
+               <MenuButton mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-padding: 0;" text="Search options" textFill="#fd6108">
                  <items>
-                     <MenuItem mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Default" />
-                   <MenuItem mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Movie" />
-                     <MenuItem mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Series" />
+                     <MenuItem mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Title" />
+                   <MenuItem mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Genre" />
                      <MenuItem mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Actor" />
+                     <MenuItem mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Director" />
                  </items>
                   <graphic>
                      <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
