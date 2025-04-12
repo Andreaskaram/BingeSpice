@@ -10,6 +10,7 @@ module com.example.bingespice_app {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
 
     opens com.example.bingespice_app to javafx.fxml;
     exports com.example.bingespice_app;
