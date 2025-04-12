@@ -1,7 +1,13 @@
 Robustness diagrams
 
+Επισήμανση ως watched, αξιολόγηση, Εμφάνιση προφίλ ✔️
 https://lucid.app/lucidchart/53b2c09e-6566-4513-b574-687f1a551823/edit?viewport_loc=-5364%2C-649%2C12538%2C5460%2C0_0&invitationId=inv_83da2a7d-b73d-4e6e-a924-6f98a7945cf9
 
+Αναζήτηση ταινίας, προσθήκη στο watchlist ✔️
 https://lucid.app/lucidchart/62a089c5-7123-4bdb-b98e-c26c9497d3ce/edit?viewport_loc=-2915%2C-235%2C7947%2C3461%2C0_0&invitationId=inv_6af119bb-40b8-450d-92ff-827b86296f91
 
+Προβολή ειδοποιήσεων, Αποστολή ειδοποιήσεων , Δημιουργία στατιστικών ✔️
 https://lucid.app/lucidchart/ed6f0b1f-08cd-4149-9cf6-c2c96c7f01c9/edit?viewport_loc=-1475%2C-436%2C5919%2C2578%2C0_0&invitationId=inv_b5bc4b1a-894e-4b4b-be5e-4011dd3c1e4d
+
+Quiz περιχομένου, Δημιουργία προτεινόμενων ✔️
+https://lucid.app/lucidchart/e0e5153a-3cb3-46fe-87fe-f5f4e7659055/edit?viewport_loc=-256%2C219%2C1978%2C825%2C0_0&invitationId=inv_b7ad2df0-714f-43ce-ab97-59f5ae43aaec
