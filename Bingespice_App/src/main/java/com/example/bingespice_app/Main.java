@@ -14,13 +14,31 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
         Scene scene = new Scene(root);
 
-        // Set window to maximized state
-        primaryStage.setMaximized(true);  // This automatically accounts for taskbars
+        // Set a default size before maximizing
+        primaryStage.setWidth(1280);
+        primaryStage.setHeight(720);
+
+        // Optional: center the window before maximizing
+        primaryStage.centerOnScreen();
+
+        // Add listener to handle when maximized is changed
+        primaryStage.maximizedProperty().addListener((obs, wasMaximized, isNowMaximized) -> {
+            if (isNowMaximized) {
+                // You can check screen bounds and ensure it doesn't exceed a max
+                javafx.geometry.Rectangle2D screenBounds = javafx.stage.Screen.getPrimary().getVisualBounds();
+                if (screenBounds.getWidth() < 1280 || screenBounds.getHeight() < 720) {
+                    // If the screen is too small, don't maximize; instead, set default size
+                    primaryStage.setMaximized(false);
+                    primaryStage.setWidth(1280);
+                    primaryStage.setHeight(720);
+                    primaryStage.centerOnScreen();
+                }
+            }
+        });
 
         primaryStage.setScene(scene);
+        primaryStage.setMaximized(true);
         primaryStage.show();
-        primaryStage.setMinWidth(1280);
-        primaryStage.setMinHeight(720);
     }
 
 
