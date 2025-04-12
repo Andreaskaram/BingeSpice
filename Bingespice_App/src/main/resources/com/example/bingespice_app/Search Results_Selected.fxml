@@ -193,7 +193,7 @@
                                  <ImageView fitHeight="394.0" fitWidth="388.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </Pane>
-                           <Button layoutX="714.0" layoutY="726.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="137.0" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Quiz" textFill="#2a2035" visible="false">
+                           <Button layoutX="714.0" layoutY="726.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="137.0" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108; -fx-cursor: hand;" text="Quiz" textFill="#2a2035" visible="false">
                               <font>
                                  <Font name="System Bold" size="24.0" />
                               </font>

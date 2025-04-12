@@ -149,49 +149,41 @@
             <VBox spacing="40">
                <!-- Recommended Section -->
                <VBox spacing="20">
-                  <Text style="-fx-fill: #FD6108;" text="Recommended:">
+                  <Text style="-fx-fill: #FD6108;" text="Movies to watch:">
                      <font>
                         <Font name="System Bold" size="24" />
                      </font>
                   </Text>
                   <FlowPane hgap="20" prefWrapLength="1000" vgap="20">
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
+                     <Pane maxHeight="350" maxWidth="300" minHeight="216.0" minWidth="300" prefHeight="230.0" prefWidth="300" style="-fx-background-color: #2A2035;" />
+                     <Pane maxHeight="350" maxWidth="300" minHeight="0.0" minWidth="300" prefHeight="266.0" prefWidth="300" style="-fx-background-color: #2A2035;" />
+                     <Pane maxHeight="350" maxWidth="300" minHeight="0.0" minWidth="300" prefHeight="266.0" prefWidth="300" style="-fx-background-color: #2A2035;" />
                   </FlowPane>
                </VBox>
+               <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="199.0" style="-fx-background-color: #2C2D40; -fx-cursor: hand;" text="More movies..." textFill="#fd6108">
+                  <font>
+                     <Font name="System Bold" size="24.0" />
+                  </font>
+               </Button>
 
                <!-- Watch Next Section -->
-               <VBox spacing="20">
-                  <Text style="-fx-fill: #FD6108;" text="Watch next:">
+               <VBox prefHeight="259.0" prefWidth="1000.0" spacing="20">
+                  <Text style="-fx-fill: #FD6108;" text="Series to Watch:">
                      <font>
                         <Font name="System Bold" size="24" />
                      </font>
                   </Text>
                   <FlowPane hgap="20" prefWrapLength="1000" vgap="20">
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
+                     <Pane maxHeight="350" maxWidth="300" minHeight="0.0" minWidth="300" prefHeight="266.0" prefWidth="300" style="-fx-background-color: #2A2035;" />
+                     <Pane maxHeight="350" maxWidth="300" minHeight="0.0" minWidth="300" prefHeight="266.0" prefWidth="300" style="-fx-background-color: #2A2035;" />
+                     <Pane maxHeight="350" maxWidth="300" minHeight="0.0" minWidth="300" prefHeight="266.0" prefWidth="300" style="-fx-background-color: #2A2035;" />
                   </FlowPane>
                </VBox>
+               <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="199.0" style="-fx-background-color: #2C2D40; -fx-cursor: hand;" text="More series..." textFill="#fd6108">
+                  <font>
+                     <Font name="System Bold" size="24.0" />
+                  </font>
+               </Button>
             </VBox>
          </VBox>
       </ScrollPane>
