@@ -14,6 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.layout.StackPane?>
 <BorderPane style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.Controller">
 
    <!-- Left Sidebar -->
@@ -147,18 +148,18 @@
                <children>
                   <Pane layoutX="20.0" layoutY="14.0" prefHeight="274.0" prefWidth="200.0" style="-fx-background-color: #2A2035;">
                      <children>
-                        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold;" text="Account Settings" textFill="#fd6108" />
-                        <Button layoutY="102.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="201.0" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold;" text="App Settings" textFill="#fd6108" />
-                        <Button layoutX="19.0" layoutY="58.0" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold;" text="Privacy Settings" textFill="#fd6108" />
-                        <Button layoutX="26.0" layoutY="146.0" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold;" text="Notifications" textFill="#fd6108" />
-                        <Button layoutX="34.0" layoutY="190.0" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold;" text="Support" textFill="#fd6108" />
+                        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold; -fx-cursor: hand;" text="Account Settings" textFill="#fd6108" />
+                        <Button layoutY="102.0" mnemonicParsing="false" onAction="#handleSettingsButton" prefHeight="44.0" prefWidth="201.0" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold; -fx-cursor: hand;" text="App Settings" textFill="#fd6108" />
+                        <Button layoutX="19.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold; -fx-cursor: hand;" text="Privacy Settings" textFill="#fd6108" />
+                        <Button layoutX="26.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold; -fx-cursor: hand;" text="Notifications" textFill="#fd6108" />
+                        <Button layoutX="34.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold; -fx-cursor: hand;" text="Support" textFill="#fd6108" />
                      </children>
                   </Pane>
-                  <Pane layoutX="291.0" layoutY="14.0" prefHeight="732.0" prefWidth="571.0" style="-fx-background-color: #2A2035;">
+                  <StackPane layoutX="291.0" layoutY="14.0" prefHeight="732.0" prefWidth="571.0" style="-fx-background-color: #2A2035;">
                      <children>
-                        <Text fill="#fd6108" layoutX="173.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-weight: bold;" wrappingWidth="193.13671875" />
+                        <Text fx:id="settingsContentText" fill="#fd6108" style="-fx-font-size: 20; -fx-font-weight: bold;"   StackPane.alignment="TOP_CENTER" />
                      </children>
-                  </Pane>
+                  </StackPane>
                </children>
             </Pane>
          </VBox>

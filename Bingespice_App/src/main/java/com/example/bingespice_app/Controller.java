@@ -14,9 +14,15 @@ import javafx.scene.control.TextField; // Added
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.scene.text.Text;
+
+
 import java.io.IOException;
 
 public class Controller {
+
+    @FXML
+    private Text settingsContentText;
 
     @FXML
     private MenuButton searchOptionsMenuButton;
@@ -78,4 +84,27 @@ public class Controller {
         searchOptionsMenuButton.setText(selectedItem.getText());
     }
 
+     @FXML
+     private void handleSettingsButton(ActionEvent event) {
+         Button clickedButton = (Button) event.getSource();
+         settingsContentText.setText(clickedButton.getText());
+
+         switch(clickedButton.getText()) {
+             case "Account Settings":
+                 settingsContentText.setText("Account Settings");
+                 break;
+             case "Privacy Settings":
+                 settingsContentText.setText("Privacy Settings");
+                 break;
+             case "App Settings":
+                 settingsContentText.setText("App Settings");
+                 break;
+             case "Notifications":
+                 settingsContentText.setText("Notification settings");
+                 break;
+             case "Support":
+                 settingsContentText.setText("Support");
+                 break;
+         }
+     }
 }
