@@ -8,7 +8,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -144,55 +143,24 @@
                   </graphic>
                </Button>
             </HBox>
-
-            <!-- Content Sections (unchanged) -->
-            <VBox spacing="40">
-               <!-- Recommended Section -->
-               <VBox spacing="20">
-                  <Text style="-fx-fill: #FD6108;" text="Recommended:">
-                     <font>
-                        <Font name="System Bold" size="24" />
-                     </font>
-                  </Text>
-                  <FlowPane hgap="20" prefWrapLength="1000" vgap="20">
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
-                  </FlowPane>
-               </VBox>
-
-               <!-- Watch Next Section -->
-               <VBox spacing="20">
-                  <Text style="-fx-fill: #FD6108;" text="Watch next:">
-                     <font>
-                        <Font name="System Bold" size="24" />
-                     </font>
-                  </Text>
-                  <FlowPane hgap="20" prefWrapLength="1000" vgap="20">
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
-                     <Pane maxHeight="350" maxWidth="300" minHeight="350" minWidth="300" prefHeight="350" prefWidth="300" style="-fx-background-color: #2A2035;">
-                        <children>
-                           <ImageView fitHeight="349.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                        </children></Pane>
-                  </FlowPane>
-               </VBox>
-            </VBox>
+            <Pane prefHeight="860.0" prefWidth="1123.0">
+               <children>
+                  <Pane layoutX="20.0" layoutY="14.0" prefHeight="274.0" prefWidth="200.0" style="-fx-background-color: #2A2035;">
+                     <children>
+                        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold;" text="Account Settings" textFill="#fd6108" />
+                        <Button layoutY="102.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="201.0" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold;" text="App Settings" textFill="#fd6108" />
+                        <Button layoutX="19.0" layoutY="58.0" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold;" text="Privacy Settings" textFill="#fd6108" />
+                        <Button layoutX="26.0" layoutY="146.0" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold;" text="Notifications" textFill="#fd6108" />
+                        <Button layoutX="34.0" layoutY="190.0" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold;" text="Support" textFill="#fd6108" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="291.0" layoutY="14.0" prefHeight="732.0" prefWidth="571.0" style="-fx-background-color: #2A2035;">
+                     <children>
+                        <Text fill="#fd6108" layoutX="173.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-weight: bold;" wrappingWidth="193.13671875" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
          </VBox>
       </ScrollPane>
    </center>
