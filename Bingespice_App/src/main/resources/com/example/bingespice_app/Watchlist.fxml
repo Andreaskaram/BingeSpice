@@ -31,7 +31,8 @@
          <VBox spacing="20" style="-fx-padding: 20 10;">
             <!-- Homepage -->
             <HBox alignment="CENTER_LEFT" spacing="15">
-               <Button style="-fx-background-color: transparent; -fx-padding: 0;" onAction="#loadHomepage">
+               <Button style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18;"
+                       onAction="#loadHomepage" contentDisplay="LEFT" graphicTextGap="10">
                   <graphic>
                      <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                         <image>
@@ -39,17 +40,14 @@
                         </image>
                      </ImageView>
                   </graphic>
+                  Homepage
                </Button>
-               <Text style="-fx-fill: #FD6108;" text="Homepage">
-                  <font>
-                     <Font name="System Bold" size="18" />
-                  </font>
-               </Text>
             </HBox>
 
             <!-- Watchlist -->
             <HBox alignment="CENTER_LEFT" spacing="15">
-               <Button style="-fx-background-color: transparent; -fx-padding: 0;" onAction="#loadWatchlist">
+               <Button style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18;"
+                       onAction="#loadWatchlist" contentDisplay="LEFT" graphicTextGap="10">
                   <graphic>
                      <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                         <image>
@@ -57,17 +55,14 @@
                         </image>
                      </ImageView>
                   </graphic>
+                  Watchlist
                </Button>
-               <Text style="-fx-fill: #FD6108;" text="Watchlist">
-                  <font>
-                     <Font name="System Bold" size="18" />
-                  </font>
-               </Text>
             </HBox>
 
             <!-- Inbox -->
             <HBox alignment="CENTER_LEFT" spacing="15">
-               <Button style="-fx-background-color: transparent; -fx-padding: 0;">
+               <Button style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18;"
+                       contentDisplay="LEFT" graphicTextGap="10">
                   <graphic>
                      <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                         <image>
@@ -75,17 +70,14 @@
                         </image>
                      </ImageView>
                   </graphic>
+                  Inbox
                </Button>
-               <Text style="-fx-fill: #FD6108;" text="Inbox">
-                  <font>
-                     <Font name="System Bold" size="18" />
-                  </font>
-               </Text>
             </HBox>
 
             <!-- Profile -->
             <HBox alignment="CENTER_LEFT" spacing="15">
-               <Button style="-fx-background-color: transparent; -fx-padding: 0;" onAction="#loadProfile">
+               <Button style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18;"
+                       onAction="#loadProfile" contentDisplay="LEFT" graphicTextGap="10">
                   <graphic>
                      <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                         <image>
@@ -93,17 +85,14 @@
                         </image>
                      </ImageView>
                   </graphic>
+                  Profile
                </Button>
-               <Text style="-fx-fill: #FD6108;" text="Profile">
-                  <font>
-                     <Font name="System Bold" size="18" />
-                  </font>
-               </Text>
             </HBox>
 
             <!-- Settings -->
             <HBox alignment="CENTER_LEFT" spacing="15">
-               <Button style="-fx-background-color: transparent; -fx-padding: 0;" onAction="#loadSettings">
+               <Button style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18;"
+                       onAction="#loadSettings" contentDisplay="LEFT" graphicTextGap="10">
                   <graphic>
                      <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                         <image>
@@ -111,12 +100,8 @@
                         </image>
                      </ImageView>
                   </graphic>
+                  Settings
                </Button>
-               <Text style="-fx-fill: #FD6108;" text="Settings">
-                  <font>
-                     <Font name="System Bold" size="18" />
-                  </font>
-               </Text>
             </HBox>
          </VBox>
       </VBox>
