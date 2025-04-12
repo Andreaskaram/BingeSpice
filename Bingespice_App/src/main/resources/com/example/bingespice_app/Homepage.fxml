@@ -31,8 +31,7 @@
          <VBox spacing="20" style="-fx-padding: 20 10;">
             <!-- Homepage -->
             <HBox alignment="CENTER_LEFT" spacing="15">
-               <Button style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18;"
-                       onAction="#loadHomepage" contentDisplay="LEFT" graphicTextGap="10">
+               <Button contentDisplay="LEFT" graphicTextGap="10" onAction="#loadHomepage" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand;">
                   <graphic>
                      <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                         <image>
@@ -46,8 +45,7 @@
 
             <!-- Watchlist -->
             <HBox alignment="CENTER_LEFT" spacing="15">
-               <Button style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18;"
-                       onAction="#loadWatchlist" contentDisplay="LEFT" graphicTextGap="10">
+               <Button contentDisplay="LEFT" graphicTextGap="10" onAction="#loadWatchlist" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand;">
                   <graphic>
                      <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                         <image>
@@ -58,52 +56,55 @@
                   Watchlist
                </Button>
             </HBox>
+            <Button contentDisplay="LEFT" graphicTextGap="10" onAction="#loadProfile" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand;" text="Profile">
+               <graphic>
+                  <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../profile-user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               Profile
+                  </Button>
+            <Button contentDisplay="LEFT" graphicTextGap="10" onAction="#loadSettings" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand; " text="Settings">
+               <graphic>
+                  <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../setting.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               Settings
+               </Button>
+            <Button contentDisplay="LEFT" graphicTextGap="10" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand;" text="Inbox">
+               <graphic>
+                  <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../bell.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               Inbox
+                  </Button>
 
             <!-- Inbox -->
-            <HBox alignment="CENTER_LEFT" spacing="15">
-               <Button style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18;"
-                       contentDisplay="LEFT" graphicTextGap="10">
-                  <graphic>
-                     <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../bell.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-                  Inbox
-               </Button>
-            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="15" />
 
             <!-- Profile -->
-            <HBox alignment="CENTER_LEFT" spacing="15">
-               <Button style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18;"
-                       onAction="#loadProfile" contentDisplay="LEFT" graphicTextGap="10">
-                  <graphic>
-                     <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../profile-user.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-                  Profile
-               </Button>
-            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="15" />
 
             <!-- Settings -->
-            <HBox alignment="CENTER_LEFT" spacing="15">
-               <Button style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18;"
-                       onAction="#loadSettings" contentDisplay="LEFT" graphicTextGap="10">
-                  <graphic>
-                     <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../setting.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-                  Settings
-               </Button>
-            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="15" />
          </VBox>
+         <ScrollPane prefHeight="383.0" prefWidth="199.0" visible="false">
+            <content>
+               <Pane prefHeight="379.0" prefWidth="201.0" style="-fx-background-color: #2A2035;">
+                  <children>
+                     <TextField editable="false" layoutX="2.0" layoutY="2.0" prefHeight="367.0" prefWidth="184.0" style="-fx-background-color: #2A2035;" />
+                  </children>
+               </Pane>
+            </content>
+         </ScrollPane>
       </VBox>
    </left>
 
@@ -113,12 +114,12 @@
          <VBox spacing="30" style="-fx-padding: 20; -fx-background-color: #2C2D40;">
             <!-- Search Bar -->
             <HBox alignment="CENTER" spacing="15" style="-fx-padding: 0 0 20 0;">
-               <MenuButton mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-padding: 0;" text="Search options" textFill="#fd6108">
+               <MenuButton fx:id="searchOptionsMenuButton" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-padding: 0;" text="Search options" textFill="#fd6108">
                  <items>
-                     <MenuItem mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Title" />
-                   <MenuItem mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Genre" />
-                     <MenuItem mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Actor" />
-                     <MenuItem mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Director" />
+                     <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Title" />
+                   <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Genre" />
+                     <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Actor" />
+                     <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Director" />
                  </items>
                   <graphic>
                      <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
@@ -133,7 +134,7 @@
                      <Font size="16" />
                   </font>
                </TextField>
-               <Button fx:id="searchButton" style="-fx-background-color: transparent; -fx-padding: 0;" onAction="#loadSearch_Results_Selected">
+               <Button fx:id="searchButton" onAction="#loadSearch_Results_Selected" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand; ">
                   <graphic>
                      <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                         <image>

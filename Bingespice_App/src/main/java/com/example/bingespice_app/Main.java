@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
         Scene scene = new Scene(root);
 
         // Set a default size before maximizing

@@ -3,15 +3,24 @@ package com.example.bingespice_app;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button; // Added
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField; // Added
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Controller {
+
+    @FXML
+    private MenuButton searchOptionsMenuButton;
+
     @FXML
     private TextField searchField; // Now recognized
 
@@ -62,4 +71,11 @@ public class Controller {
                 currentScene.setRoot(homepageRoot); // Directly update the scene's root
 
             }
+
+    @FXML
+    private void handleSearchOption(ActionEvent event) {
+        MenuItem selectedItem = (MenuItem) event.getSource();
+        searchOptionsMenuButton.setText(selectedItem.getText());
+    }
+
 }
