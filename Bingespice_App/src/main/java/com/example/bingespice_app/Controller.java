@@ -11,13 +11,13 @@ import javafx.scene.control.Button; // Added
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField; // Added
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
-
-
 import java.io.IOException;
+
 
 public class Controller {
 
@@ -35,6 +35,16 @@ public class Controller {
 
     public void initialize() {
         searchButton.disableProperty().bind(searchField.textProperty().length().lessThan(2));
+
+        searchField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    loadSearch_Results_Selected(null); // Pass null since there's no ActionEvent
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void loadHomepage(ActionEvent event) throws IOException {
@@ -59,10 +69,16 @@ public class Controller {
 
 
         Parent homepageRoot = FXMLLoader.load(getClass().getResource("Search Results_Selected.fxml"));
-        Scene currentScene = ((Node) event.getSource()).getScene();
-        currentScene.setRoot(homepageRoot); // Directly update the scene's root
+        Scene currentScene;
+        if (event != null) {
+            currentScene = ((Node) event.getSource()).getScene();
+        } else {
+            currentScene = searchField.getScene();
+        }
 
+        currentScene.setRoot(homepageRoot);
     }
+
 
         public void loadSettings(ActionEvent event) throws IOException {
             Parent homepageRoot = FXMLLoader.load(getClass().getResource("Settings.fxml"));
