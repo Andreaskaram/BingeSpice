@@ -9,5 +9,8 @@ https://lucid.app/lucidchart/62a089c5-7123-4bdb-b98e-c26c9497d3ce/edit?viewport_
 Προβολή ειδοποιήσεων, Αποστολή ειδοποιήσεων , Δημιουργία στατιστικών ✔️
 https://lucid.app/lucidchart/ed6f0b1f-08cd-4149-9cf6-c2c96c7f01c9/edit?viewport_loc=-1475%2C-436%2C5919%2C2578%2C0_0&invitationId=inv_b5bc4b1a-894e-4b4b-be5e-4011dd3c1e4d
 
-Quiz περιχομένου, Δημιουργία προτεινόμενων ✔️
+Quiz περιχομένου, Δημιουργία προτεινόμενων, Προβολή Watchlist ✔️
 https://lucid.app/lucidchart/e0e5153a-3cb3-46fe-87fe-f5f4e7659055/edit?viewport_loc=-256%2C219%2C1978%2C825%2C0_0&invitationId=inv_b7ad2df0-714f-43ce-ab97-59f5ae43aaec
+
+Εισαγωγη/Δημιουργια shared watchlist
+https://lucid.app/lucidchart/5a3451d1-060f-4bae-a7ca-9bdf10f80959/edit?viewport_loc=-2921%2C-1304%2C8343%2C3481%2C0_0&invitationId=inv_5169973f-fea0-4469-bcfb-dcdc89991cde
