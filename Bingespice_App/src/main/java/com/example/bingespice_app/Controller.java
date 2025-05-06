@@ -7,10 +7,7 @@ import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button; // Added
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField; // Added
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -32,6 +29,7 @@ public class Controller {
 
     @FXML
     private Button searchButton; // Now recognized
+
 
     public void initialize() {
         searchButton.disableProperty().bind(searchField.textProperty().length().lessThan(2));
@@ -123,4 +121,15 @@ public class Controller {
                  break;
          }
      }
+
+
+    @FXML
+    public void handleLogin(ActionEvent event) throws IOException {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Stage loginStage = new Stage();
+        loginStage.setScene(new Scene(loginRoot));
+        loginStage.setTitle("Login");
+        loginStage.show();
+    }
 }
+

@@ -21,12 +21,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.layout.StackPane?>
 <BorderPane style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.Controller">
 
    <!-- Left Sidebar -->
    <left>
       <VBox maxWidth="300" minWidth="150" prefWidth="200" style="-fx-background-color: #2A2035;">
-         <!-- Logo remains as ImageView -->
+         <!-- Logo -->
          <ImageView fitWidth="200" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../../Logo.png" />
@@ -62,7 +63,9 @@
                   Watchlist
                </Button>
             </HBox>
-            <Button contentDisplay="LEFT" graphicTextGap="10" onAction="#loadProfile" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand;">
+
+            <!-- Profile -->
+            <Button contentDisplay="LEFT" graphicTextGap="10" onAction="#loadProfile" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand;" text="Profile">
                <graphic>
                   <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                      <image>
@@ -71,9 +74,10 @@
                   </ImageView>
                </graphic>
                Profile
-                     </Button>
+            </Button>
 
-            <Button contentDisplay="LEFT" graphicTextGap="10" onAction="#loadSettings" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand;">
+            <!-- Settings -->
+            <Button contentDisplay="LEFT" graphicTextGap="10" onAction="#loadSettings" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand; " text="Settings">
                <graphic>
                   <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                      <image>
@@ -82,8 +86,10 @@
                   </ImageView>
                </graphic>
                Settings
-               </Button>
-            <Button contentDisplay="LEFT" graphicTextGap="10" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand;">
+            </Button>
+
+            <!-- Inbox -->
+            <Button contentDisplay="LEFT" graphicTextGap="10" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand;" text="Inbox">
                <graphic>
                   <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                      <image>
@@ -92,26 +98,48 @@
                   </ImageView>
                </graphic>
                Inbox
-                  </Button>
-
-            <!-- Inbox -->
-            <HBox alignment="CENTER_LEFT" spacing="15" />
-
-            <!-- Profile -->
-            <HBox alignment="CENTER_LEFT" spacing="15" />
-
-            <!-- Settings -->
-            <HBox alignment="CENTER_LEFT" spacing="15" />
+            </Button>
          </VBox>
-         <ScrollPane prefHeight="383.0" prefWidth="199.0" visible="false">
+
+         <ScrollPane prefHeight="347.0" prefWidth="200.0" visible="false">
             <content>
-               <Pane prefHeight="379.0" prefWidth="201.0" style="-fx-background-color: #2A2035;">
+               <Pane prefHeight="344.0" prefWidth="201.0" style="-fx-background-color: #2A2035;">
                   <children>
-                     <TextField editable="false" layoutX="2.0" layoutY="2.0" prefHeight="367.0" prefWidth="184.0" style="-fx-background-color: #2A2035;" />
+                     <TextField editable="false" layoutX="2.0" layoutY="2.0" prefHeight="341.0" prefWidth="196.0" style="-fx-background-color: #2A2035;" />
                   </children>
                </Pane>
             </content>
          </ScrollPane>
+
+         <!-- Login Button with Invisible Overlay -->
+         <StackPane prefHeight="56.0" prefWidth="198.0">
+            <!-- Visible Login Button -->
+            <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="56.0" prefWidth="198.0" style="-fx-background-color: #2A2035; -fx-cursor: hand;" text="Log in" textFill="#fd6108">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../login.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+
+            <!-- Invisible Clickable Overlay -->
+            <Button onAction="#handleLogin" disable="true" maxHeight="Infinity" maxWidth="Infinity" pickOnBounds="true" style="-fx-background-color: #2A2035; -fx-cursor: hand;" text="Logout" textFill="#fd6108" visible="false">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../login.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+         </StackPane>
       </VBox>
    </left>
 
