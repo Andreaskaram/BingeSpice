@@ -1,1 +1,2 @@
-[ ] - Να ενημερωθεί το use case και robustness του "Mark as watched"
+[ ] - Να ενημερωθεί το use case και robustness του "Mark as watched". Προστέθηκε η διαγραφη από watchlist.
+[ ] - Προσθήκη σε use case και robustness του Edit profile οτι ξαναφορτωνει το προφιλ.
