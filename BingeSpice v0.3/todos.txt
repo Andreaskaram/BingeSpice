@@ -1,21 +1,27 @@
 Sequence Diagrams:
-[X] - Movie/Series Search
-[X] - movie select
-[X] - add to watchlist
-[X] - mark as watched
-[X] - rate movie
+[X] - Movie/Series Search Χ
+[X] - movie select X
+[X] - add to watchlist X
+[ ] - mark as watched
+[X] - rate movie X
 [X] - view profile
 [X] - view notifications
 [X] - send notifications
-[ ] - Calculate statistics
-[X] - create recommendations
 [ ] - quiz
-[ ] - view watchlist
-[X] - join/create shared watchlsit
+[ ] - view watchlist - Andreas
+[ ] - create/edit Watchlist - Andreas
+[X] - join/create shared watchlsit X
 
-[ ] - Να ενημερωθεί το use case και robustness του "Mark as watched". Προστέθηκε η διαγραφη από watchlist.
+[ ] - Να ενημερωθεί το use case και robustness του "Mark as watched". Προστέθηκε η διαγραφη από watchlist στο SD. Να προσθέσουμε στο SD διαγραφή απο Watched.
 [ ] - Προσθήκη σε use case και robustness του Edit profile οτι ξαναφορτωνει το προφιλ.
 [ ] - Ενημερωση Use case για εναλλακτικη ροη προβολη watchlist, SD: αλλαγή display() σε displayWatchlist().
 [ ] - Αλλαγη εναλλακτικης ροης για προσθηκη σχολιου σε movie rating
 [ ] - Calcualate statistics SD να αλλαξουμε το τελευταίο βελακι, δεν καλείται μέθοδος.
 [ ] - SD: Όλα τα current screens πρέπει να γίνουν κλάση SidebarClass.
+[ ] - Αφαιρέθηκε δημιουργία προτεινόμενων - ενημέρωση αρχειων PDF.
+
+Robustness:
+[ ] - Ενώνουμε το προβολή προφίλ με δημιουργία στατιστικών
+[ ] - Αποστολή ειδοποιήσεων: control για νεες αφήξεις, συνέχιση προβολής, socials, quiz.
+[ ] - Προβολή ειδοποιήσεων: sidebar, λαμβάνει ειδοποιήσεις από βάση, εναλλακτική κουμπί εκκαθάρηση ειδοποιήσεων.
+[ ] - Προβολή watchlist: μενού επιλογών watchlist, εναλλακτική ροή δημιουργία watchlist.
