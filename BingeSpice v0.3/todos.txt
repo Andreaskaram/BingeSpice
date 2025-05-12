@@ -2,7 +2,7 @@ Sequence Diagrams:
 [X] - Movie/Series Search Χ
 [X] - movie select X
 [X] - add to watchlist X
-[ ] - mark as watched
+[ ] - mark as watched -Andreas
 [X] - rate movie X
 [X] - view profile
 [X] - view notifications
