@@ -4,10 +4,10 @@ Sequence Diagrams:
 [X] - add to watchlist X
 [ ] - mark as watched -Andreas
 [X] - rate movie X
-[X] - view profile
-[X] - view notifications
-[X] - send notifications
-[ ] - quiz
+[X] - view profile  X
+[X] - view notifications X
+[X] - send notifications X
+[ ] - quiz  X
 [ ] - view watchlist - Andreas
 [ ] - create/edit Watchlist - Andreas
 [X] - join/create shared watchlsit X
@@ -21,7 +21,8 @@ Sequence Diagrams:
 [ ] - Αφαιρέθηκε δημιουργία προτεινόμενων - ενημέρωση αρχειων PDF.
 
 Robustness:
-[ ] - Ενώνουμε το προβολή προφίλ με δημιουργία στατιστικών
+[X] - Ενώνουμε το προβολή προφίλ με δημιουργία στατιστικών
 [ ] - Αποστολή ειδοποιήσεων: control για νεες αφήξεις, συνέχιση προβολής, socials, quiz.
 [ ] - Προβολή ειδοποιήσεων: sidebar, λαμβάνει ειδοποιήσεις από βάση, εναλλακτική κουμπί εκκαθάρηση ειδοποιήσεων.
 [ ] - Προβολή watchlist: μενού επιλογών watchlist, εναλλακτική ροή δημιουργία watchlist.
+[ ] - Δημιουργία Watchlist: Ονομασια, Εναλλακτικη ροη -> Επεξεργασια -> Μετονομασια, Εναλλακτικη ροη ΔΙαγραφη
