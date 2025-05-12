@@ -7,13 +7,15 @@ Sequence Diagrams:
 [X] - view profile
 [X] - view notifications
 [X] - send notifications
-[X] - create statistics
+[ ] - Calculate statistics
 [X] - create recommendations
 [ ] - quiz
-[X] - view watchlist
-[ ] - join/create shared watchlsit
+[ ] - view watchlist
+[X] - join/create shared watchlsit
 
 [ ] - Να ενημερωθεί το use case και robustness του "Mark as watched". Προστέθηκε η διαγραφη από watchlist.
 [ ] - Προσθήκη σε use case και robustness του Edit profile οτι ξαναφορτωνει το προφιλ.
-[ ] - Ενημερωση Use case για εναλλακτικη ροη προβολη watchlist
+[ ] - Ενημερωση Use case για εναλλακτικη ροη προβολη watchlist, SD: αλλαγή display() σε displayWatchlist().
 [ ] - Αλλαγη εναλλακτικης ροης για προσθηκη σχολιου σε movie rating
+[ ] - Calcualate statistics SD να αλλαξουμε το τελευταίο βελακι, δεν καλείται μέθοδος.
+[ ] - SD: Όλα τα current screens πρέπει να γίνουν κλάση SidebarClass.
