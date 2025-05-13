@@ -16,10 +16,10 @@
             <!-- Container for label and text field -->
             <VBox alignment="CENTER" spacing="10">
                 <Text style="-fx-fill: white;" text="Username:" />
-                <TextField fx:id="loginUsername" maxWidth="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
+                <TextField fx:id="loginUsername" maxWidth="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 20;" />
 
                 <Text style="-fx-fill: white;" text="Password:" />
-                <PasswordField fx:id="loginPassword" maxWidth="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
+                <PasswordField fx:id="loginPassword" maxWidth="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 20;" />
             </VBox>
 
             <Button fx:id="loginButton" maxWidth="200" prefWidth="200.0" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-font-weight: bold;" text="Login" />
