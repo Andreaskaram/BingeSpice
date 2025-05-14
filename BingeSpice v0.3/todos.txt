@@ -28,15 +28,15 @@ Robustness:
 
 
 Εναλλακτικες ροες:
-[] - Movie/Series Search 
-[] - movie select 
-[] - add to watchlist 
-[] - mark as watched 
-[] - rate movie 
-[] - view profile 
-[] - view notifications 
-[] - send notifications 
-[] - quiz  
+[✔️] - Movie/Series Search 
+[✔️] - movie select 
+[✔️] - add to watchlist 
+[✔️] - mark as watched 
+[✔️] - rate movie 
+[✔️] - view profile 
+[✔️] - view notifications 
+[✔️] - send notifications 
+[✔️] - quiz  
 [] - view watchlist 
 [] - create/edit Watchlist 
 [] - join/create shared watchlsit 
