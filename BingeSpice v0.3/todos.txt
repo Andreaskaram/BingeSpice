@@ -4,19 +4,18 @@ Sequence Diagrams:
 [✔️] - add to watchlist ✔️
 [✔️] - mark as watched ✔️
 [✔️] - rate movie ✔️
-[ ] - view profile ✔️
-[ ] - view notifications ✔️
-[ ] - send notifications ✔️
-[ ] - quiz  ✔️
+[✔️] - view profile ✔️
+[✔️] - view notifications ✔️
+[✔️] - send notifications ✔️
+[✔️] - quiz  ✔️
 [✔️] - view watchlist ✔️
-[ ] - create/edit Watchlist ✔️
+[✔️] - create/edit Watchlist ✔️
 [✔️] - join/create shared watchlsit ✔️
 
-[ ] - Να ενημερωθεί το use case και robustness του "Mark as watched". Προστέθηκε η διαγραφη από watchlist στο SD. Να προσθέσουμε στο SD διαγραφή απο Watched.
+[✔️] - Να ενημερωθεί το use case και robustness του "Mark as watched". Προστέθηκε η διαγραφη από watchlist στο SD. Να προσθέσουμε στο SD διαγραφή απο Watched.
 [✔️] - Προσθήκη σε use case και robustness του Edit profile οτι ξαναφορτωνει το προφιλ.
 [✔️] - Ενημερωση Use case για εναλλακτικη ροη προβολη watchlist, SD: αλλαγή display() σε displayWatchlist().
 [✔️] - Ενημερώση movie rating robustness
-[ ] - Calcualate statistics SD να αλλαξουμε το τελευταίο βελακι, δεν καλείται μέθοδος.
 [ ] - SD: Όλα τα current screens πρέπει να γίνουν κλάση SidebarClass.
 [ ] - Αφαιρέθηκε δημιουργία προτεινόμενων - ενημέρωση αρχειων PDF.
 
