@@ -1,7 +1,7 @@
-Search:
+✔️Search:
 https://online.visual-paradigm.com/share.jsp?id=343034303134342d31
 
-movie selecion:
+✔️movie selecion:
 https://online.visual-paradigm.com/share.jsp?id=343034333139332d31
 
 
@@ -9,19 +9,19 @@ Mark as watched:
 https://online.visual-paradigm.com/share.jsp?id=343034333139332d32
 
 
-Add to watchlist:
+✔️Add to watchlist:
 https://online.visual-paradigm.com/share.jsp?id=343034303134342d32
 
 
-show profile:
+✔️show profile:
 https://online.visual-paradigm.com/share.jsp?id=343034333139332d33
 
-Rating:
+✔️Rating:
 https://online.visual-paradigm.com/share.jsp?id=343034303134342d33
 
 
 Send notifications:
 https://online.visual-paradigm.com/share.jsp?id=343034303134342d34
 
-join/create shared watchlist:
+✔️join/create shared watchlist:
 https://online.visual-paradigm.com/share.jsp?id=343034333139332d37
