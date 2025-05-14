@@ -37,6 +37,6 @@ Robustness:
 [✔️] - view notifications 
 [✔️] - send notifications 
 [✔️] - quiz  
-[] - view watchlist 
-[] - create/edit Watchlist 
-[] - join/create shared watchlsit 
+[✔️] - view watchlist 
+[✔️] - create/edit Watchlist 
+[✔️] - join/create shared watchlsit 
