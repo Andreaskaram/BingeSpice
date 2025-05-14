@@ -40,3 +40,9 @@ Robustness:
 [✔️] - view watchlist 
 [✔️] - create/edit Watchlist 
 [✔️] - join/create shared watchlsit 
+
+
+
+[]Domain Model
+[]Robustness word
+[]SD word
