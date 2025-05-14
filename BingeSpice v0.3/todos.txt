@@ -4,11 +4,11 @@ Sequence Diagrams:
 [✔️] - add to watchlist ✔️
 [ ] - mark as watched ✔️
 [X] - rate movie ✔️
-[X] - view profile ✔️
-[X] - view notifications ✔️
-[X] - send notifications ✔️
+[ ] - view profile ✔️
+[ ] - view notifications ✔️
+[ ] - send notifications ✔️
 [ ] - quiz  ✔️
-[✔️] - view watchlist ✔️
+[ ] - view watchlist ✔️
 [ ] - create/edit Watchlist ✔️
 [✔️] - join/create shared watchlsit ✔️
 
