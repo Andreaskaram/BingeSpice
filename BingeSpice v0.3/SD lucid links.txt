@@ -16,6 +16,7 @@ https://lucid.app/lucidchart/a1ecdc83-a7ef-4e6e-8379-838f863b9bb5/edit?invitatio
 View Watchlist ✔️
 https://lucid.app/lucidchart/33a1df85-22b1-48fe-9af7-72dc5f92da83/edit?invitationId=inv_fcde4b8f-11a8-452d-a9c4-8b3ecf658cb2
 
+<<<<<<< Updated upstream
 Mark as Watched:
 https://lucid.app/lucidchart/9858b8a5-5348-40ca-bfbb-79a09cfbc5ce/edit?invitationId=inv_08ff9ac3-18fa-4462-99dd-425457f758ee
 
@@ -24,3 +25,13 @@ https://lucid.app/lucidchart/64249dc8-2948-43d1-89bd-f6d36b900290/edit?viewport_
 
 View Notifications:
 https://lucid.app/lucidchart/b0d28037-a5d7-4164-88f5-9a4014d13cea/edit?invitationId=inv_d2e4b593-bfea-49c9-8d55-ca9bc940281a
+=======
+Mark as Watched ✔️
+https://lucid.app/lucidchart/9858b8a5-5348-40ca-bfbb-79a09cfbc5ce/edit?invitationId=inv_08ff9ac3-18fa-4462-99dd-425457f758ee
+
+Quiz ✔️
+https://lucid.app/lucidchart/486cec0c-7f01-4732-b838-fe8f5ba40671/edit?invitationId=inv_5fbe52ad-c304-48b5-8c3c-9503489b8069
+
+Create and Edit Watchlist ✔️
+https://lucid.app/lucidchart/f8aa91b7-4c93-4073-b5ee-73c000e404f2/edit?invitationId=inv_d1774bed-f808-435f-8e7f-7ffc7b3d9793
+>>>>>>> Stashed changes
