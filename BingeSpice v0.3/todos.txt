@@ -16,7 +16,7 @@ Sequence Diagrams:
 [✔️] - Προσθήκη σε use case και robustness του Edit profile οτι ξαναφορτωνει το προφιλ.
 [✔️] - Ενημερωση Use case για εναλλακτικη ροη προβολη watchlist, SD: αλλαγή display() σε displayWatchlist().
 [✔️] - Ενημερώση movie rating robustness
-[ ] - SD: Όλα τα current screens πρέπει να γίνουν κλάση SidebarClass.
+[✔️] - SD: Όλα τα current screens πρέπει να γίνουν κλάση SidebarClass.
 [ ] - Αφαιρέθηκε δημιουργία προτεινόμενων - ενημέρωση αρχειων PDF.
 
 Robustness:
