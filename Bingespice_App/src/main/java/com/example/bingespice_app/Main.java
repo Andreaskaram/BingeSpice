@@ -5,8 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
-import java.io.IOException;
 
 public class Main extends Application {
     @Override
@@ -17,7 +17,8 @@ public class Main extends Application {
         // Set a default size before maximizing
         primaryStage.setWidth(1280);
         primaryStage.setHeight(720);
-
+        // Set the stage icon
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Logo.png")));
         // Optional: center the window before maximizing
         primaryStage.centerOnScreen();
 
