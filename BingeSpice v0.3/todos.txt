@@ -25,3 +25,18 @@ Robustness:
 [✔️] - Προβολή ειδοποιήσεων: sidebar, λαμβάνει ειδοποιήσεις από βάση, εναλλακτική κουμπί εκκαθάρηση ειδοποιήσεων.
 [✔️] - Προβολή watchlist: μενού επιλογών watchlist, εναλλακτική ροή δημιουργία watchlist.
 [✔️] - Δημιουργία Watchlist: Ονομασια, Εναλλακτικη ροη -> Επεξεργασια -> Μετονομασια, Εναλλακτικη ροη ΔΙαγραφη
+
+
+Εναλλακτικες ροες:
+[] - Movie/Series Search 
+[] - movie select 
+[] - add to watchlist 
+[] - mark as watched 
+[] - rate movie 
+[] - view profile 
+[] - view notifications 
+[] - send notifications 
+[] - quiz  
+[] - view watchlist 
+[] - create/edit Watchlist 
+[] - join/create shared watchlsit 
