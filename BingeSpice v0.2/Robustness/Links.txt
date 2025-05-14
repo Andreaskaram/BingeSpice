@@ -15,5 +15,5 @@ https://lucid.app/lucidchart/e0e5153a-3cb3-46fe-87fe-f5f4e7659055/edit?viewport_
 Εισαγωγη/Δημιουργια shared watchlist ✔️
 https://lucid.app/lucidchart/5a3451d1-060f-4bae-a7ca-9bdf10f80959/edit?viewport_loc=-2921%2C-1304%2C8343%2C3481%2C0_0&invitationId=inv_5169973f-fea0-4469-bcfb-dcdc89991cde
 
-join/create shared watchlist ✔️ 
+create/edit watchlist ✔️ 
 https://lucid.app/lucidchart/9c1d6199-3d98-48d3-92fa-c9810f4e40fe/edit?viewport_loc=-406%2C-66%2C3190%2C1781%2C0_0&invitationId=inv_1cb6f771-dfb2-427e-a311-4278d86d0379
