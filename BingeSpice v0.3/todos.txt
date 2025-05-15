@@ -5,9 +5,9 @@ Sequence Diagrams:
 [✔️] - mark as watched ✔️  .
 [✔️] - rate movie ✔️  .
 [✔️] - view profile ✔️   .
-[✔️] - view notifications ✔️
-[✔️] - send notifications ✔️
-[✔️] - quiz  ✔️
+[✔️] - view notifications ✔️ .
+[✔️] - send notifications ✔️ .
+[✔️] - quiz  ✔️  .
 [✔️] - view watchlist ✔️ .
 [✔️] - create/edit Watchlist ✔️ .
 [✔️] - join/create shared watchlsit ✔️  .
@@ -18,7 +18,7 @@ Sequence Diagrams:
 [✔️] - Ενημερώση movie rating robustness
 [✔️] - SD: Όλα τα current screens πρέπει να γίνουν κλάση SidebarClass.
 [ ] - Αφαιρέθηκε δημιουργία προτεινόμενων - ενημέρωση αρχειων PDF.
-[ ] - Προσθεσε ακμη Side bar -> WatchlistScreen στο sd View watchlist
+[✔️ ] - Προσθεσε ακμη Side bar -> WatchlistScreen στο sd View watchlist
 
 Robustness:
 [✔️] - Ενώνουμε το προβολή προφίλ με δημιουργία στατιστικών
