@@ -47,3 +47,19 @@ Robustness:
 []Domain Model
 []Robustness word
 []SD word
+
+
+ΑΛΛΑΓΕΣ ROBUSTNESS:
+ADD TO WATCHLIST:SAME
+JOIN /CREATE SHARED WATCHLIST: SAME
+SEARCH: EDITED ΠΡΟΣΘΗΚΗ ΑΠΟΘΗΚΕΥΣΗς ΙΣΤΟΡΙΚΟΥ ΑΝΑΖΗΤΗΣΗΣ ΣΤΗΝ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ BINGESPICE
+RATING: EDITED ΕΓΙΝΕ ΕΠΙΠΛΕΟΝ ΑΝΑΛΥΣΗ ΓΙΑ ΚΑΛΥΤΕΡΗ ΚΑΤΑΝΟΗΣΗ ΤΗΗΣ ΛΟΓΙΚΗΣ
+SEND NOTIFICATIONS: EDITED ΑΛΛΑΞΕ ΟΛΟΚΛΗΡΟ ΚΑΘΩς ΗΤΑΝ ΛΑΝΘΑΣΜΕΝΗ Η ΥΛΟΠΟΙΗΣΗ ΤΟΥ
+SELECT: SAME
+MARK AS WATCHED: EDITED ΕΓΙΝΕ ΕΠΙΠΛΕΟΝ ΑΝΑΛΚΥΣΗ ΓΙΑ ΚΑΛΥΤΕΡΗ ΚΑΤΑΝΟΗΣΗ ΚΑΙ ΠΡΟΣΤΕΘΗΚΕ ΕΝΑΛΛΑΚΤΙΚΗ ΡΟΗ ΔΙΑΓΡΑΦΗΣ ΑΠΟ WATCHED
+QUIZ: EDITED ΕΓΙΝΑΝ ΜΙΚΡΕΣ ΑΛΛΑΓΕΣ ΓΙΑ ΤΗΝ ΡΟΗ ΤΗΣ ΛΕΙΤΟΥΡΓΙΑΣ ΚΑΙ ΤΗΝ ΕΜΦΑΝΙΣΗ ΤΟΥ ΔΙΑΓΡΑΜΜΑΤΟΣ
+VIEW WATCHLIST: EDITED ΑΛΛΑΞΕ ΟΛΟΚΛΗΡΟ ΓΙΑ ΕΠΙΠΛΕΟΝ ΑΝΑΛΥΣΗ ΚΑΙ ΠΡΟΣΤΕΘΗΚΕ ΕΝΑΛΛΑΚΤΙΚΗ ΡΟΗ ΓΙΑ ΜΗΝΥΜΑ ΑΔΕΙΟΥ WATCHLIST
+VIEW NOTIFICATIONS: EDITED ΕΠΙΠΛΕΟΝ ΑΝΑΛΥΣΗ ΚΑΙ ΠΡΟΣΘΗΚΗ ΕΝΑΛΛΑΚΤΙΚΗΣ ΡΟΗΣ ΓΙΑ ΕΚΚΑΘΑΡΙΣΗ ΕΙΔΟΠΟΙΗΣΕΩΝ
+VIEW PROFILE: EDITED ΕΓΙΝΕ ΕΝΟΠΟΙΗΣΗ ΜΕ ΤΟΝ ΥΠΟΛΟΓΙΣΜΟ ΣΤΑΤΙΣΤΙΚΩΝ ΚΑΙ ΠΡΟΣΤΕΘΗΚΕ ΕΠΑΝΑΦΟΡΤΩΣΗ ΤΗΣ ΟΘΌΝΗΣ ΠΡΟΦΙΛ ΜΕΤΑ ΑΠΟ ΤΡΟΠΟΙΗΣΗ
+SUGGESTIONS: REMOVED ΠΕΡΙΤΤΟ ΔΙΑΓΡΑΜΜΑ, ΔΕΝ ΕΧΕΙ ΚΑΠΟΙΑ ΣΗΜΑΝΤΙΚΗ ΑΞΙΑ ΣΤΟ ΠΡΟΓΡΑΜΜΑ
+CREATE/EDIT WATCHLIST: NEW ΓΙΑ ΚΑΛΥΕΡΗ ΑΝΑΛΥΣΗ ΤΩΝ ΛΕΙΤΟΥΡΓΙΩΝ ΤΟΥ WATCHLIST
