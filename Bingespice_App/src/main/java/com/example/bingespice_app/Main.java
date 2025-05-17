@@ -37,6 +37,7 @@ public class Main extends Application {
             }
         });
 
+        primaryStage.initStyle(javafx.stage.StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
         primaryStage.show();

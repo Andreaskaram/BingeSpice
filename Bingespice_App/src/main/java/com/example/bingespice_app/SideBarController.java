@@ -47,10 +47,26 @@ public class SideBarController {
 
     @FXML
     public void handleLogin(ActionEvent event) throws IOException {
-        Parent loginRoot = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent loginRoot = loader.load();
+
         Stage loginStage = new Stage();
         loginStage.setScene(new Scene(loginRoot));
         loginStage.setTitle("Login");
+
+        // Set fixed size
+        loginStage.setWidth(350);
+        loginStage.setHeight(400);
+        loginStage.setResizable(false);
+
+        // 🔥 Remove OS-native bar
+        loginStage.initStyle(javafx.stage.StageStyle.UNDECORATED);
+
+        // Optional modal
+        loginStage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        loginStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+        loginStage.centerOnScreen();
+
         loginStage.show();
     }
 }

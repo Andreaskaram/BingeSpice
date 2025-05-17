@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+
+<HBox fx:id="titleBar" style="-fx-background-color: #2A2035;" spacing="10" alignment="CENTER_LEFT"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.TopBarController">
+
+    <!-- Left: Logo and App Name -->
+    <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+        <image>
+            <Image url="@../../../Logo.png" />
+        </image>
+    </ImageView>
+    <Label text="BingeSpice" style="-fx-text-fill: #FD6108; -fx-font-size: 18; -fx-font-weight: bold;" />
+
+    <!-- Spacer to push buttons to the right -->
+    <Pane HBox.hgrow="ALWAYS" />
+
+    <!-- Minimize Button -->
+    <Button onAction="#handleMinimize" style="-fx-background-color: transparent;">
+        <graphic>
+            <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
+                <image>
+                    <Image url="@../../../minus.png" />
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <!-- Resize Button -->
+    <Button onAction="#handleResize" style="-fx-background-color: transparent;">
+        <graphic>
+            <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
+                <image>
+                    <Image url="@../../../resize.png" />
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <!-- Close Button -->
+    <Button onAction="#handleClose" style="-fx-background-color: transparent;">
+        <graphic>
+            <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
+                <image>
+                    <Image url="@../../../close.png" />
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
+</HBox>

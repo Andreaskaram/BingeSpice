@@ -7,7 +7,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+
 <BorderPane style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.LoginController">
+
+    <top>
+        <fx:include source="TopBar.fxml"/>
+    </top>
 
     <center>
         <VBox alignment="CENTER" fillWidth="false" prefHeight="245.0" prefWidth="307.0" spacing="20" style="-fx-background-color: #2A2035;">

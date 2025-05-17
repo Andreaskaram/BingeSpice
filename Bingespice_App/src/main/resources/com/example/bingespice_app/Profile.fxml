@@ -29,6 +29,10 @@
       <fx:include source="SideBar.fxml"/>
    </left>
 
+   <top>
+      <fx:include source="TopBar.fxml"/>
+   </top>
+
    <!-- Main Content Area -->
    <center>
       <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #2C2D40;">
