@@ -43,21 +43,9 @@ public class Controller {
                 }
             }
         });
-    }
-
-    public void loadHomepage(ActionEvent event) throws IOException {
-        Parent homepageRoot = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
-        Scene currentScene = ((Node) event.getSource()).getScene();
-        currentScene.setRoot(homepageRoot); // Directly update the scene's root
-    }
-
-    public void loadProfile(ActionEvent event) throws IOException {
-        Parent homepageRoot = FXMLLoader.load(getClass().getResource("Profile.fxml"));
-        Scene currentScene = ((Node) event.getSource()).getScene();
-        currentScene.setRoot(homepageRoot); // Directly update the scene's root
-
 
     }
+
 
     public void loadSearch_Results_Selected(ActionEvent event) throws IOException {
 
@@ -77,20 +65,6 @@ public class Controller {
         currentScene.setRoot(homepageRoot);
     }
 
-
-        public void loadSettings(ActionEvent event) throws IOException {
-            Parent homepageRoot = FXMLLoader.load(getClass().getResource("Settings.fxml"));
-            Scene currentScene = ((Node) event.getSource()).getScene();
-            currentScene.setRoot(homepageRoot); // Directly update the scene's root
-
-        }
-
-            public void loadWatchlist(ActionEvent event) throws IOException {
-                Parent homepageRoot = FXMLLoader.load(getClass().getResource("Watchlist.fxml"));
-                Scene currentScene = ((Node) event.getSource()).getScene();
-                currentScene.setRoot(homepageRoot); // Directly update the scene's root
-
-            }
 
     @FXML
     private void handleSearchOption(ActionEvent event) {
@@ -122,14 +96,5 @@ public class Controller {
          }
      }
 
-
-    @FXML
-    public void handleLogin(ActionEvent event) throws IOException {
-        Parent loginRoot = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Stage loginStage = new Stage();
-        loginStage.setScene(new Scene(loginRoot));
-        loginStage.setTitle("Login");
-        loginStage.show();
-    }
 }
 
