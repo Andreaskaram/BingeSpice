@@ -4,9 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
-
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
     @Override
@@ -14,35 +15,35 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
         Scene scene = new Scene(root);
 
-        // Set a default size before maximizing
+        // Add CSS for proper resize handling
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+
+        // Set initial size and position
         primaryStage.setWidth(1280);
         primaryStage.setHeight(720);
-        // Set the stage icon
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Logo.png")));
-        // Optional: center the window before maximizing
         primaryStage.centerOnScreen();
 
-        // Add listener to handle when maximized is changed
+        // Configure stage
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Logo.png")));
+
+        // Add resize listener
+        ResizeHelper.addResizeListener(primaryStage);
+
+        // Maximization listener
         primaryStage.maximizedProperty().addListener((obs, wasMaximized, isNowMaximized) -> {
-            if (isNowMaximized) {
-                // You can check screen bounds and ensure it doesn't exceed a max
-                javafx.geometry.Rectangle2D screenBounds = javafx.stage.Screen.getPrimary().getVisualBounds();
-                if (screenBounds.getWidth() < 1280 || screenBounds.getHeight() < 720) {
-                    // If the screen is too small, don't maximize; instead, set default size
-                    primaryStage.setMaximized(false);
-                    primaryStage.setWidth(1280);
-                    primaryStage.setHeight(720);
-                    primaryStage.centerOnScreen();
-                }
+            javafx.geometry.Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            if (isNowMaximized && (screenBounds.getWidth() < 1280 || screenBounds.getHeight() < 720)) {
+                primaryStage.setMaximized(false);
+                primaryStage.setWidth(Math.min(1280, screenBounds.getWidth()));
+                primaryStage.setHeight(Math.min(720, screenBounds.getHeight()));
+                primaryStage.centerOnScreen();
             }
         });
 
-        primaryStage.initStyle(javafx.stage.StageStyle.UNDECORATED);
-        primaryStage.setScene(scene);
-        primaryStage.setMaximized(true);
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch();

@@ -32,7 +32,9 @@ public class TopBarController {
 
     @FXML
     private void handleClose() {
-        Platform.exit();
+        // Get the current stage using any component
+        Stage stage = (Stage) titleBar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
