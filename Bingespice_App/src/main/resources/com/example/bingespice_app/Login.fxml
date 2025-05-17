@@ -7,11 +7,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.LoginController">
 
     <top>
-        <fx:include source="TopBar.fxml"/>
+        <fx:include source="TopBar.fxml" />
     </top>
 
     <center>
@@ -27,7 +26,7 @@
                 <PasswordField fx:id="loginPassword" maxWidth="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 20;" />
             </VBox>
 
-            <Button fx:id="loginButton" maxWidth="200" prefWidth="200.0" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-font-weight: bold;" text="Login" />
+            <Button fx:id="loginButton" maxWidth="200" prefWidth="200.0" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Login" />
 
             <Text fx:id="loginError" style="-fx-fill: red; -fx-font-weight: bold;" text="" visible="false" />
         </VBox>
