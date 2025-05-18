@@ -44,13 +44,6 @@ public class SideBarController {
     }
 
     @FXML
-    public void handleLogin(ActionEvent event) throws IOException {
-        Parent loginRoot = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Scene currentScene = ((Node) event.getSource()).getScene();
-        currentScene.setRoot(loginRoot);
-    }
-
-    @FXML
     private void handleLogout(ActionEvent event) throws IOException {
         Preferences prefs = Preferences.userNodeForPackage(Main.class);
         try {
