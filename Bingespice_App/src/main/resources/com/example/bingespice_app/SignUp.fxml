@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<!--
+  FXML for the login screen. Uses a BorderPane with a top bar include,
+  and centers a VBox containing the login form controls.
+-->
+
+<BorderPane style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.LoginController">
+
+    <!-- Top bar (e.g. close/minimize buttons) -->
+    <top>
+        <fx:include source="TopBar.fxml" />
+    </top>
+
+    <!-- Centered login form -->
+    <center>
+        <VBox alignment="CENTER" spacing="20" style="-fx-background-color: #2A2035;">
+            <!-- Header text -->
+            <Text style="-fx-fill: #FD6108; -fx-font-size: 24; -fx-font-weight: bold;" text="Sign Up" />
+
+            <!-- Input fields and checkbox -->
+            <VBox alignment="CENTER" spacing="10">
+                <Text style="-fx-fill: white;" text="Username:" />
+                <TextField fx:id="loginUsername" maxWidth="200" style="-fx-background-color: white; -fx-background-radius: 20;" />
+            <Text layoutX="120.0" layoutY="23.0" style="-fx-fill: white;" text="First Name:" />
+            <TextField fx:id="loginUsername1" layoutX="48.0" layoutY="37.0" maxWidth="200" style="-fx-background-color: white; -fx-background-radius: 20;" />
+            <Text layoutX="120.0" layoutY="146.0" style="-fx-fill: white;" text="Last Name:" />
+            <TextField fx:id="loginUsername11" layoutX="48.0" layoutY="160.0" maxWidth="200" style="-fx-background-color: white; -fx-background-radius: 20;" />
+            <Text layoutX="120.0" layoutY="271.0" style="-fx-fill: white;" text="Gender:" />
+            <ComboBox prefHeight="21.0" prefWidth="175.0" promptText="Choose Gender" style="-fx-background-color: white; -fx-cursor: hand;" visibleRowCount="2" />
+            <Text layoutX="120.0" layoutY="206.0" style="-fx-fill: white;" text="Email:" />
+            <TextField fx:id="loginUsername111" layoutX="48.0" layoutY="222.0" maxWidth="200" style="-fx-background-color: white; -fx-background-radius: 20;" />
+            <Text layoutX="120.0" layoutY="333.0" style="-fx-fill: white;" text="Birthdate" />
+            <TextField fx:id="loginUsername11111" layoutX="48.0" layoutY="347.0" maxWidth="200" style="-fx-background-color: white; -fx-background-radius: 20;" />
+            <Text layoutX="122.0" layoutY="390.0" style="-fx-fill: white;" text="Country" />
+            <TextField fx:id="loginUsername111111" layoutX="48.0" layoutY="347.0" maxWidth="200" style="-fx-background-color: white; -fx-background-radius: 20;" />
+
+                <Text style="-fx-fill: white;" text="Password:" />
+                <PasswordField fx:id="loginPassword" maxWidth="200" style="-fx-background-color: white; -fx-background-radius: 20;" />
+            </VBox>
+
+            <!-- Login button triggers handleLoginAttempt -->
+            <Button maxWidth="200" onAction="#handleLoginAttempt" style="-fx-background-color: #FD6108;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-cursor: hand;" text="Sign Up" />
+            <Text fill="#fd6108" strokeType="OUTSIDE" strokeWidth="0.0" text="OR">
+                <font>
+                    <Font name="System Bold" size="24.0" />
+                </font>
+            </Text>
+            <Button mnemonicParsing="false" onAction="#loadLogin" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Login" />
+
+            <!-- Error message placeholder -->
+            <Text fx:id="loginError" style="-fx-fill: red;                          -fx-font-weight: bold;" visible="false" />
+        </VBox>
+    </center>
+</BorderPane>

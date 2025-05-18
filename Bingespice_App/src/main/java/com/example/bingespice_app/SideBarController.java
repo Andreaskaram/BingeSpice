@@ -51,14 +51,26 @@ public class SideBarController {
     }
 
     @FXML
-    private void handleLogout(ActionEvent event) throws IOException, BackingStoreException {
-        // Clear stored credentials and session
+    private void handleLogout(ActionEvent event) throws IOException {
         Preferences prefs = Preferences.userNodeForPackage(Main.class);
-        prefs.remove(PREF_USER);
-        prefs.remove(PREF_PASS);
-        prefs.flush(); // Ensure changes are saved immediately
+        try {
+            // Remove the entire preferences node
+            prefs.removeNode();
+            prefs.flush(); // Save the changes to the system
+        } catch (BackingStoreException e) {
+            System.err.println("Failed to remove preferences: " + e.getMessage());
+        }
+
+        // Check if the preferences are really gone
+        Preferences checkPrefs = Preferences.userNodeForPackage(Main.class);
+        String checkUser = checkPrefs.get("savedUser", "default");
+        String checkPass = checkPrefs.get("savedPass", "default");
+        System.out.println("After logout: user=" + checkUser + ", pass=" + checkPass);
+
+        // Clear the session
         Session.setUsername(null);
-        // Load Login.fxml and set it as the new root
+
+        // Switch to the login screen
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene currentScene = ((Node) event.getSource()).getScene();
         currentScene.setRoot(loginRoot);

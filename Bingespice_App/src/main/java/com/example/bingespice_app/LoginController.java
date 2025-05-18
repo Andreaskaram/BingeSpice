@@ -10,12 +10,27 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
 import java.util.prefs.Preferences;
 
 /**
  * Controller for handling user login interactions.
  */
 public class LoginController {
+
+    public void loadSignUp(ActionEvent event) throws IOException {
+        Parent homepageRoot = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        currentScene.setRoot(homepageRoot);
+    }
+
+    public void loadLogin(ActionEvent event) throws IOException {
+        Parent homepageRoot = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        currentScene.setRoot(homepageRoot);
+    }
+
     @FXML private TextField loginUsername;      // Username input field
     @FXML private PasswordField loginPassword;  // Password input field
     @FXML private CheckBox rememberMe;          // "Remember Me" checkbox
