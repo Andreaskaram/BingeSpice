@@ -7,10 +7,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <VBox maxWidth="300" minWidth="150" prefWidth="200" style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.SideBarController">
         <!-- Logo -->
@@ -97,34 +95,17 @@
             </content>
         </ScrollPane>
 
-              <!-- Login Button with Invisible Overlay -->
-        <StackPane prefHeight="56.0" prefWidth="198.0">
-
-                  <!-- Invisible Clickable Overlay -->
-            <Button disable="true" maxHeight="Infinity" maxWidth="Infinity" onAction="#handleLogin" pickOnBounds="true" style="-fx-background-color: #2A2035; -fx-cursor: hand;" text="Logout" textFill="#fd6108" visible="false">
-                <font>
-                    <Font name="System Bold" size="18.0" />
-                </font>
-                <graphic>
-                    <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../../../login.png" />
-                        </image>
-                    </ImageView>
-                </graphic>
-      </Button>
-            <!-- Visible Login Button -->
-            <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="56.0" prefWidth="198.0" style="-fx-background-color: #2A2035; -fx-cursor: hand;" text="Log in" textFill="#fd6108">
-                <font>
-                    <Font name="System Bold" size="18.0" />
-                </font>
-                <graphic>
-                    <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../../../login.png" />
-                        </image>
-                    </ImageView>
-                </graphic>
-            </Button>
-        </StackPane>
+               <!-- Invisible Clickable Overlay -->
+         <Button maxHeight="Infinity" maxWidth="Infinity" onAction="#handleLogin" pickOnBounds="true" style="-fx-background-color: #2A2035; -fx-cursor: hand;" text="Logout" textFill="#fd6108">
+             <font>
+                 <Font name="System Bold" size="18.0" />
+             </font>
+             <graphic>
+                 <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                         <Image url="@../../../login.png" />
+                     </image>
+                 </ImageView>
+             </graphic>
+   </Button>
     </VBox>

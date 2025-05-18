@@ -6,67 +6,61 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 
 public class SideBarController {
 
     @FXML
     private Text settingsContentText;
 
+    private static final String PREF_USER = "savedUser";
+    private static final String PREF_PASS = "savedPass";
+
     public void loadHomepage(ActionEvent event) throws IOException {
         Parent homepageRoot = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
         Scene currentScene = ((Node) event.getSource()).getScene();
-        currentScene.setRoot(homepageRoot); // Directly update the scene's root
+        currentScene.setRoot(homepageRoot);
     }
 
     public void loadProfile(ActionEvent event) throws IOException {
-        Parent homepageRoot = FXMLLoader.load(getClass().getResource("Profile.fxml"));
+        Parent profileRoot = FXMLLoader.load(getClass().getResource("Profile.fxml"));
         Scene currentScene = ((Node) event.getSource()).getScene();
-        currentScene.setRoot(homepageRoot); // Directly update the scene's root
-
-
+        currentScene.setRoot(profileRoot);
     }
 
     public void loadSettings(ActionEvent event) throws IOException {
-        Parent homepageRoot = FXMLLoader.load(getClass().getResource("Settings.fxml"));
+        Parent settingsRoot = FXMLLoader.load(getClass().getResource("Settings.fxml"));
         Scene currentScene = ((Node) event.getSource()).getScene();
-        currentScene.setRoot(homepageRoot); // Directly update the scene's root
-
+        currentScene.setRoot(settingsRoot);
     }
 
     public void loadWatchlist(ActionEvent event) throws IOException {
-        Parent homepageRoot = FXMLLoader.load(getClass().getResource("Watchlist.fxml"));
+        Parent watchlistRoot = FXMLLoader.load(getClass().getResource("Watchlist.fxml"));
         Scene currentScene = ((Node) event.getSource()).getScene();
-        currentScene.setRoot(homepageRoot); // Directly update the scene's root
-
+        currentScene.setRoot(watchlistRoot);
     }
 
     @FXML
     public void handleLogin(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
-        Parent loginRoot = loader.load();
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        currentScene.setRoot(loginRoot);
+    }
 
-        Stage loginStage = new Stage();
-        loginStage.setScene(new Scene(loginRoot));
-        loginStage.setTitle("Login");
-
-        // Set fixed size
-        loginStage.setWidth(350);
-        loginStage.setHeight(400);
-        loginStage.setResizable(false);
-
-        // 🔥 Remove OS-native bar
-        loginStage.initStyle(javafx.stage.StageStyle.UNDECORATED);
-
-        // Optional modal
-        loginStage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        loginStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
-        loginStage.centerOnScreen();
-
-        loginStage.show();
+    @FXML
+    private void handleLogout(ActionEvent event) throws IOException, BackingStoreException {
+        // Clear stored credentials and session
+        Preferences prefs = Preferences.userNodeForPackage(Main.class);
+        prefs.remove(PREF_USER);
+        prefs.remove(PREF_PASS);
+        prefs.flush(); // Ensure changes are saved immediately
+        Session.setUsername(null);
+        // Load Login.fxml and set it as the new root
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        currentScene.setRoot(loginRoot);
     }
 }

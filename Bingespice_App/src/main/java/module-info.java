@@ -11,6 +11,7 @@ module com.example.bingespice_app {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.desktop;
+    requires java.prefs;
 
     opens com.example.bingespice_app to javafx.fxml;
     exports com.example.bingespice_app;
