@@ -6,6 +6,9 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
+
 
 public class ResizeHelper {
 
@@ -27,6 +30,8 @@ public class ResizeHelper {
             scene.addEventHandler(MouseEvent.MOUSE_MOVED, this);
             scene.addEventHandler(MouseEvent.MOUSE_PRESSED, this);
             scene.addEventHandler(MouseEvent.MOUSE_DRAGGED, this);
+            scene.addEventHandler(MouseEvent.MOUSE_RELEASED, this);
+
         }
 
         @Override
@@ -43,12 +48,27 @@ public class ResizeHelper {
                 initialStageY = stage.getY();
                 initialStageWidth = stage.getWidth();
                 initialStageHeight = stage.getHeight();
+                if (stage.isMaximized()) {
+                    stage.setMaximized(false);
+                }
+
             }
             else if (type == MouseEvent.MOUSE_DRAGGED) {
                 if (cursorEvent != Cursor.DEFAULT) {
                     handleResize(event);
                 }
             }
+            else if (type == MouseEvent.MOUSE_RELEASED) {
+                if (event.getScreenY() < 5) {
+                    Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+                    stage.setX(bounds.getMinX());
+                    stage.setY(bounds.getMinY());
+                    stage.setWidth(bounds.getWidth());
+                    stage.setHeight(bounds.getHeight());
+
+                }
+            }
+
         }
 
         private void updateCursor(double x, double y) {
