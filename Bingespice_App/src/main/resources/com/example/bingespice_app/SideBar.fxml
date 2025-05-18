@@ -96,7 +96,7 @@
         </ScrollPane>
 
                <!-- Invisible Clickable Overlay -->
-         <Button maxHeight="Infinity" maxWidth="Infinity" onAction="#handleLogin" pickOnBounds="true" style="-fx-background-color: #2A2035; -fx-cursor: hand;" text="Logout" textFill="#fd6108">
+         <Button maxHeight="Infinity" maxWidth="Infinity" onAction="#handleLogout" pickOnBounds="true" style="-fx-background-color: #2A2035; -fx-cursor: hand;" text="Logout" textFill="#fd6108">
              <font>
                  <Font name="System Bold" size="18.0" />
              </font>
