@@ -11,6 +11,7 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
 
 public class TMDBManager {
     private static final String API_KEY = "1cf50e6248dc270629e802686245c2c8";
@@ -41,6 +42,9 @@ public class TMDBManager {
         String tvUrl = SEARCH_TV_URL + "&query=" + encodedQuery;
         mediaList.addAll(fetchMedia(tvUrl, "tv"));
 
+        // Sort the combined list by voteAverage in descending order (most popular first)
+        mediaList.sort(Comparator.comparingDouble(Media::getVoteAverage).reversed());
+
         return mediaList;
     }
 
@@ -52,6 +56,9 @@ public class TMDBManager {
 
         // Get popular TV series
         mediaList.addAll(fetchMedia(DISCOVER_TV_URL, "tv"));
+
+        // Sort the combined list by voteAverage in descending order (most popular first)
+        mediaList.sort(Comparator.comparingDouble(Media::getVoteAverage).reversed());
 
         return mediaList;
     }
