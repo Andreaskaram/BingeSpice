@@ -12,6 +12,7 @@ module com.example.bingespice_app {
     requires com.almasb.fxgl.all;
     requires java.desktop;
     requires java.prefs;
+    requires java.sql;
 
     opens com.example.bingespice_app to javafx.fxml;
     exports com.example.bingespice_app;
