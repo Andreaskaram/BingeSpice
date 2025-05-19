@@ -81,6 +81,12 @@ public class LoginController {
         }
     }
 
+    @FXML
+    private void handleSignupAttempt(ActionEvent event){
+        System.out.println("Signup attempt");
+        BingespiceDBManager.testdb();
+    }
+
     /**
      * Hardcoded credential check (replace with real auth logic later).
      * @param username input username
