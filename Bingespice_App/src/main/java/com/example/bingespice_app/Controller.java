@@ -17,9 +17,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import javafx.application.Platform;
 
-
 public class Controller {
-
     @FXML
     private Text settingsContentText;
 
@@ -27,46 +25,31 @@ public class Controller {
     private MenuButton searchOptionsMenuButton;
 
     @FXML
-    private TextField searchField; // Now recognized
+    private TextField searchField;
 
     @FXML
-    private Button searchButton; // Now recognized
+    private Button searchButton;
 
+    private SearchHandler searchHandler;
 
     public void initialize() {
+        searchHandler = new SearchHandler();
         searchButton.disableProperty().bind(searchField.textProperty().length().lessThan(2));
 
         searchField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                try {
-                    loadSearch_Results_Selected(null); // Pass null since there's no ActionEvent
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                loadSearch_Results_Selected(null);
             }
         });
-
     }
 
-
-    public void loadSearch_Results_Selected(ActionEvent event) throws IOException {
-
-        if (searchField.getText().length() < 2) {
+    public void loadSearch_Results_Selected(ActionEvent event) {
+        String searchTerm = searchField.getText();
+        if (searchTerm.length() < 2) {
             return;
         }
-
-
-        Parent homepageRoot = FXMLLoader.load(getClass().getResource("Search Results_Selected.fxml"));
-        Scene currentScene;
-        if (event != null) {
-            currentScene = ((Node) event.getSource()).getScene();
-        } else {
-            currentScene = searchField.getScene();
-        }
-
-        currentScene.setRoot(homepageRoot);
+        searchHandler.handleSearch(searchTerm, event != null ? (Node) event.getSource() : searchField);
     }
-
 
     @FXML
     private void handleSearchOption(ActionEvent event) {
@@ -98,4 +81,3 @@ public class Controller {
         }
     }
 }
-

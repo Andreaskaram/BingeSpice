@@ -13,6 +13,8 @@ module com.example.bingespice_app {
     requires java.desktop;
     requires java.prefs;
     requires java.sql;
+    requires org.json;
+    requires java.net.http;
 
     opens com.example.bingespice_app to javafx.fxml;
     exports com.example.bingespice_app;

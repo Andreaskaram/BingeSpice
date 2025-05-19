@@ -1,139 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="987.0" prefWidth="1223.0" style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.Controller">
-
-   <!-- Left Sidebar -->
-   <left>
-      <fx:include source="SideBar.fxml" />
-   </left>
-
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.SearchResultsController">
    <top>
       <fx:include source="TopBar.fxml" />
    </top>
-
-   <!-- Main Content Area -->
+   <left>
+      <fx:include source="SideBar.fxml" />
+   </left>
    <center>
-      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #2C2D40;" vbarPolicy="NEVER">
-         <VBox spacing="30" style="-fx-padding: 20; -fx-background-color: #2C2D40;">
-            <!-- Search Bar -->
-            <HBox alignment="CENTER" spacing="15" style="-fx-padding: 0 0 20 0;">
-               <MenuButton fx:id="searchOptionsMenuButton" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-padding: 0; -fx-background-radius: 20;" text="Search options" textFill="#fd6108">
-                 <items>
-                     <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Title" />
-                   <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Genre" />
-                     <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Actor" />
-                     <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Director" />
-                 </items>
-                  <graphic>
-                     <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../hamburger.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </MenuButton>
-               <TextField fx:id="searchField" promptText="Find your next binge-worthy pick!" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
-                  <font>
-                     <Font size="16" />
-                  </font>
-               </TextField>
-               <Button fx:id="searchButton" onAction="#loadSearch_Results_Selected" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
-                  <graphic>
-                     <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../search.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </Button>
-            </HBox>
-
-            <!-- Content Sections (unchanged) -->
-            <VBox spacing="40">
-               <!-- Recommended Section -->
-               <VBox spacing="20">
-                  <Text style="-fx-fill: #FD6108;" text="Search Results:">
-                     <font>
-                        <Font name="System Bold" size="24" />
-                     </font>
-                  </Text>
-                  <FlowPane hgap="20" prefHeight="742.0" prefWidth="1000.0" prefWrapLength="1000" vgap="20">
-                     <Pane maxHeight="791.0" maxWidth="1001.0" minHeight="350" minWidth="300" prefHeight="791.0" prefWidth="1001.0" style="-fx-background-color: #2C2D40;">
-                        <children>
-                           <Pane layoutX="241.0" layoutY="288.0" maxHeight="925.0" maxWidth="1001.0" minHeight="75.0" minWidth="177.0" prefHeight="233.0" prefWidth="186.0" style="-fx-background-color: #2C2D40;">
-                              <children>
-                                 <ImageView fitHeight="232.0" fitWidth="185.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-                              </children>
-                           </Pane>
-                           <Pane layoutX="241.0" layoutY="31.0" maxHeight="925.0" maxWidth="1001.0" minHeight="75.0" minWidth="177.0" prefHeight="233.0" prefWidth="186.0" style="-fx-background-color: #2C2D40;">
-                              <children>
-                                 <ImageView fitHeight="232.0" fitWidth="185.0" layoutX="10.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true" />
-                              </children>
-                           </Pane>
-                           <Pane layoutX="26.0" layoutY="288.0" maxHeight="925.0" maxWidth="1001.0" minHeight="75.0" minWidth="177.0" prefHeight="233.0" prefWidth="186.0" style="-fx-background-color: #2C2D40;">
-                              <children>
-                                 <ImageView fitHeight="232.0" fitWidth="185.0" layoutX="-4.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                              </children>
-                           </Pane>
-                           <Pane layoutX="26.0" layoutY="31.0" maxHeight="925.0" maxWidth="1001.0" minHeight="75.0" minWidth="177.0" prefHeight="233.0" prefWidth="186.0" style="-fx-background-color: #2C2D40;">
-                              <children>
-                                 <ImageView fitHeight="232.0" fitWidth="185.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                              </children>
-                           </Pane>
-                           <Pane layoutX="26.0" layoutY="551.0" maxHeight="925.0" maxWidth="1001.0" minHeight="75.0" minWidth="177.0" prefHeight="233.0" prefWidth="186.0" style="-fx-background-color: #2C2D40;">
-                              <children>
-                                 <ImageView fitHeight="232.0" fitWidth="185.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                              </children>
-                           </Pane>
-                           <Pane layoutX="241.0" layoutY="551.0" maxHeight="925.0" maxWidth="1001.0" minHeight="75.0" minWidth="177.0" prefHeight="233.0" prefWidth="186.0" style="-fx-background-color: #2C2D40;">
-                              <children>
-                                 <ImageView fitHeight="232.0" fitWidth="185.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                              </children>
-                           </Pane>
-                           <Pane layoutX="588.0" layoutY="67.0" maxHeight="925.0" maxWidth="1001.0" minHeight="75.0" minWidth="177.0" prefHeight="394.0" prefWidth="388.0" style="-fx-background-color: #2C2D40;">
-                              <children>
-                                 <ImageView fitHeight="394.0" fitWidth="388.0" pickOnBounds="true" preserveRatio="true" />
-                              </children>
-                           </Pane>
-                           <Button layoutX="714.0" layoutY="726.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="137.0" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108; -fx-cursor: hand;" text="Quiz" textFill="#2a2035" visible="false">
-                              <font>
-                                 <Font name="System Bold" size="24.0" />
-                              </font>
-                           </Button>
-                           <Text fill="#fd6108" layoutX="718.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details:" visible="false" wrappingWidth="132.13671875">
-                              <font>
-                                 <Font name="System Bold" size="36.0" />
-                              </font>
-                           </Text>
-                           <ScrollPane layoutX="588.0" layoutY="507.0" prefHeight="214.0" prefWidth="405.0" visible="false">
-                              <content>
-                                 <TextArea editable="false" prefHeight="212.0" prefWidth="409.0" style="-fx-background-color: #2A2035;" visible="false" />
-                              </content>
-                           </ScrollPane>
-                        </children></Pane>
-                  </FlowPane>
-               </VBox>
-
-               <!-- Watch Next Section -->
-               <VBox spacing="20" />
-            </VBox>
-         </VBox>
-      </ScrollPane>
+      <ListView fx:id="moviesListView" styleClass="movies-list"/>
    </center>
 </BorderPane>
