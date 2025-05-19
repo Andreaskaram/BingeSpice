@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -17,6 +18,7 @@ import javafx.scene.text.FontWeight;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -30,6 +32,16 @@ public class SearchResultsController implements Initializable {
 
     private SearchHandler searchHandler;
 
+    @FXML
+    private HBox recommendedHBox; // HBox for the "Recommended" section
+
+    @FXML
+    private HBox watchNextHBox;   // HBox for the "Watch Next" section
+
+    @FXML
+    private TMDBManager TMDBManager;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         searchHandler = new SearchHandler();
@@ -39,6 +51,10 @@ public class SearchResultsController implements Initializable {
                 handleSearch(null); // Trigger handleSearch with null event
             }
         });
+
+        TMDBManager = new TMDBManager(); // Initialize the API manager
+        loadRecommendedMedia();          // Load "Recommended" section
+        loadWatchNextMedia();            // Load "Watch Next" section
     }
 
     public void setMedia(List<Media> mediaItems) {
@@ -48,6 +64,37 @@ public class SearchResultsController implements Initializable {
             mediaFlowPane.getChildren().add(mediaPane);
         }
     }
+
+    /** Loads up to 10 random items into the "Recommended" section */
+    private void loadRecommendedMedia() {
+        try {
+            List<Media> popularMedia = TMDBManager.getPopularMedia();
+            Collections.shuffle(popularMedia); // Shuffle to get random items
+            List<Media> recommended = popularMedia.subList(0, Math.min(8, popularMedia.size()));
+            for (Media media : recommended) {
+                Pane mediaPane = createMediaPane(media);
+                recommendedHBox.getChildren().add(mediaPane);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle any errors
+        }
+    }
+
+    /** Loads up to 10 random items into the "Watch Next" section */
+    private void loadWatchNextMedia() {
+        try {
+            List<Media> newReleases = TMDBManager.getNewReleases();
+            Collections.shuffle(newReleases); // Shuffle to get random items
+            List<Media> watchNext = newReleases.subList(0, Math.min(8, newReleases.size()));
+            for (Media media : watchNext) {
+                Pane mediaPane = createMediaPane(media);
+                watchNextHBox.getChildren().add(mediaPane);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle any errors
+        }
+    }
+
 
     private Pane createMediaPane(Media media) {
         Pane pane = new Pane();
