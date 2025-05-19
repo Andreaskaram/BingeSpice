@@ -3,7 +3,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.SearchResultsController">
+<BorderPane style="-fx-border-color: #2C2D40;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.SearchResultsController">
    <top>
       <fx:include source="TopBar.fxml" />
    </top>
@@ -11,6 +11,6 @@
       <fx:include source="SideBar.fxml" />
    </left>
    <center>
-      <ListView fx:id="moviesListView" styleClass="movies-list"/>
+      <ListView fx:id="moviesListView" style="-fx-background-color: #2C2D40;" />
    </center>
 </BorderPane>

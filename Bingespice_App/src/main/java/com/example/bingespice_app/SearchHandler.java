@@ -21,11 +21,11 @@ public class SearchHandler {
         }
 
         try {
-            List<Movie> movies = tmdbManager.searchMovies(query);
+            List<Media> mediaItems = tmdbManager.searchMedia(query);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Search Results_Selected.fxml"));
             Parent root = loader.load();
             SearchResultsController controller = loader.getController();
-            controller.setMovies(movies);
+            controller.setMedia(mediaItems);
             Scene currentScene = sourceNode.getScene();
             currentScene.setRoot(root);
         } catch (Exception e) {
