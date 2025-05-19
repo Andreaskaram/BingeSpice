@@ -6,9 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -30,11 +28,22 @@ public class LoginController {
         Scene currentScene = ((Node) event.getSource()).getScene();
         currentScene.setRoot(homepageRoot);
     }
-
+    // Login
     @FXML private TextField loginUsername;      // Username input field
     @FXML private PasswordField loginPassword;  // Password input field
     @FXML private CheckBox rememberMe;          // "Remember Me" checkbox
-    @FXML private Text loginError;              // Error message display
+    @FXML private Text loginError;
+
+    // Sign Up
+    @FXML private TextField signupFirstName;
+    @FXML private TextField signupLastName;
+    @FXML private TextField signupUsername;
+    @FXML private TextField signupEmail;
+    @FXML private TextField signupCountry;
+    @FXML private TextField signupPassword;
+    @FXML private RadioButton maleRadio;
+    @FXML private RadioButton femaleRadio;
+    @FXML private ToggleGroup genderToggleGroup;
 
     // Preference keys (should match Main.java)
     private static final String PREF_USER = "savedUser";
@@ -82,9 +91,20 @@ public class LoginController {
     }
 
     @FXML
-    private void handleSignupAttempt(ActionEvent event){
+    private void handleSignupAttempt(ActionEvent event) {
         System.out.println("Signup attempt");
-        BingespiceDBManager.testdb();
+
+        String firstName = signupFirstName.getText();
+        String lastName = signupLastName.getText();
+        String username = signupUsername.getText();
+        String password = signupPassword.getText();
+        String email = signupEmail.getText();
+        String country = signupCountry.getText();
+
+        String selectedGender = getSelectedGender(); // ✅ Use the method here
+
+        BingespiceDBManager.signup(username, firstName, lastName, email,
+                password, selectedGender, country);
     }
 
     /**
@@ -96,5 +116,10 @@ public class LoginController {
     private boolean checkCredentials(String username, String password) {
         // Only allows admin/admin for now
         return "admin".equals(username) && "admin".equals(password);
+    }
+
+    private String getSelectedGender() {
+        RadioButton selectedRadio = (RadioButton) genderToggleGroup.getSelectedToggle();
+        return selectedRadio != null ? selectedRadio.getText() : null;
     }
 }

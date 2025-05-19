@@ -1,19 +1,22 @@
 package com.example.bingespice_app;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class BingespiceDBManager {
+
+    // DB Connection
+    private static Connection getConnection() throws Exception {
+        return DriverManager.getConnection(
+                "jdbc:mysql://bingespicedb.cva6i4ugasuu.eu-north-1.rds.amazonaws.com:3306/bingespicedb",
+                "admin",
+                "bingedbpw"
+        );
+    }
+
     public static void testdb() {
         System.out.println("testdb");
         try{
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://bingespicedb.cva6i4ugasuu.eu-north-1.rds.amazonaws.com:3306/bingespicedb",
-                    "admin",
-                    "bingedbpw"
-            );
+            Connection conn = getConnection();
             System.out.println("✅ Connected to the database successfully.");
 
             Statement stmt = conn.createStatement();
@@ -31,7 +34,29 @@ public class BingespiceDBManager {
 
     }
 
-    public static void signup(){
+    public static void signup(String username, String firstName, String lastName, String email, String password, String gender, String country){
+        String sql = "INSERT INTO User (Username, FirstName, LastName, Email, Password, Gender, Country) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try(Connection conn = getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
 
+            stmt.setString(1, username);
+            stmt.setString(2, firstName);
+            stmt.setString(3, lastName);
+            stmt.setString(4, email);
+            stmt.setString(5, password);
+            stmt.setString(6, gender);
+            stmt.setString(7, country);
+
+            stmt.executeUpdate();
+            System.out.println("✅ User registered successfully.");
+
+        }   catch (SQLIntegrityConstraintViolationException dupEx) {
+            System.out.println("⚠️ Username already exists. Please choose another one.");
+        } catch (SQLException e) {
+            System.out.println("❌ SQL Error: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
