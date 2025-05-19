@@ -75,6 +75,7 @@ public class SearchResultsController implements Initializable {
                 Pane mediaPane = createMediaPane(media);
                 recommendedHBox.getChildren().add(mediaPane);
             }
+
         } catch (Exception e) {
             e.printStackTrace(); // Handle any errors
         }
