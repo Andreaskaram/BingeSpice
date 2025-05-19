@@ -21,6 +21,8 @@ public class TMDBManager {
     private static final String SEARCH_TV_URL = BASE_URL + "/search/tv?api_key=" + API_KEY;
     private static final String DISCOVER_MOVIE_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&api_key=" + API_KEY;
     private static final String DISCOVER_TV_URL = BASE_URL + "/discover/tv?sort_by=popularity.desc&api_key=" + API_KEY;
+    private static final String NOW_PLAYING_MOVIE_URL = BASE_URL + "/movie/now_playing?api_key=" + API_KEY;
+    private static final String AIRING_TODAY_TV_URL = BASE_URL + "/tv/airing_today?api_key=" + API_KEY;
 
     private final HttpClient httpClient;
 
@@ -45,6 +47,13 @@ public class TMDBManager {
         // Sort the combined list by voteAverage in descending order (most popular first)
         mediaList.sort(Comparator.comparingDouble(Media::getVoteAverage).reversed());
 
+        return mediaList;
+    }
+
+    public List<Media> getNewReleases() throws Exception {
+        List<Media> mediaList = new ArrayList<>();
+        mediaList.addAll(fetchMedia(NOW_PLAYING_MOVIE_URL, "movie"));
+        mediaList.addAll(fetchMedia(AIRING_TODAY_TV_URL, "tv"));
         return mediaList;
     }
 
