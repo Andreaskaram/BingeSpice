@@ -30,8 +30,11 @@ public class Controller {
     @FXML private Text emailText;
     @FXML private Text genderText;
     @FXML private Text countryText;
+    @FXML private Text usernameText;
     @FXML private ImageView profileImageView;
     @FXML private Button editProfileButton;
+
+
 
     @FXML
     public void initialize() {
@@ -48,6 +51,7 @@ public class Controller {
                 Platform.runLater(() -> {
                     firstNameText.setText(user.getFirstName());
                     lastNameText.setText(user.getLastName());
+                    usernameText.setText(username);
                     emailText.setText(user.getEmail());
                     genderText.setText(user.getGender());
                     countryText.setText(user.getCountry());

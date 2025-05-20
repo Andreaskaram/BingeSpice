@@ -85,34 +85,46 @@
                               </font>
                            </Text>
 
-                           <Text fill="#fd6108" layoutX="44.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="196.13671875">
+                           <!-- Username Field (Added) -->
+                           <Text fill="#fd6108" layoutX="44.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="196.13671875">
                               <font>
                                  <Font name="System Bold" size="26.0" />
                               </font>
                            </Text>
-                           <Text fx:id="emailText" fill="#ffffff" layoutX="250.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading..." wrappingWidth="300.0">
-                              <font>
-                                 <Font name="System Bold" size="26.0" />
-                              </font>
-                           </Text>
-
-                           <Text fill="#fd6108" layoutX="44.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" wrappingWidth="196.13671875">
-                              <font>
-                                 <Font name="System Bold" size="26.0" />
-                              </font>
-                           </Text>
-                           <Text fx:id="genderText" fill="#ffffff" layoutX="250.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading..." wrappingWidth="300.0">
+                           <Text fx:id="usernameText" fill="#ffffff" layoutX="250.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading..." wrappingWidth="300.0">
                               <font>
                                  <Font name="System Bold" size="26.0" />
                               </font>
                            </Text>
 
-                           <Text fill="#fd6108" layoutX="44.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country:" wrappingWidth="196.13671875">
+                           <Text fill="#fd6108" layoutX="44.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="196.13671875">
                               <font>
                                  <Font name="System Bold" size="26.0" />
                               </font>
                            </Text>
-                           <Text fx:id="countryText" fill="#ffffff" layoutX="250.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading..." wrappingWidth="300.0">
+                           <Text fx:id="emailText" fill="#ffffff" layoutX="250.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading..." wrappingWidth="300.0">
+                              <font>
+                                 <Font name="System Bold" size="26.0" />
+                              </font>
+                           </Text>
+
+                           <Text fill="#fd6108" layoutX="44.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" wrappingWidth="196.13671875">
+                              <font>
+                                 <Font name="System Bold" size="26.0" />
+                              </font>
+                           </Text>
+                           <Text fx:id="genderText" fill="#ffffff" layoutX="250.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading..." wrappingWidth="300.0">
+                              <font>
+                                 <Font name="System Bold" size="26.0" />
+                              </font>
+                           </Text>
+
+                           <Text fill="#fd6108" layoutX="44.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country:" wrappingWidth="196.13671875">
+                              <font>
+                                 <Font name="System Bold" size="26.0" />
+                              </font>
+                           </Text>
+                           <Text fx:id="countryText" fill="#ffffff" layoutX="250.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading..." wrappingWidth="300.0">
                               <font>
                                  <Font name="System Bold" size="26.0" />
                               </font>
