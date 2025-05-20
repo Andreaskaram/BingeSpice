@@ -1,6 +1,5 @@
 package com.example.bingespice_app;
 
-import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -19,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -48,8 +46,6 @@ public class SearchResultsController implements Initializable {
 
     @FXML
     private Button searchButton;
-    @FXML
-    private PauseTransition debounceTimer;
 
 
     private TMDBManager tmdbManager; // Corrected variable name (no @FXML)
@@ -64,17 +60,6 @@ public class SearchResultsController implements Initializable {
     private void initializeSearchHandlers() {
         searchHandler = new SearchHandler();
         searchButton.disableProperty().bind(searchField.textProperty().length().lessThan(2));
-
-        // Debounce setup (500ms delay)
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (debounceTimer != null) {
-                debounceTimer.stop();
-            }
-            debounceTimer = new PauseTransition(Duration.millis(500));
-            debounceTimer.setOnFinished(event -> handleSearch(null));
-            debounceTimer.play();
-        });
-
         searchField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) handleSearch(null);
         });
