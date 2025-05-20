@@ -125,8 +125,7 @@ public class LoginController {
      * @return true if credentials match
      */
     private boolean checkCredentials(String username, String password) {
-        // Only allows admin/admin for now
-        return "admin".equals(username) && "admin".equals(password);
+        return BingespiceDBManager.login(username, password);
     }
 
     private String getSelectedGender() {
