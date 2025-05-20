@@ -34,7 +34,7 @@ public class BingespiceDBManager {
 
     }
 
-    public static void signup(String username, String firstName, String lastName, String email, String password, String gender, String country){
+    public static String signup(String username, String firstName, String lastName, String email, String password, String gender, String country){
         String sql = "INSERT INTO User (Username, FirstName, LastName, Email, Password, Gender, Country) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try(Connection conn = getConnection();
@@ -50,13 +50,17 @@ public class BingespiceDBManager {
 
             stmt.executeUpdate();
             System.out.println("✅ User registered successfully.");
+            return null;
 
         }   catch (SQLIntegrityConstraintViolationException dupEx) {
             System.out.println("⚠️ Username already exists. Please choose another one.");
+            return "Username already exists";
         } catch (SQLException e) {
             System.out.println("❌ SQL Error: " + e.getMessage());
+            return "An unexpected SQL error occurred";
         } catch (Exception e) {
             e.printStackTrace();
+            return "An unexpected error occurred";
         }
     }
 }

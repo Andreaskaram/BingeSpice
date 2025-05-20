@@ -44,6 +44,7 @@ public class LoginController {
     @FXML private RadioButton maleRadio;
     @FXML private RadioButton femaleRadio;
     @FXML private ToggleGroup genderToggleGroup;
+    @FXML private Text signupError;
 
     // Preference keys (should match Main.java)
     private static final String PREF_USER = "savedUser";
@@ -101,10 +102,20 @@ public class LoginController {
         String email = signupEmail.getText();
         String country = signupCountry.getText();
 
-        String selectedGender = getSelectedGender(); // ✅ Use the method here
+        String selectedGender = getSelectedGender();
+        if(username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+            System.out.println("Username or password is empty");
+            signupError.setText("Username or password is empty");
+            signupError.setVisible(true);
 
-        BingespiceDBManager.signup(username, firstName, lastName, email,
-                password, selectedGender, country);
+        } else {
+            String errorMsg = BingespiceDBManager.signup(username, firstName, lastName, email,
+                    password, selectedGender, country);
+            if(errorMsg!= null){
+                signupError.setText(errorMsg);
+                signupError.setVisible(true);
+            }
+        }
     }
 
     /**

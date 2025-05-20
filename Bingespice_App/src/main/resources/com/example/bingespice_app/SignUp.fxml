@@ -64,10 +64,10 @@
                 </font>
             </Text>
             <Button mnemonicParsing="false" onAction="#loadLogin" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Login" />
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" visible="false" />
+         <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" />
 
             <!-- Error message placeholder -->
-            <Text fx:id="loginError" style="-fx-fill: red;                          -fx-font-weight: bold;" visible="false" />
+            <Text fx:id="signupError" style="-fx-fill: red;                          -fx-font-weight: bold;" visible="false" />
         </VBox>
     </center>
 </BorderPane>
