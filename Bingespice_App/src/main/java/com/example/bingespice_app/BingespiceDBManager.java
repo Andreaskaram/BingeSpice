@@ -103,7 +103,7 @@ public class BingespiceDBManager {
     }
 
     public static User getUserDetails(String username) {
-        String sql = "SELECT FirstName, LastName, Email, Gender, Country FROM User WHERE Username = ?";
+        String sql = "SELECT FirstName, LastName, Email, Gender, Country, ProfilePicture FROM User WHERE Username = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -116,7 +116,8 @@ public class BingespiceDBManager {
                         rs.getString("LastName"),
                         rs.getString("Email"),
                         rs.getString("Gender"),
-                        rs.getString("Country")
+                        rs.getString("Country"),
+                        rs.getBytes("ProfilePicture")
                 );
             }
         } catch (SQLException e) {

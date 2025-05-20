@@ -8,12 +8,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
+
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
@@ -55,6 +58,11 @@ public class Controller {
                     emailText.setText(user.getEmail());
                     genderText.setText(user.getGender());
                     countryText.setText(user.getCountry());
+                    byte[] imageData = user.getProfilePicture();
+                    if (imageData != null) {
+                        Image image = new Image(new ByteArrayInputStream(imageData));
+                        profileImageView.setImage(image);
+                    }
 
                     // You can also load a profile image here if you have one in the DB
                     // profileImageView.setImage(...);
