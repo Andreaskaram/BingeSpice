@@ -19,6 +19,10 @@ public class SelectedController implements Initializable {
     @FXML private Label typeLabel;
     @FXML private Label genresLabel;
     @FXML private Label releaseDateLabel;
+    @FXML private Label actorsLabel;
+    @FXML private Label directorsLabel;
+    @FXML private Label runtimeLabel;
+    @FXML private Label seasonsLabel;
 
     private TMDBManager tmdbManager;
 
@@ -50,6 +54,18 @@ public class SelectedController implements Initializable {
 
             String date = details.optString(media.getType().equals("movie") ? "release_date" : "first_air_date", "N/A");
             releaseDateLabel.setText(media.getType().equals("movie") ? "Release Date: " + date : "First Air Date: " + date);
+            actorsLabel.setText("Actors: " + details.optString("actors", "N/A"));
+            directorsLabel.setText("Director(s): " + details.optString("directors", "N/A"));
+
+            if (media.getType().equalsIgnoreCase("movie")) {
+                int runtime = details.optInt("runtime", 0);
+                runtimeLabel.setText("Duration: " + runtime + " mins");
+                seasonsLabel.setVisible(false); // Hide for movies
+            } else {
+                runtimeLabel.setText("Episodes: " + details.optInt("episodes", 0));
+                seasonsLabel.setText("Seasons: " + details.optInt("seasons", 0));
+                seasonsLabel.setVisible(true);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

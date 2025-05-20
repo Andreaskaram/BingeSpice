@@ -29,28 +29,54 @@
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Label>
-                        <Label fx:id="typeLabel" style="-fx-font-size: 18px;" textFill="#fd6108">
+                        <Label fx:id="typeLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" textFill="#fd6108">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Label>
+                        <Label fx:id="ratingLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" textFill="#fd6108">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
-                        <Label fx:id="ratingLabel" style="-fx-font-size: 18px;" textFill="#fd6108">
+                        <Label fx:id="genresLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" textFill="#fd6108" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
-                        <Label fx:id="genresLabel" style="-fx-font-size: 16px;" textFill="#fd6108" wrapText="true">
+                        <Label fx:id="releaseDateLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" textFill="#fd6108">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
-                        <Label fx:id="releaseDateLabel" style="-fx-font-size: 16px;" textFill="#fd6108">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Label>
+                      <Label fx:id="actorsLabel" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-max-height: infinity;" textFill="#fd6108" wrapText="true">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+
+                                  <!-- Directors -->
+                      <Label fx:id="directorsLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" textFill="#fd6108" wrapText="true">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                                  <!-- Runtime/Episodes -->
+                      <Label fx:id="runtimeLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" textFill="#fd6108">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                        <Label fx:id="seasonsLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" textFill="#fd6108" visible="false">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
                     </VBox>
                 </HBox>
+
+                            <!-- Seasons (Visible only for TV) -->
                 <Label fx:id="overviewLabel" prefWidth="1000.0" style="-fx-wrap-text: true; -fx-max-height: Infinity;" textFill="#fd6108">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font></Label>
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
             </VBox>
         </ScrollPane>
     </center>

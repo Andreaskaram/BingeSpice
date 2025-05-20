@@ -85,11 +85,44 @@ public class TMDBManager {
     }
 
     public JSONObject getMediaDetails(int id, String type) throws Exception {
-        String url = BASE_URL + "/" + type + "/" + id + "?api_key=" + API_KEY;
+        String url = BASE_URL + "/" + type + "/" + id + "?api_key=" + API_KEY + "&append_to_response=credits";
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        return new JSONObject(response.body());
+        JSONObject json = new JSONObject(response.body());
+
+        // Extract actors (top 3) and directors
+        JSONArray credits = json.getJSONObject("credits").getJSONArray("cast");
+        JSONArray crew = json.getJSONObject("credits").getJSONArray("crew");
+        StringBuilder actors = new StringBuilder();
+        StringBuilder directors = new StringBuilder();
+
+        for (int i = 0; i < Math.min(3, credits.length()); i++) {
+            actors.append(credits.getJSONObject(i).getString("name"));
+            if (i < Math.min(3, credits.length()) - 1) actors.append(", ");
+        }
+
+        for (int i = 0; i < crew.length(); i++) {
+            JSONObject member = crew.getJSONObject(i);
+            if (member.getString("job").equalsIgnoreCase("Director")) {
+                directors.append(member.getString("name")).append(", ");
+            }
+        }
+        if (directors.length() > 0) directors.setLength(directors.length() - 2); // Remove trailing comma
+
+        // Add extracted data to the JSON
+        json.put("actors", actors.toString());
+        json.put("directors", directors.toString());
+
+        // Add runtime/duration (movies) or seasons/episodes (TV)
+        if (type.equals("movie")) {
+            json.put("runtime", json.optInt("runtime", 0));
+        } else {
+            json.put("seasons", json.optInt("number_of_seasons", 0));
+            json.put("episodes", json.optInt("number_of_episodes", 0));
+        }
+
+        return json;
     }
 }
