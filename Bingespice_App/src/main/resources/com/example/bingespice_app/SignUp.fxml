@@ -57,7 +57,7 @@
                <children>
                       <!-- Add this to the SignUp.fxml VBox -->
                       <Text style="-fx-fill: white;" text="Profile Picture:" />
-                      <Button onAction="#handleImageUpload" prefHeight="28.0" prefWidth="92.0" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-cursor: hand;" text="Choose Image" />
+                      <Button fx:id="chooseImageButton" onAction="#handleImageUpload" prefHeight="28.0" prefWidth="92.0" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-cursor: hand;" text="Choose Image" />
                </children>
             </HBox>
 
