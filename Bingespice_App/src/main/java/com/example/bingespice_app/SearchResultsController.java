@@ -3,6 +3,7 @@ package com.example.bingespice_app;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -41,10 +42,14 @@ public class SearchResultsController implements Initializable {
     @FXML
     private TMDBManager TMDBManager;
 
+    @FXML
+    private Button searchButton;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         searchHandler = new SearchHandler();
+        searchButton.disableProperty().bind(searchField.textProperty().length().lessThan(2));
         // Add Enter key listener to searchField
         searchField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {

@@ -31,37 +31,7 @@
       <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #2C2D40;">
          <VBox spacing="30" style="-fx-padding: 20; -fx-background-color: #2C2D40;">
             <!-- Search Bar -->
-            <HBox alignment="CENTER" spacing="15" style="-fx-padding: 0 0 20 0;">
-               <MenuButton fx:id="searchOptionsMenuButton" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-padding: 0; -fx-background-radius: 20;" text="Search options" textFill="#fd6108">
-                 <items>
-                     <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Title" />
-                   <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Genre" />
-                     <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Actor" />
-                     <MenuItem mnemonicParsing="false" onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Director" />
-                 </items>
-                  <graphic>
-                     <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../hamburger.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </MenuButton>
-               <TextField fx:id="searchField" promptText="Find your next binge-worthy pick!" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
-                  <font>
-                     <Font size="16" />
-                  </font>
-               </TextField>
-               <Button fx:id="searchButton" onAction="#loadSearch_Results_Selected" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
-                  <graphic>
-                     <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../search.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </Button>
-            </HBox>
+            <fx:include source="SearchBar.fxml"></fx:include>
             <Pane prefHeight="860.0" prefWidth="1123.0">
                <children>
                   <Pane layoutX="20.0" layoutY="14.0" prefHeight="274.0" prefWidth="200.0" style="-fx-background-color: #2A2035;">

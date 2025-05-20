@@ -24,32 +24,7 @@ public class Controller {
     @FXML
     private MenuButton searchOptionsMenuButton;
 
-    @FXML
-    private TextField searchField;
 
-    @FXML
-    private Button searchButton;
-
-    private SearchHandler searchHandler;
-
-    public void initialize() {
-        searchHandler = new SearchHandler();
-        searchButton.disableProperty().bind(searchField.textProperty().length().lessThan(2));
-
-        searchField.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                loadSearch_Results_Selected(null);
-            }
-        });
-    }
-
-    public void loadSearch_Results_Selected(ActionEvent event) {
-        String searchTerm = searchField.getText();
-        if (searchTerm.length() < 2) {
-            return;
-        }
-        searchHandler.handleSearch(searchTerm, event != null ? (Node) event.getSource() : searchField);
-    }
 
     @FXML
     private void handleSearchOption(ActionEvent event) {
