@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import java.io.IOException;
 import javafx.application.Platform;
+import javafx.scene.image.ImageView;
 
 public class Controller {
     @FXML
@@ -24,7 +25,44 @@ public class Controller {
     @FXML
     private MenuButton searchOptionsMenuButton;
 
+    @FXML private Text firstNameText;
+    @FXML private Text lastNameText;
+    @FXML private Text emailText;
+    @FXML private Text genderText;
+    @FXML private Text countryText;
+    @FXML private ImageView profileImageView;
+    @FXML private Button editProfileButton;
 
+    @FXML
+    public void initialize() {
+        // Load user details when the profile view is loaded
+        loadUserDetails();
+    }
+
+    private void loadUserDetails() {
+        String username = Session.getUsername();
+        if (username != null && !username.isEmpty()) {
+            User user = BingespiceDBManager.getUserDetails(username);
+            if (user != null) {
+                // Update the UI elements with user data
+                Platform.runLater(() -> {
+                    firstNameText.setText(user.getFirstName());
+                    lastNameText.setText(user.getLastName());
+                    emailText.setText(user.getEmail());
+                    genderText.setText(user.getGender());
+                    countryText.setText(user.getCountry());
+
+                    // You can also load a profile image here if you have one in the DB
+                    // profileImageView.setImage(...);
+                });
+            }
+        }
+    }
+    @FXML
+    private void handleEditProfile(ActionEvent event) {
+        // Implement edit profile functionality here
+        System.out.println("Edit profile button clicked");
+    }
 
     @FXML
     private void handleSearchOption(ActionEvent event) {

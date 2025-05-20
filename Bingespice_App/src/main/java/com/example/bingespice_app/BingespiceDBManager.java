@@ -101,4 +101,30 @@ public class BingespiceDBManager {
             e.printStackTrace();
         }
     }
+
+    public static User getUserDetails(String username) {
+        String sql = "SELECT FirstName, LastName, Email, Gender, Country FROM User WHERE Username = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new User(
+                        rs.getString("FirstName"),
+                        rs.getString("LastName"),
+                        rs.getString("Email"),
+                        rs.getString("Gender"),
+                        rs.getString("Country")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ SQL Error fetching user details: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
+
