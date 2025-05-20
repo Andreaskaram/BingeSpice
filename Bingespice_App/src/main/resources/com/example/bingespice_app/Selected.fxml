@@ -80,12 +80,21 @@
                 </Label>
             <HBox prefHeight="46.0" prefWidth="338.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #fd6108; -fx-text-fill: white; -fx-cursor: hand;" text="Mark as Watched">
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="190.0" style="-fx-background-color: #0096FF; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Mark as Watched">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #0096FF; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Add To Watchlist" />
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="190.0" style="-fx-background-color: #fd6108; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Add to Watchlist">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="190.0" style="-fx-background-color: #0096FF; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Add to Shared Watchlist">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
             </VBox>
