@@ -110,9 +110,9 @@ public class LoginController {
         String country = signupCountry.getText().trim();
 
         // Validate all required fields
-        if(username.isEmpty() || password.isEmpty() || firstName.isEmpty() ||
-                lastName.isEmpty() || email.isEmpty() || country.isEmpty()) {
-            signupError.setText("All fields are required");
+        if(username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+            System.out.println("Username or password is empty");
+            signupError.setText("Username and Passsword are required");
             signupError.setVisible(true);
             return;
         }
@@ -124,10 +124,12 @@ public class LoginController {
         if(errorMsg != null){
             signupError.setText(errorMsg);
             signupError.setVisible(true);
-        } else {
+            System.out.println(errorMsg);
+        } else{
             signupError.setText("Signup successful! Please login");
             signupError.setStyle("-fx-fill: green;");
             signupError.setVisible(true);
+            System.out.println("Signup successful");
         }
     }
 
@@ -143,12 +145,7 @@ public class LoginController {
 
     private String getSelectedGender() {
         RadioButton selectedRadio = (RadioButton) genderToggleGroup.getSelectedToggle();
-        if(selectedRadio == null) {
-            signupError.setText("Please select a gender");
-            signupError.setVisible(true);
-            throw new IllegalArgumentException("Gender not selected");
-        }
-        return selectedRadio.getText();
+        return selectedRadio != null ? selectedRadio.getText() : null;
     }
 
     @FXML
