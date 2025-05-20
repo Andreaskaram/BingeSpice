@@ -18,12 +18,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+
 
 public class SearchResultsController implements Initializable {
 
@@ -141,6 +144,7 @@ public class SearchResultsController implements Initializable {
         Pane pane = new Pane();
         pane.setPrefSize(186, 320); // Height accommodates type label
         pane.setStyle("-fx-background-color: #2C2D40;");
+        pane.setOnMouseClicked(event -> handleMediaSelection(media));
 
         VBox contentBox = new VBox(5); // VBox with 5px spacing between elements
         contentBox.setAlignment(javafx.geometry.Pos.CENTER); // Center children within VBox
@@ -190,6 +194,18 @@ public class SearchResultsController implements Initializable {
             return;
         }
         searchHandler.handleSearch(query, searchField);
+    }
+
+    private void handleMediaSelection(Media media) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Selected.fxml"));
+            Parent root = loader.load();
+            SelectedController controller = loader.getController();
+            controller.setMediaDetails(media);
+            mediaFlowPane.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -83,4 +83,13 @@ public class TMDBManager {
         }
         return mediaItems;
     }
+
+    public JSONObject getMediaDetails(int id, String type) throws Exception {
+        String url = BASE_URL + "/" + type + "/" + id + "?api_key=" + API_KEY;
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return new JSONObject(response.body());
+    }
 }

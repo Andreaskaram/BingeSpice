@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.bingespice_app.Selected"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2C2D40;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.SelectedController">
 
 
     <left>
@@ -20,11 +19,39 @@
         <fx:include source="TopBar.fxml" />
     </top>
     <center>
-    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #2C2D40;" vbarPolicy="NEVER">
-    <VBox spacing="30" style="-fx-padding: 20; -fx-background-color: #2C2D40;">
-    <!-- Search Bar -->
-    <fx:include source="SearchBar.fxml" />
-    </VBox>
-    </ScrollPane>
+        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #2C2D40;" vbarPolicy="NEVER">
+            <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: #2C2D40;">
+                <fx:include source="SearchBar.fxml" />
+                <HBox spacing="30">
+                    <ImageView fx:id="posterImageView" fitHeight="450" fitWidth="300" preserveRatio="true" />
+                    <VBox spacing="15" style="-fx-text-fill: #FD6108;">
+                        <Label fx:id="titleLabel" style="-fx-font-size: 32px; -fx-font-weight: bold;" textFill="#fd6108">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Label>
+                        <Label fx:id="typeLabel" style="-fx-font-size: 18px;" textFill="#fd6108">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                        <Label fx:id="ratingLabel" style="-fx-font-size: 18px;" textFill="#fd6108">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                        <Label fx:id="genresLabel" style="-fx-font-size: 16px;" textFill="#fd6108" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                        <Label fx:id="releaseDateLabel" style="-fx-font-size: 16px;" textFill="#fd6108">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                    </VBox>
+                </HBox>
+                <Label fx:id="overviewLabel" prefWidth="1000" style="-fx-wrap-text: true;" textFill="#fd6108">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+            </VBox>
+        </ScrollPane>
     </center>
 </BorderPane>
