@@ -166,7 +166,6 @@ public class LoginController {
 
                 profileImageData = Files.readAllBytes(file.toPath());
                 Image image = new Image(file.toURI().toString());
-                profileImageView.setImage(image);
 
             } catch (IOException e) {
                 e.printStackTrace();
