@@ -129,5 +129,27 @@ public class BingespiceDBManager {
         }
         return null;
     }
+
+
+
+    public static boolean updateUser(String oldUsername, String newUsername, String firstName, String lastName,
+                                     String email, String gender, String country) {
+        String sql = "UPDATE User SET Username=?, FirstName=?, LastName=?, Email=?, Gender=?, Country=? WHERE Username=?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, newUsername);
+            stmt.setString(2, firstName);
+            stmt.setString(3, lastName);
+            stmt.setString(4, email);
+            stmt.setString(5, gender);
+            stmt.setString(6, country);
+            stmt.setString(7, oldUsername);
+            int updated = stmt.executeUpdate();
+            return updated > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 
