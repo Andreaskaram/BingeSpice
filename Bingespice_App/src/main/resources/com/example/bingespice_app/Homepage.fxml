@@ -10,119 +10,92 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.bingespice_app.SearchResultsController"
-            style="-fx-background-color: #2A2035;">
-
+<BorderPane style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.SearchResultsController">
    <left>
-      <fx:include source="SideBar.fxml"/>
+      <fx:include source="SideBar.fxml" />
    </left>
-
    <top>
-      <fx:include source="TopBar.fxml"/>
+      <fx:include source="TopBar.fxml" />
    </top>
 
-   <!-- wrap your VBox in an AnchorPane so it absolutely fills the center region -->
    <center>
-      <AnchorPane>
-         <VBox spacing="30"
-               style="-fx-padding: 20; -fx-background-color: #2C2D40;"
-               AnchorPane.topAnchor="0.0"
-               AnchorPane.bottomAnchor="0.0"
-               AnchorPane.leftAnchor="0.0"
-               AnchorPane.rightAnchor="0.0">
-
-            <!-- Search Bar -->
-            <HBox alignment="CENTER" spacing="15" style="-fx-padding: 0 0 20 0;">
-               <MenuButton fx:id="searchOptionsMenuButton"
-                           mnemonicParsing="false"
-                           text="Search options"
-                           textFill="#fd6108"
-                           style="-fx-background-color: #2A2035; -fx-padding: 0; -fx-background-radius: 20;">
-                  <items>
-                     <MenuItem text="Title"      onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;"/>
-                     <MenuItem text="Genre"      onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;"/>
-                     <MenuItem text="Actor"      onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;"/>
-                     <MenuItem text="Director"   onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;"/>
-                  </items>
-                  <graphic>
-                     <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../hamburger.png"/>
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </MenuButton>
-               <TextField fx:id="searchField"
-                          promptText="Find your next binge-worthy pick!"
-                          HBox.hgrow="ALWAYS"
-                          style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108; -fx-background-radius: 20;">
-                  <font>
-                     <Font size="16"/>
-                  </font>
-               </TextField>
-               <Button fx:id="searchButton"
-                       onAction="#handleSearch"
-                       style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
-                  <graphic>
-                     <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../search.png"/>
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </Button>
-            </HBox>
-
-            <!-- Popular Section -->
-            <VBox fx:id="recommendedVBox" spacing="10" styleClass="section">
-               <Label text="Popular:" textFill="#fd6108" style="-fx-font-size: 24px; -fx-font-weight: bold;">
-                  <font>
-                     <Font name="System Bold" size="24.0"/>
-                  </font>
-               </Label>
-               <ScrollPane fitToHeight="true"
-                           fitToWidth="true"
-                           hbarPolicy="NEVER"
-                           vbarPolicy="NEVER"
-                           style="-fx-background-color: #2C2D40;">
-                  <content>
-                     <HBox fx:id="recommendedHBox"
-                           alignment="CENTER"
-                           spacing="10"
-                           style="-fx-background-color: #2C2D40;"/>
-                  </content>
-               </ScrollPane>
+      <ScrollPane style="-fx-background-color: #2C2D40;">
+      <AnchorPane style="-fx-background-color: #2C2D40;">
+         <children>
+            <VBox spacing="30" style="-fx-padding: 20; -fx-background-color: #2C2D40;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="53.0" prefWidth="413.0" spacing="15" style="-fx-padding: 0 0 20 0;">
+                     <children>
+                        <MenuButton fx:id="searchOptionsMenuButton" mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-padding: 0; -fx-background-radius: 20;" text="Search options" textFill="#fd6108">
+                           <items>
+                              <MenuItem onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Title" />
+                              <MenuItem onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Genre" />
+                              <MenuItem onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Actor" />
+                              <MenuItem onAction="#handleSearchOption" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108;" text="Director" />
+                           </items>
+                           <graphic>
+                              <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../hamburger.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuButton>
+                        <TextField fx:id="searchField" promptText="Find your next binge-worthy pick!" style="-fx-background-color: #2A2035; -fx-text-fill: #FD6108; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="16" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="searchButton" onAction="#handleSearch" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
+                           <graphic>
+                              <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../search.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <VBox fx:id="recommendedVBox" spacing="10" styleClass="section">
+                     <children>
+                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Popular:" textFill="#fd6108">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <HBox fx:id="recommendedHBox" alignment="CENTER" spacing="10" style="-fx-background-color: #2C2D40;" />
+                           </children>
+                        </FlowPane>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="watchNextVBox" spacing="10" styleClass="section">
+                     <children>
+                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="New Arrivals:" textFill="#fd6108">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <HBox fx:id="watchNextHBox" alignment="CENTER" spacing="10" style="-fx-background-color: #2C2D40;" />
+                           </children>
+                        </FlowPane>
+                     </children>
+                  </VBox>
+               </children>
             </VBox>
-
-            <!-- New Arrivals Section -->
-            <VBox fx:id="watchNextVBox" spacing="10" styleClass="section">
-               <Label text="New Arrivals:" textFill="#fd6108" style="-fx-font-size: 24px; -fx-font-weight: bold;">
-                  <font>
-                     <Font name="System Bold" size="24.0"/>
-                  </font>
-               </Label>
-               <ScrollPane fitToHeight="true"
-                           fitToWidth="true"
-                           hbarPolicy="NEVER"
-                           vbarPolicy="NEVER"
-                           style="-fx-background-color: #2C2D40;">
-                  <content>
-                     <HBox fx:id="watchNextHBox"
-                           alignment="CENTER"
-                           spacing="10"
-                           style="-fx-background-color: #2C2D40;"/>
-                  </content>
-               </ScrollPane>
-            </VBox>
-
-         </VBox>
+         </children>
       </AnchorPane>
+      </ScrollPane>
    </center>
+
 
 </BorderPane>
