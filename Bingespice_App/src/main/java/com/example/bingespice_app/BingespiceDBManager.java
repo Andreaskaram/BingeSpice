@@ -26,12 +26,9 @@ public class BingespiceDBManager {
                 System.out.println("HellowWorld");
                 System.out.println(rs.getString(1));
             }
-
         }catch(Exception e){
             e.printStackTrace();
         }
-
-
     }
 
     public static String signup(String username, String firstName, String lastName, String email, String password, String gender, String country){
@@ -61,6 +58,42 @@ public class BingespiceDBManager {
         } catch (Exception e) {
             e.printStackTrace();
             return "An unexpected error occurred";
+        }
+    }
+
+    public static boolean login(String username, String password) {
+        String sql = "SELECT * FROM User WHERE BINARY Username = ? AND BINARY Password = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                logLogin(username);  // ✅ Only logs on successful login
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("❌ SQL Error during login: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private static void logLogin(String username) {
+        String sql = "INSERT INTO LOG (Username, Time, Action) VALUES (?, NOW(), 'Login')";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            stmt.executeUpdate();
+            System.out.println("📝 Login recorded in LOG table.");
+        } catch (SQLException e) {
+            System.out.println("⚠️ Could not log login: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
