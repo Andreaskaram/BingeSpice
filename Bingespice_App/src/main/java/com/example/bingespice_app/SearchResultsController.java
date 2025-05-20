@@ -1,5 +1,7 @@
 package com.example.bingespice_app;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,60 +48,97 @@ public class SearchResultsController implements Initializable {
     private Button searchButton;
 
 
+    private TMDBManager tmdbManager; // Corrected variable name (no @FXML)
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initializeSearchHandlers();
+        initializeMediaSections();
+    }
+
+    // Split: Search-related initializations
+    private void initializeSearchHandlers() {
         searchHandler = new SearchHandler();
         searchButton.disableProperty().bind(searchField.textProperty().length().lessThan(2));
-        // Add Enter key listener to searchField
         searchField.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                handleSearch(null); // Trigger handleSearch with null event
-            }
+            if (event.getCode() == KeyCode.ENTER) handleSearch(null);
         });
-
-        TMDBManager = new TMDBManager(); // Initialize the API manager
-        loadRecommendedMedia();          // Load "Recommended" section
-        loadWatchNextMedia();            // Load "Watch Next" section
     }
 
-    public void setMedia(List<Media> mediaItems) {
-        mediaFlowPane.getChildren().clear(); // Clear existing children
-        for (Media media : mediaItems) {
+    // Split: TMDB and media loading initializations
+    private void initializeMediaSections() {
+        tmdbManager = new TMDBManager();
+
+        // Background task for loading media sections
+        Task<Void> mediaLoadingTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                if (recommendedHBox != null) {
+                    List<Media> popularMedia = tmdbManager.getPopularMedia();
+                    Collections.shuffle(popularMedia);
+                    List<Media> recommended = popularMedia.subList(0, Math.min(8, popularMedia.size()));
+                    Platform.runLater(() -> recommendedHBox.getChildren().clear());
+                    loadMediaInBackground(recommended, recommendedHBox);
+                }
+
+                if (watchNextHBox != null) {
+                    List<Media> newReleases = tmdbManager.getNewReleases();
+                    Collections.shuffle(newReleases);
+                    List<Media> watchNext = newReleases.subList(0, Math.min(8, newReleases.size()));
+                    Platform.runLater(() -> watchNextHBox.getChildren().clear());
+                    loadMediaInBackground(watchNext, watchNextHBox);
+                }
+                return null;
+            }
+        };
+
+        new Thread(mediaLoadingTask).start();
+    }
+
+    private void loadMediaInBackground(List<Media> mediaList, HBox container) {
+        for (Media media : mediaList) {
             Pane mediaPane = createMediaPane(media);
-            mediaFlowPane.getChildren().add(mediaPane);
+            Platform.runLater(() -> container.getChildren().add(mediaPane));
+            try {
+                Thread.sleep(50); // Small delay to prevent UI flooding
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
-    /** Loads up to 10 random items into the "Recommended" section */
+    // Updated with null check for mediaFlowPane
+    public void setMedia(List<Media> mediaItems) {
+        if (mediaFlowPane != null) {
+            mediaFlowPane.getChildren().clear();
+            for (Media media : mediaItems) {
+                mediaFlowPane.getChildren().add(createMediaPane(media));
+            }
+        }
+    }
+
     private void loadRecommendedMedia() {
         try {
-            List<Media> popularMedia = TMDBManager.getPopularMedia();
-            Collections.shuffle(popularMedia); // Shuffle to get random items
+            List<Media> popularMedia = tmdbManager.getPopularMedia();
+            Collections.shuffle(popularMedia);
             List<Media> recommended = popularMedia.subList(0, Math.min(8, popularMedia.size()));
             for (Media media : recommended) {
-                Pane mediaPane = createMediaPane(media);
-                recommendedHBox.getChildren().add(mediaPane);
+                recommendedHBox.getChildren().add(createMediaPane(media));
             }
-
-        } catch (Exception e) {
-            e.printStackTrace(); // Handle any errors
-        }
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
-    /** Loads up to 10 random items into the "Watch Next" section */
     private void loadWatchNextMedia() {
         try {
-            List<Media> newReleases = TMDBManager.getNewReleases();
-            Collections.shuffle(newReleases); // Shuffle to get random items
+            List<Media> newReleases = tmdbManager.getNewReleases();
+            Collections.shuffle(newReleases);
             List<Media> watchNext = newReleases.subList(0, Math.min(8, newReleases.size()));
             for (Media media : watchNext) {
-                Pane mediaPane = createMediaPane(media);
-                watchNextHBox.getChildren().add(mediaPane);
+                watchNextHBox.getChildren().add(createMediaPane(media));
             }
-        } catch (Exception e) {
-            e.printStackTrace(); // Handle any errors
-        }
+        } catch (Exception e) { e.printStackTrace(); }
     }
+
 
 
     private Pane createMediaPane(Media media) {

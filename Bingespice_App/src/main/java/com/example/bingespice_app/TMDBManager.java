@@ -16,7 +16,7 @@ import java.util.List;
 public class TMDBManager {
     private static final String API_KEY = "1cf50e6248dc270629e802686245c2c8";
     private static final String BASE_URL = "https://api.themoviedb.org/3";
-    private static final String IMG_URL = "https://image.tmdb.org/t/p/w185"; // smaller size here
+    private static final String IMG_URL = "https://image.tmdb.org/t/p/w154"; // smaller size here
     private static final String SEARCH_MOVIE_URL = BASE_URL + "/search/movie?api_key=" + API_KEY;
     private static final String SEARCH_TV_URL = BASE_URL + "/search/tv?api_key=" + API_KEY;
     private static final String DISCOVER_MOVIE_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&api_key=" + API_KEY;
