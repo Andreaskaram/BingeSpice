@@ -63,9 +63,16 @@ public class Controller {
                         Image image = new Image(new ByteArrayInputStream(imageData));
                         profileImageView.setImage(image);
                     }
+                    else {
+                        // Load default image from resources
+                        Image defaultImage = new Image(
+                                getClass().getResourceAsStream("/profile-user.png")
+                        );
+                        profileImageView.setImage(defaultImage);
 
-                    // You can also load a profile image here if you have one in the DB
-                    // profileImageView.setImage(...);
+                        // You can also load a profile image here if you have one in the DB
+                        // profileImageView.setImage(...);
+                    }
                 });
             }
         }
