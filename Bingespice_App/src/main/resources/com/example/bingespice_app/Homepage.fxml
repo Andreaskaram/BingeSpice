@@ -70,7 +70,7 @@
                      <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Popular:" textFill="#fd6108" />
                      <FlowPane hgap="10" vgap="10">
                         <children>
-                           <HBox fx:id="recommendedHBox" alignment="CENTER" spacing="10" style="-fx-cursor: hand;" />
+                           <HBox fx:id="PopularHBox" alignment="CENTER" spacing="10" style="-fx-cursor: hand;" />
                         </children>
                      </FlowPane>
                   </VBox>
@@ -80,7 +80,7 @@
                      <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="New Arrivals:" textFill="#fd6108" />
                      <FlowPane hgap="10" vgap="10">
                         <children>
-                           <HBox fx:id="watchNextHBox" alignment="CENTER" spacing="10" style="-fx-cursor: hand;" />
+                           <HBox fx:id="NewArrivalsHBox" alignment="CENTER" spacing="10" style="-fx-cursor: hand;" />
                         </children>
                      </FlowPane>
                   </VBox>

@@ -36,10 +36,10 @@ public class SearchResultsController implements Initializable {
     private SearchHandler searchHandler;
 
     @FXML
-    private HBox recommendedHBox; // HBox for the "Recommended" section
+    private HBox PopularHBox; // HBox for the "Recommended" section
 
     @FXML
-    private HBox watchNextHBox;   // HBox for the "Watch Next" section
+    private HBox NewArrivalsHBox;   // HBox for the "Watch Next" section
 
     @FXML
     private TMDBManager TMDBManager;
@@ -73,20 +73,20 @@ public class SearchResultsController implements Initializable {
         Task<Void> mediaLoadingTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
-                if (recommendedHBox != null) {
+                if (PopularHBox != null) {
                     List<Media> popularMedia = tmdbManager.getPopularMedia();
                     Collections.shuffle(popularMedia);
                     List<Media> recommended = popularMedia.subList(0, Math.min(8, popularMedia.size()));
-                    Platform.runLater(() -> recommendedHBox.getChildren().clear());
-                    loadMediaInBackground(recommended, recommendedHBox);
+                    Platform.runLater(() -> PopularHBox.getChildren().clear());
+                    loadMediaInBackground(recommended, PopularHBox);
                 }
 
-                if (watchNextHBox != null) {
+                if (NewArrivalsHBox != null) {
                     List<Media> newReleases = tmdbManager.getNewReleases();
                     Collections.shuffle(newReleases);
                     List<Media> watchNext = newReleases.subList(0, Math.min(8, newReleases.size()));
-                    Platform.runLater(() -> watchNextHBox.getChildren().clear());
-                    loadMediaInBackground(watchNext, watchNextHBox);
+                    Platform.runLater(() -> NewArrivalsHBox.getChildren().clear());
+                    loadMediaInBackground(watchNext, NewArrivalsHBox);
                 }
                 return null;
             }
@@ -112,7 +112,8 @@ public class SearchResultsController implements Initializable {
         }
     }
 
-    private void loadRecommendedMedia() {
+    /*private void loadRecommendedMedia() {
+
         try {
             List<Media> popularMedia = tmdbManager.getPopularMedia();
             Collections.shuffle(popularMedia);
@@ -133,7 +134,7 @@ public class SearchResultsController implements Initializable {
             }
         } catch (Exception e) { e.printStackTrace(); }
     }
-
+*/
 
 
     private Pane createMediaPane(Media media) {
