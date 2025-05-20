@@ -51,11 +51,7 @@
                   <!-- Profile -->
             <Button contentDisplay="LEFT" graphicTextGap="10" onAction="#loadProfile" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand;" text="Profile">
                 <graphic>
-                    <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
-                        <image>
-                            <Image url="@../../../profile-user.png" />
-                        </image>
-                    </ImageView>
+                    <ImageView fx:id="profileImageView" fitHeight="30" fitWidth="30" preserveRatio="true" />
                 </graphic>
                 Profile
                   </Button>

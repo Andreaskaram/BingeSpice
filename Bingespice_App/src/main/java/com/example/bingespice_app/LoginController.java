@@ -7,9 +7,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.prefs.Preferences;
 
 /**
@@ -45,6 +50,8 @@ public class LoginController {
     @FXML private RadioButton femaleRadio;
     @FXML private ToggleGroup genderToggleGroup;
     @FXML private Text signupError;
+    @FXML private ImageView profileImageView;
+    private byte[] profileImageData;
 
     // Preference keys (should match Main.java)
     private static final String PREF_USER = "savedUser";
@@ -95,26 +102,32 @@ public class LoginController {
     private void handleSignupAttempt(ActionEvent event) {
         System.out.println("Signup attempt");
 
-        String firstName = signupFirstName.getText();
-        String lastName = signupLastName.getText();
-        String username = signupUsername.getText();
-        String password = signupPassword.getText();
-        String email = signupEmail.getText();
-        String country = signupCountry.getText();
+        String firstName = signupFirstName.getText().trim();
+        String lastName = signupLastName.getText().trim();
+        String username = signupUsername.getText().trim();
+        String password = signupPassword.getText().trim();
+        String email = signupEmail.getText().trim();
+        String country = signupCountry.getText().trim();
+
+        // Validate all required fields
+        if(username.isEmpty() || password.isEmpty() || firstName.isEmpty() ||
+                lastName.isEmpty() || email.isEmpty() || country.isEmpty()) {
+            signupError.setText("All fields are required");
+            signupError.setVisible(true);
+            return;
+        }
 
         String selectedGender = getSelectedGender();
-        if(username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
-            System.out.println("Username or password is empty");
-            signupError.setText("Username or password is empty");
-            signupError.setVisible(true);
+        String errorMsg = BingespiceDBManager.signup(username, firstName, lastName, email,
+                password, selectedGender, country, profileImageData);
 
+        if(errorMsg != null){
+            signupError.setText(errorMsg);
+            signupError.setVisible(true);
         } else {
-            String errorMsg = BingespiceDBManager.signup(username, firstName, lastName, email,
-                    password, selectedGender, country);
-            if(errorMsg!= null){
-                signupError.setText(errorMsg);
-                signupError.setVisible(true);
-            }
+            signupError.setText("Signup successful! Please login");
+            signupError.setStyle("-fx-fill: green;");
+            signupError.setVisible(true);
         }
     }
 
@@ -130,6 +143,39 @@ public class LoginController {
 
     private String getSelectedGender() {
         RadioButton selectedRadio = (RadioButton) genderToggleGroup.getSelectedToggle();
-        return selectedRadio != null ? selectedRadio.getText() : null;
+        if(selectedRadio == null) {
+            signupError.setText("Please select a gender");
+            signupError.setVisible(true);
+            throw new IllegalArgumentException("Gender not selected");
+        }
+        return selectedRadio.getText();
+    }
+
+    @FXML
+    private void handleImageUpload(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            try {
+                // Check file size first
+                if(file.length() > 1_048_576) { // 1MB
+                    signupError.setText("Image too large (max 1MB)");
+                    signupError.setVisible(true);
+                    return;
+                }
+
+                profileImageData = Files.readAllBytes(file.toPath());
+                Image image = new Image(file.toURI().toString());
+                profileImageView.setImage(image);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                signupError.setText("Error loading image");
+                signupError.setVisible(true);
+            }
+        }
     }
 }

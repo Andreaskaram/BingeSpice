@@ -5,7 +5,7 @@ import java.sql.*;
 public class BingespiceDBManager {
 
     // DB Connection
-    private static Connection getConnection() throws Exception {
+    static Connection getConnection() throws Exception {
         return DriverManager.getConnection(
                 "jdbc:mysql://bingespicedb.cva6i4ugasuu.eu-north-1.rds.amazonaws.com:3306/bingespicedb",
                 "admin",
@@ -31,9 +31,9 @@ public class BingespiceDBManager {
         }
     }
 
-    public static String signup(String username, String firstName, String lastName, String email, String password, String gender, String country){
-        String sql = "INSERT INTO User (Username, FirstName, LastName, Email, Password, Gender, Country) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public static String signup(String username, String firstName, String lastName, String email, String password, String gender, String country, byte[] profileImage){
+        String sql = "INSERT INTO User (Username, FirstName, LastName, Email, Password, Gender, Country,ProfilePicture) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection conn = getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
 
@@ -44,20 +44,25 @@ public class BingespiceDBManager {
             stmt.setString(5, password);
             stmt.setString(6, gender);
             stmt.setString(7, country);
+            // Profile picture
+            if(profileImage != null) {
+                if(profileImage.length > 1_048_576) { // 1MB limit
+                    return "Image too large (max 1MB)";
+                }
+                stmt.setBytes(8, profileImage);
+            } else {
+                stmt.setNull(8, Types.BLOB);
+            }
 
             stmt.executeUpdate();
-            System.out.println("✅ User registered successfully.");
             return null;
-
-        }   catch (SQLIntegrityConstraintViolationException dupEx) {
-            System.out.println("⚠️ Username already exists. Please choose another one.");
-            return "Username already exists";
         } catch (SQLException e) {
             System.out.println("❌ SQL Error: " + e.getMessage());
-            return "An unexpected SQL error occurred";
+            e.printStackTrace(); // Add detailed logging
+            return "Database error: " + e.getMessage();
         } catch (Exception e) {
             e.printStackTrace();
-            return "An unexpected error occurred";
+            return "System error: " + e.getMessage();
         }
     }
 

@@ -6,8 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
@@ -18,6 +25,31 @@ public class SideBarController {
 
     private static final String PREF_USER = "savedUser";
     private static final String PREF_PASS = "savedPass";
+    @FXML private ImageView profileImageView;
+
+    public void initialize() {
+        loadProfileImage();
+    }
+
+    private void loadProfileImage() {
+        String sql = "SELECT ProfilePicture FROM User WHERE Username = ?";
+        try (Connection conn = BingespiceDBManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, Session.getUsername());
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                byte[] imageData = rs.getBytes("ProfilePicture");
+                if(imageData != null) {
+                    Image image = new Image(new ByteArrayInputStream(imageData));
+                    profileImageView.setImage(image);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void loadHomepage(ActionEvent event) throws IOException {
         Parent homepageRoot = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
@@ -29,6 +61,7 @@ public class SideBarController {
         Parent profileRoot = FXMLLoader.load(getClass().getResource("Profile.fxml"));
         Scene currentScene = ((Node) event.getSource()).getScene();
         currentScene.setRoot(profileRoot);
+        loadProfileImage();
     }
 
     public void loadSettings(ActionEvent event) throws IOException {
