@@ -99,11 +99,6 @@ public class SearchResultsController implements Initializable {
         for (Media media : mediaList) {
             Pane mediaPane = createMediaPane(media);
             Platform.runLater(() -> container.getChildren().add(mediaPane));
-            try {
-                Thread.sleep(50); // Small delay to prevent UI flooding
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
         }
     }
 
