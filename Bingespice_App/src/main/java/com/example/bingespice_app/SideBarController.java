@@ -44,6 +44,11 @@ public class SideBarController {
                 if(imageData != null) {
                     Image image = new Image(new ByteArrayInputStream(imageData));
                     profileImageView.setImage(image);
+                } else {
+                    Image defaultImage = new Image(
+                            getClass().getResourceAsStream("/profile-user.png")
+                    );
+                    profileImageView.setImage(defaultImage);
                 }
             }
         } catch (Exception e) {
