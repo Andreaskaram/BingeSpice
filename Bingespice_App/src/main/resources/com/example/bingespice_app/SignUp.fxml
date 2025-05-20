@@ -10,7 +10,6 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -31,7 +30,7 @@
             <Text style="-fx-fill: #FD6108; -fx-font-size: 24; -fx-font-weight: bold;" text="Sign Up" />
 
             <!-- Input fields and checkbox -->
-            <VBox alignment="CENTER" prefHeight="520.0" prefWidth="277.0" spacing="10">
+            <VBox alignment="CENTER" prefHeight="416.0" prefWidth="334.0" spacing="10">
             <Text layoutX="120.0" layoutY="23.0" style="-fx-fill: white;" text="First Name:" />
             <TextField fx:id="signupFirstName" layoutX="48.0" layoutY="37.0" maxWidth="200" style="-fx-background-color: white; -fx-background-radius: 20;" />
             <Text layoutX="120.0" layoutY="146.0" style="-fx-fill: white;" text="Last Name:" />
@@ -54,22 +53,24 @@
                     </RadioButton>
                     <RadioButton fx:id="femaleRadio" text="Female" textFill="WHITE" toggleGroup="$genderToggleGroup" />
                 </HBox>
-                <!-- Add this to the SignUp.fxml VBox -->
-                <Text style="-fx-fill: white;" text="Profile Picture:" />
-                <ImageView fx:id="profileImageView" fitHeight="100.0" fitWidth="100" />
-                <Button onAction="#handleImageUpload" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-cursor: hand;" text="Choose Image" />
+            <HBox alignment="CENTER" spacing="20">
+               <children>
+                      <!-- Add this to the SignUp.fxml VBox -->
+                      <Text style="-fx-fill: white;" text="Profile Picture:" />
+                      <Button fx:id="chooseImageButton" onAction="#handleImageUpload" prefHeight="28.0" prefWidth="92.0" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-cursor: hand;" text="Choose Image" />
+               </children>
+            </HBox>
 
             </VBox>
 
             <!-- Login button triggers handleLoginAttempt -->
-            <Button maxWidth="200" onAction="#handleSignupAttempt" style="-fx-background-color: #FD6108;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-cursor: hand;" text="Sign Up" />
-            <Text fill="#fd6108" strokeType="OUTSIDE" strokeWidth="0.0" text="OR">
+            <Button maxWidth="200" onAction="#handleSignupAttempt" prefHeight="11.0" prefWidth="200.0" style="-fx-background-color: #FD6108;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-cursor: hand;" text="Sign Up" />
+            <Text fill="#fd6108" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="37.8671875">
                 <font>
                     <Font name="System Bold" size="24.0" />
                 </font>
             </Text>
             <Button mnemonicParsing="false" onAction="#loadLogin" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Login" />
-         <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" />
 
             <!-- Error message placeholder -->
             <Text fx:id="signupError" style="-fx-fill: red;                          -fx-font-weight: bold;" visible="false" />

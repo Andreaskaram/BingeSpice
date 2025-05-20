@@ -52,6 +52,7 @@ public class LoginController {
     @FXML private Text signupError;
     @FXML private ImageView profileImageView;
     private byte[] profileImageData;
+    @FXML private Button chooseImageButton;
 
     // Preference keys (should match Main.java)
     private static final String PREF_USER = "savedUser";
@@ -157,16 +158,17 @@ public class LoginController {
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
             try {
-                // Check file size first
-                if(file.length() > 1_048_576) { // 1MB
+                if(file.length() > 1_048_576) {
                     signupError.setText("Image too large (max 1MB)");
                     signupError.setVisible(true);
                     return;
                 }
 
+                // Update button text with the file name
+                chooseImageButton.setText(file.getName());
+
                 profileImageData = Files.readAllBytes(file.toPath());
                 Image image = new Image(file.toURI().toString());
-                profileImageView.setImage(image);
 
             } catch (IOException e) {
                 e.printStackTrace();
