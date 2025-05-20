@@ -42,7 +42,7 @@ public class Main extends Application {
 
         // Set default window size and center on screen
         primaryStage.setWidth(1280);
-        primaryStage.setHeight(720);
+        primaryStage.setHeight(860);
         primaryStage.centerOnScreen();
 
         // Remove window decorations for custom styling
@@ -58,10 +58,10 @@ public class Main extends Application {
         // Custom maximize behavior: don't exceed minimum designed resolution
         primaryStage.maximizedProperty().addListener((obs, wasMax, isMax) -> {
             javafx.geometry.Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-            if (isMax && (bounds.getWidth() < 1280 || bounds.getHeight() < 720)) {
+            if (isMax && (bounds.getWidth() < 1280 || bounds.getHeight() < 860)) {
                 primaryStage.setMaximized(false);
                 primaryStage.setWidth(Math.min(1280, bounds.getWidth()));
-                primaryStage.setHeight(Math.min(720, bounds.getHeight()));
+                primaryStage.setHeight(Math.min(860, bounds.getHeight()));
                 primaryStage.centerOnScreen();
             }
         });
