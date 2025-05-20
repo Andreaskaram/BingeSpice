@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.Label?>
 
 <BorderPane prefHeight="987.0" prefWidth="1223.0" style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.SearchResultsController">
    <!-- Top Bar -->
@@ -65,10 +63,10 @@
             </HBox>
 
             <!-- Search Results Title -->
-            <Label text="Search Results:" style="-fx-text-fill: #FD6108; -fx-font-size: 24px; -fx-font-weight: bold;" />
+            <Label style="-fx-text-fill: #FD6108; -fx-font-size: 24px; -fx-font-weight: bold;" text="Search Results:" />
 
             <!-- FlowPane for Grid Layout -->
-            <FlowPane fx:id="mediaFlowPane" hgap="20" vgap="20" prefWrapLength="1000" style="-fx-background-color: #2C2D40;">
+            <FlowPane fx:id="mediaFlowPane" hgap="20" prefWrapLength="1000" style="-fx-background-color: #2C2D40; -fx-cursor: hand;" vgap="20">
                <!-- Dynamically populated by controller -->
             </FlowPane>
          </VBox>
