@@ -47,7 +47,7 @@
                      </font></Label>
                     </VBox>
                 </HBox>
-                <Label fx:id="overviewLabel" prefWidth="1000" style="-fx-wrap-text: true;" textFill="#fd6108">
+                <Label fx:id="overviewLabel" prefWidth="1000.0" style="-fx-wrap-text: true; -fx-max-height: Infinity;" textFill="#fd6108">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Label>
