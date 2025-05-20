@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.ImageView?>
@@ -77,6 +78,16 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
+            <HBox prefHeight="46.0" prefWidth="338.0">
+               <children>
+                  <Button mnemonicParsing="false" style="-fx-background-color: #0096FF; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Add To Watchlist" />
+                  <Button mnemonicParsing="false" style="-fx-background-color: #fd6108; -fx-text-fill: white; -fx-cursor: hand;" text="Mark as Watched">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
             </VBox>
         </ScrollPane>
     </center>
