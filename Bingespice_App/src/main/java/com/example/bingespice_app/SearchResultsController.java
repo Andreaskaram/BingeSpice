@@ -25,33 +25,18 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
-
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 
 public class SearchResultsController implements Initializable {
-
-    @FXML
-    private FlowPane mediaFlowPane;
-
-    @FXML
-    private TextField searchField;
-
+    @FXML private FlowPane mediaFlowPane;
+    @FXML private TextField searchField;
     private SearchHandler searchHandler;
-
-    @FXML
-    private HBox PopularHBox; // HBox for the "Recommended" section
-
-    @FXML
-    private HBox NewArrivalsHBox;   // HBox for the "Watch Next" section
-
-    @FXML
-    private TMDBManager TMDBManager;
-
-    @FXML
-    private Button searchButton;
-
-
-    private TMDBManager tmdbManager; // Corrected variable name (no @FXML)
+    @FXML private HBox PopularHBox;
+    @FXML private HBox NewArrivalsHBox;
+    @FXML private TMDBManager TMDBManager;
+    @FXML private Button searchButton;
+    private TMDBManager tmdbManager;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,7 +44,6 @@ public class SearchResultsController implements Initializable {
         initializeMediaSections();
     }
 
-    // Split: Search-related initializations
     private void initializeSearchHandlers() {
         searchHandler = new SearchHandler();
         searchButton.disableProperty().bind(searchField.textProperty().length().lessThan(2));
@@ -68,11 +52,9 @@ public class SearchResultsController implements Initializable {
         });
     }
 
-    // Split: TMDB and media loading initializations
     private void initializeMediaSections() {
         tmdbManager = new TMDBManager();
 
-        // Background task for loading media sections
         Task<Void> mediaLoadingTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
@@ -94,7 +76,6 @@ public class SearchResultsController implements Initializable {
                 return null;
             }
         };
-
         new Thread(mediaLoadingTask).start();
     }
 
@@ -105,7 +86,6 @@ public class SearchResultsController implements Initializable {
         }
     }
 
-    // Updated with null check for mediaFlowPane
     public void setMedia(List<Media> mediaItems) {
         if (mediaFlowPane != null) {
             mediaFlowPane.getChildren().clear();
@@ -115,53 +95,28 @@ public class SearchResultsController implements Initializable {
         }
     }
 
-    /*private void loadRecommendedMedia() {
-
-        try {
-            List<Media> popularMedia = tmdbManager.getPopularMedia();
-            Collections.shuffle(popularMedia);
-            List<Media> recommended = popularMedia.subList(0, Math.min(8, popularMedia.size()));
-            for (Media media : recommended) {
-                recommendedHBox.getChildren().add(createMediaPane(media));
-            }
-        } catch (Exception e) { e.printStackTrace(); }
-    }
-
-    private void loadWatchNextMedia() {
-        try {
-            List<Media> newReleases = tmdbManager.getNewReleases();
-            Collections.shuffle(newReleases);
-            List<Media> watchNext = newReleases.subList(0, Math.min(8, newReleases.size()));
-            for (Media media : watchNext) {
-                watchNextHBox.getChildren().add(createMediaPane(media));
-            }
-        } catch (Exception e) { e.printStackTrace(); }
-    }
-*/
-
-
     private Pane createMediaPane(Media media) {
         Pane pane = new Pane();
-        pane.setPrefSize(186, 320); // Height accommodates type label
+        pane.setPrefSize(186, 320);
         pane.setStyle("-fx-background-color: #2C2D40;");
-        pane.setOnMouseClicked(event -> handleMediaSelection(media));
+        pane.setOnMouseClicked(event -> handleMediaSelection(media, event)); // Pass event here
 
-        VBox contentBox = new VBox(5); // VBox with 5px spacing between elements
-        contentBox.setAlignment(javafx.geometry.Pos.CENTER); // Center children within VBox
+        VBox contentBox = new VBox(5);
+        contentBox.setAlignment(javafx.geometry.Pos.CENTER);
 
         ImageView imageView = new ImageView();
         imageView.setFitWidth(185);
         imageView.setFitHeight(232);
         imageView.setPreserveRatio(true);
         String posterUrl = media.getPosterUrl() != null ? media.getPosterUrl() : "http://via.placeholder.com/1080x1580";
-        Image image = new Image(posterUrl, true); // Background loading enabled
+        Image image = new Image(posterUrl, true);
         imageView.setImage(image);
 
         Label titleLabel = new Label(media.getTitle());
         titleLabel.setTextFill(Color.web("#fd6108"));
         titleLabel.setWrapText(true);
         titleLabel.setMaxWidth(185);
-        titleLabel.setFont(Font.font("System", FontWeight.BOLD, 14)); // Smaller size (14px) with bold
+        titleLabel.setFont(Font.font("System", FontWeight.BOLD, 14));
         titleLabel.setAlignment(javafx.geometry.Pos.CENTER);
 
         Label typeLabel = new Label(media.getType().equals("movie") ? "Movie" : "TV Series");
@@ -170,18 +125,15 @@ public class SearchResultsController implements Initializable {
         typeLabel.setAlignment(javafx.geometry.Pos.CENTER);
 
         contentBox.getChildren().addAll(imageView, titleLabel, typeLabel);
-
-        // Center the VBox within the Pane
         pane.getChildren().add(contentBox);
         contentBox.layoutXProperty().bind(pane.widthProperty().subtract(contentBox.widthProperty()).divide(2));
         contentBox.layoutYProperty().bind(pane.heightProperty().subtract(contentBox.heightProperty()).divide(2));
 
-        // Add hover effect for a subtle border
         pane.setOnMouseEntered(event -> {
             pane.setStyle("-fx-background-color: #2A2035; -fx-border-color: #2A2035; -fx-border-width: 1px; -fx-border-radius: 5px;");
         });
         pane.setOnMouseExited(event -> {
-            pane.setStyle("-fx-background-color: #2C2D40;"); // Remove border on exit
+            pane.setStyle("-fx-background-color: #2C2D40;");
         });
 
         return pane;
@@ -190,43 +142,33 @@ public class SearchResultsController implements Initializable {
     @FXML
     private void handleSearch(ActionEvent event) {
         String query = searchField.getText();
-        if (query == null || query.trim().isEmpty() || query.length() < 2) {
-            return;
-        }
+        if (query == null || query.trim().isEmpty() || query.length() < 2) return;
         searchHandler.handleSearch(query, searchField);
     }
 
-    private void handleMediaSelection(Media media) {
+    // Updated method to include MouseEvent parameter
+    private void handleMediaSelection(Media media, MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Selected.fxml"));
             Parent root = loader.load();
             SelectedController controller = loader.getController();
             controller.setMediaDetails(media);
-            mediaFlowPane.getScene().setRoot(root);
+            Node sourceNode = (Node) event.getSource();
+            sourceNode.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void handleSearchOption(ActionEvent event) {
-        // Placeholder for handling search options (e.g., Title, Genre, Actor, Director)
-        // Implement logic if needed to filter search results based on selected option
-    }
-
-    // Navigation methods (assuming they exist in TopBar.fxml or SideBar.fxml)
-    @FXML
-    private void loadHomepage() throws IOException {
-        // Implementation as needed
-    }
+    private void handleSearchOption(ActionEvent event) {}
 
     @FXML
-    private void loadSettings() throws IOException {
-        // Implementation as needed
-    }
+    private void loadHomepage() throws IOException {}
 
     @FXML
-    private void loadProfile() throws IOException {
-        // Implementation as needed
-    }
+    private void loadSettings() throws IOException {}
+
+    @FXML
+    private void loadProfile() throws IOException {}
 }
