@@ -82,18 +82,18 @@
                 </Label>
             <HBox prefHeight="46.0" prefWidth="338.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="190.0" style="-fx-background-color: #0096FF; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Mark as Watched">
+                  <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="190.0" style="-fx-background-color: #FD6108; -fx-text-fill: #000000; -fx-cursor: hand; -fx-font-weight: bold;" text="Mark as Watched">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <MenuButton mnemonicParsing="false" prefHeight="40.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="Add to Watchlist">
+                  <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="Add to Watchlist">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
                     </items>
                   </MenuButton>
-                  <MenuButton mnemonicParsing="false" prefHeight="40.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="Add to Shared Watchlist">
+                  <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="Add to Shared Watchlist">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
