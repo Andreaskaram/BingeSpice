@@ -153,7 +153,9 @@ public class SearchResultsController implements Initializable {
         imageView.setFitWidth(185);
         imageView.setFitHeight(232);
         imageView.setPreserveRatio(true);
-        imageView.setImage(media.getPosterUrl() != null ? new Image(media.getPosterUrl()) : new Image("http://via.placeholder.com/1080x1580"));
+        String posterUrl = media.getPosterUrl() != null ? media.getPosterUrl() : "http://via.placeholder.com/1080x1580";
+        Image image = new Image(posterUrl, true); // Background loading enabled
+        imageView.setImage(image);
 
         Label titleLabel = new Label(media.getTitle());
         titleLabel.setTextFill(Color.web("#fd6108"));
