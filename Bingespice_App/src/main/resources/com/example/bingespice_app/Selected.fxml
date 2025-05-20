@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2C2D40;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.SelectedController">
+<BorderPane prefHeight="703.0" prefWidth="854.0" style="-fx-background-color: #2C2D40;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.SelectedController">
 
 
     <left>
@@ -21,7 +21,7 @@
     </top>
     <center>
         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #2C2D40;" vbarPolicy="NEVER">
-            <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: #2C2D40;">
+            <VBox prefHeight="146.0" prefWidth="642.0" spacing="20" style="-fx-padding: 30; -fx-background-color: #2C2D40;">
                 <fx:include source="SearchBar.fxml" />
                 <HBox spacing="30">
                     <ImageView fx:id="posterImageView" fitHeight="346.0" fitWidth="242.0" preserveRatio="true" />
@@ -80,12 +80,12 @@
                 </Label>
             <HBox prefHeight="46.0" prefWidth="338.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #0096FF; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Add To Watchlist" />
-                  <Button mnemonicParsing="false" style="-fx-background-color: #fd6108; -fx-text-fill: white; -fx-cursor: hand;" text="Mark as Watched">
+                  <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #fd6108; -fx-text-fill: white; -fx-cursor: hand;" text="Mark as Watched">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
+                  <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #0096FF; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Add To Watchlist" />
                </children>
             </HBox>
             </VBox>
