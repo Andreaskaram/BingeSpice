@@ -51,7 +51,7 @@
             <VBox spacing="40">
                <!-- Recommended Section -->
                <VBox spacing="20">
-                  <Text style="-fx-fill: #FD6108;" text="Movies to watch:">
+                  <Text style="-fx-fill: #FD6108;">
                      <font>
                         <Font name="System Bold" size="24" />
                      </font>
@@ -64,7 +64,7 @@
                   <FlowPane hgap="20" prefWrapLength="1000" vgap="20" />
                </VBox>
             </VBox>
-            <Text style="-fx-fill: #FD6108;" text="Series to Watch:">
+            <Text style="-fx-fill: #FD6108;">
                <font>
                   <Font name="System Bold" size="24" />
                </font>
