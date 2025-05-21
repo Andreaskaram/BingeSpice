@@ -104,7 +104,7 @@ public class BingespiceDBManager {
         }
     }
 
-    public static User getUserDetails(String username) {
+    public static User getUserData(String username) {
         String sql = "SELECT FirstName, LastName, Email, Gender, Country, ProfilePicture FROM User WHERE Username = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

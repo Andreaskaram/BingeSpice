@@ -2,25 +2,15 @@ package com.example.bingespice_app;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Bounds;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
+
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 
-public class Controller {
+public class ProfileHandler {
     @FXML private Text settingsContentText;
     @FXML private MenuButton searchOptionsMenuButton;
     @FXML private TextField firstNameField;
@@ -44,7 +34,7 @@ public class Controller {
     private void loadUserDetails() {
         String username = Session.getUsername();
         if (username != null && !username.isEmpty()) {
-            User user = BingespiceDBManager.getUserDetails(username);
+            User user = BingespiceDBManager.getUserData(username);
             if (user != null) {
                 Platform.runLater(() -> {
                     firstNameField.setText(user.getFirstName());
@@ -71,7 +61,7 @@ public class Controller {
 
     @FXML
     private void handleEditProfile(ActionEvent event) {
-        originalUser = BingespiceDBManager.getUserDetails(Session.getUsername());
+        originalUser = BingespiceDBManager.getUserData(Session.getUsername());
         setEditable(true);
         editProfileButton.setVisible(false);
         cancelButton.setVisible(true);
@@ -144,12 +134,6 @@ public class Controller {
         }
     }
 
-    // Existing other methods...
-    @FXML
-    private void handleSearchOption(ActionEvent event) {
-        MenuItem selectedItem = (MenuItem) event.getSource();
-        searchOptionsMenuButton.setText(selectedItem.getText());
-    }
 
     @FXML
     private void handleSettingsButton(ActionEvent event) {
