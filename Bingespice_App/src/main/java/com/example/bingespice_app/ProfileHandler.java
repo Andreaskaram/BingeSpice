@@ -85,7 +85,7 @@ public class ProfileHandler {
 
     @FXML
     private void handleApply(ActionEvent event) {
-        boolean success = BingespiceDBManager.updateUser(
+        boolean success = BingespiceDBManager.updateProfile(
                 Session.getUsername(),
                 usernameField.getText(),
                 firstNameField.getText(),

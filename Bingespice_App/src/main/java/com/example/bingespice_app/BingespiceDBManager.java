@@ -132,8 +132,8 @@ public class BingespiceDBManager {
 
 
 
-    public static boolean updateUser(String oldUsername, String newUsername, String firstName, String lastName,
-                                     String email, String gender, String country) {
+    public static boolean updateProfile(String oldUsername, String newUsername, String firstName, String lastName,
+                                        String email, String gender, String country) {
         String sql = "UPDATE User SET Username=?, FirstName=?, LastName=?, Email=?, Gender=?, Country=? WHERE Username=?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
