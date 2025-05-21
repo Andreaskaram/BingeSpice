@@ -30,6 +30,18 @@
 
          <!-- 1) Custom Search bar HBox -->
          <HBox alignment="CENTER" maxWidth="Infinity" spacing="15" style="-fx-padding: 20 20 10 20; -fx-background-color: #2C2D40;">
+            <Button mnemonicParsing="false" style="-fx-background-color: #2A2035; -fx-cursor: hand;" text="Go Back" textFill="#fd6108">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
             <!-- Your custom search options panel -->
             <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" prefWidth="216.0" style="-fx-background-color: #2A2035; -fx-background-radius: 20; -fx-border-color: #2A2035; -fx-border-radius: 20;">
                <children>
