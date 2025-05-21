@@ -2,6 +2,7 @@ package com.example.bingespice_app;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,7 +25,11 @@ public class SelectedController implements Initializable {
     @FXML private Label runtimeLabel;
     @FXML private Label seasonsLabel;
 
+    @FXML private Button removeFromWatchedButton;
+    @FXML private Button markAsWatchedButton;
+
     private TMDBManager tmdbManager;
+    private Media selectedMedia;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,6 +37,7 @@ public class SelectedController implements Initializable {
     }
 
     public void setMediaDetails(Media media) {
+        this.selectedMedia = media;
         try {
             JSONObject details = tmdbManager.getMediaDetails(media.getId(), media.getType());
 
@@ -66,9 +72,31 @@ public class SelectedController implements Initializable {
                 seasonsLabel.setText("Seasons: " + details.optInt("seasons", 0));
                 seasonsLabel.setVisible(true);
             }
+            WatchedHandler watched = new WatchedHandler();
+            boolean watchedStatus = watched.checkIfWatched(selectedMedia);
+            if (watchedStatus) {
+                markAsWatchedButton.setVisible(false);
+                markAsWatchedButton.setDisable(true);
+                removeFromWatchedButton.setVisible(true);
+                removeFromWatchedButton.setDisable(false);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleMarkAsWatched() {
+        WatchedHandler watched = new WatchedHandler();
+        boolean success = watched.markAsWatched(selectedMedia);
+        if(success) {
+            markAsWatchedButton.setVisible(false);
+            markAsWatchedButton.setDisable(true);
+            removeFromWatchedButton.setVisible(true);
+            removeFromWatchedButton.setDisable(false);
+        } else {
+            System.out.println("Error marking as watched");
         }
     }
 }

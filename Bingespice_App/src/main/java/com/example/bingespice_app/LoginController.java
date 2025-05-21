@@ -56,6 +56,7 @@ public class LoginController {
 
     // Preference keys (should match Main.java)
     private static final String PREF_USER = "savedUser";
+    private static final String PREF_USER_ID = "savedUserID";
     private static final String PREF_PASS = "savedPass";
 
     /**
@@ -68,7 +69,8 @@ public class LoginController {
         String pass = loginPassword.getText();   // Get password text
 
         // Validate credentials (currently hardcoded)
-        if (!checkCredentials(user, pass)) {
+        int returnedID = checkCredentials(user, pass);
+        if (returnedID == -1) {
             loginError.setText("Invalid username or password");
             loginError.setVisible(true);
             return; // Abort login
@@ -78,15 +80,18 @@ public class LoginController {
         Preferences prefs = Preferences.userNodeForPackage(Main.class);
         if (rememberMe.isSelected()) {
             prefs.put(PREF_USER, user);
+            prefs.put(PREF_USER_ID, String.valueOf(returnedID));
             prefs.put(PREF_PASS, pass);
         } else {
             // Remove any saved prefs if unchecked
             prefs.remove(PREF_USER);
+            prefs.remove(PREF_USER_ID);
             prefs.remove(PREF_PASS);
         }
 
         // Store logged-in user in session
         Session.setUsername(user);
+        Session.setUserID(returnedID);
 
         try {
             // Load the homepage interface
@@ -140,7 +145,7 @@ public class LoginController {
      * @param password input password
      * @return true if credentials match
      */
-    private boolean checkCredentials(String username, String password) {
+    private int checkCredentials(String username, String password) {
         return BingespiceDBManager.login(username, password);
     }
 

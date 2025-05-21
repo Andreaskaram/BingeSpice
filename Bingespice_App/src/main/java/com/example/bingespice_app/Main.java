@@ -17,6 +17,7 @@ import java.util.prefs.Preferences;
 public class Main extends Application {
     // Preference keys for storing user credentials
     private static final String PREF_USER = "savedUser";
+    private static final String PREF_USER_ID = "savedUserID";
     private static final String PREF_PASS = "savedPass";
 
     @Override
@@ -24,12 +25,16 @@ public class Main extends Application {
         // Retrieve stored preferences (if any)
         Preferences prefs = Preferences.userNodeForPackage(Main.class);
         String savedUser = prefs.get(PREF_USER, "");
+        String savedUserID = prefs.get(PREF_USER_ID, "");
         String savedPass = prefs.get(PREF_PASS, "");
 
         Parent root;
         // If credentials exist, auto-login to homepage
         if (!savedUser.isEmpty() && !savedPass.isEmpty()) {
-            Session.setUsername(savedUser); // Store in session for use in other controllers
+            // Store in session for use in other controllers
+            Session.setUsername(savedUser);
+            int savedUserIdint = Integer.parseInt(savedUserID);
+            Session.setUserID(savedUserIdint);
             root = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
         } else {
             // Else, show login screen first

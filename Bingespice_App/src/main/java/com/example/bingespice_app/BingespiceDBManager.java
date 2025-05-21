@@ -68,7 +68,7 @@ public class BingespiceDBManager {
         }
     }
 
-    public static boolean login(String username, String password) {
+    public static int login(String username, String password) {
         String sql = "SELECT * FROM User WHERE BINARY Username = ? AND BINARY Password = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -78,8 +78,9 @@ public class BingespiceDBManager {
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
+                int userId = rs.getInt("UserID");
                 logLogin(username);  // ✅ Only logs on successful login
-                return true;
+                return userId;
             }
 
         } catch (SQLException e) {
@@ -87,7 +88,7 @@ public class BingespiceDBManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return -1;
     }
 
     private static void logLogin(String username) {
@@ -150,6 +151,46 @@ public class BingespiceDBManager {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static boolean updateWatchedCategory(int UserId, int ContentId, String Type) {
+        String sql = "INSERT INTO WatchedMoviesSeries (UserID, ContentID, Type) VALUES (?, ?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, UserId);
+            stmt.setInt(2, ContentId);
+            if (Type.equals("tv")) { Type = "Series"; }
+            stmt.setString(3, Type);
+            stmt.executeUpdate();
+            System.out.println("📺 Watched category recorded successfully.");
+            return true;
+        } catch (SQLException e) {
+            System.out.println("⚠️ Could not update watched category: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean checkIfWatched(int UserId, int ContentId) {
+        String sql = "SELECT * FROM WatchedMoviesSeries WHERE UserID = ? AND ContentID = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, UserId);
+            stmt.setInt(2, ContentId);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ SQL Error during login: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
 

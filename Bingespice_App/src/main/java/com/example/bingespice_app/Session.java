@@ -5,6 +5,7 @@ package com.example.bingespice_app;
  */
 public class Session {
     private static String username;
+    private static int UserID;
 
     /**
      * Set the currently logged-in username.
@@ -13,10 +14,18 @@ public class Session {
         username = user;
     }
 
+    public static void setUserID(int id) {
+        UserID = id;
+    }
+
     /**
      * Get the currently logged-in username.
      */
     public static String getUsername() {
         return username;
+    }
+
+    public static int getUserID() {
+        return UserID;
     }
 }

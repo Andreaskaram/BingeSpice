@@ -81,6 +81,7 @@ public class SearchResultsController implements Initializable {
         }
         initialize(null, null); // Trigger normal initialization
     }
+
     private String getSelectedSearchType() {
         RadioButton selected = (RadioButton) searchOptionGroup.getSelectedToggle();
         if (selected == titleOption) return "title";
