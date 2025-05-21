@@ -36,7 +36,7 @@
                 <PasswordField fx:id="loginPassword" maxWidth="200" style="-fx-background-color: white; -fx-background-radius: 20;" />
 
                 <!-- Remember me option -->
-                <CheckBox fx:id="rememberMe" style="-fx-text-fill: white;" text="Remember Me" />
+                <CheckBox fx:id="rememberMe" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: white;" text="Remember Me" />
             </VBox>
 
             <!-- Login button triggers handleLoginAttempt -->
@@ -46,7 +46,7 @@
                <Font name="System Bold" size="24.0" />
             </font>
          </Text>
-         <Button onAction="#loadSignUp" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Sign Up" />
+         <Button mnemonicParsing="false" onAction="#loadSignUp" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #FD6108; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Sign Up" />
 
             <!-- Error message placeholder -->
             <Text fx:id="loginError" style="-fx-fill: red;                          -fx-font-weight: bold;" visible="false" />

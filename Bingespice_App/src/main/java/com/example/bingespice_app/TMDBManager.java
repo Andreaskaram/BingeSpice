@@ -43,6 +43,77 @@ public class TMDBManager {
         mediaList.sort(Comparator.comparingDouble(Media::getVoteAverage).reversed());
         return mediaList;
     }
+    public List<Media> searchByGenre(String genreQuery) throws Exception {
+        List<Media> results = new ArrayList<>();
+
+        // Search for movies
+        String movieGenreId = getGenreId(genreQuery, "movie");
+        if (!movieGenreId.isEmpty()) {
+            String movieUrl = BASE_URL + "/discover/movie?api_key=" + API_KEY
+                    + "&with_genres=" + movieGenreId
+                    + "&sort_by=vote_average.desc"; // Sort by rating
+            results.addAll(fetchMedia(movieUrl, "movie"));
+        }
+
+        // Search for TV shows
+        String tvGenreId = getGenreId(genreQuery, "tv");
+        if (!tvGenreId.isEmpty()) {
+            String tvUrl = BASE_URL + "/discover/tv?api_key=" + API_KEY
+                    + "&with_genres=" + tvGenreId
+                    + "&sort_by=vote_average.desc"; // Sort by rating
+            results.addAll(fetchMedia(tvUrl, "tv"));
+        }
+
+        results.sort(Comparator.comparingDouble(Media::getVoteAverage).reversed());
+        return results;
+    }
+
+
+    public List<Media> searchByActor(String actorName) throws Exception {
+        int actorId = searchPersonId(actorName);
+        String url = BASE_URL + "/discover/movie?api_key=" + API_KEY + "&with_cast=" + actorId;
+        return fetchMedia(url, "movie");
+    }
+
+    public List<Media> searchByDirector(String directorName) throws Exception {
+        int directorId = searchPersonId(directorName);
+        String url = BASE_URL + "/discover/movie?api_key=" + API_KEY + "&with_crew=" + directorId;
+        return fetchMedia(url, "movie");
+    }
+
+    // Helper methods
+    private int searchPersonId(String name) throws Exception {
+        String encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8);
+        String url = BASE_URL + "/search/person?api_key=" + API_KEY + "&query=" + encodedName;
+        HttpResponse<String> response = httpClient.send(
+                HttpRequest.newBuilder().uri(URI.create(url)).build(),
+                HttpResponse.BodyHandlers.ofString()
+        );
+        JSONObject json = new JSONObject(response.body());
+        return json.getJSONArray("results").getJSONObject(0).getInt("id");
+    }
+
+
+
+    private String getGenreId(String genreName, String mediaType) throws Exception {
+        String url = BASE_URL + "/genre/" + mediaType + "/list?api_key=" + API_KEY;
+        try {
+            HttpResponse<String> response = httpClient.send(
+                    HttpRequest.newBuilder().uri(URI.create(url)).build(),
+                    HttpResponse.BodyHandlers.ofString()
+            );
+            JSONArray genres = new JSONObject(response.body()).getJSONArray("genres");
+            for (int i = 0; i < genres.length(); i++) {
+                JSONObject genre = genres.getJSONObject(i);
+                if (genre.getString("name").equalsIgnoreCase(genreName)) {
+                    return genre.getString("id");
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error fetching genre ID for " + genreName + ": " + e.getMessage());
+        }
+        return "";
+    }
 
     public List<Media> getNewReleases() throws Exception {
         List<Media> mediaList = new ArrayList<>();

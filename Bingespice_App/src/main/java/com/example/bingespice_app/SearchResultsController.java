@@ -4,13 +4,15 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -18,38 +20,73 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 
 public class SearchResultsController implements Initializable {
     @FXML private FlowPane mediaFlowPane;
     @FXML private TextField searchField;
-    private SearchHandler searchHandler;
+    @FXML private Button searchButton;
     @FXML private HBox PopularHBox;
     @FXML private HBox NewArrivalsHBox;
-    @FXML private TMDBManager TMDBManager;
-    @FXML private Button searchButton;
+    @FXML private ToggleGroup searchOptionGroup;
+    @FXML private RadioButton titleOption, genreOption, actorOption, directorOption;
+    private String currentSearchType = "title";
+    private SearchHandler searchHandler;
     private TMDBManager tmdbManager;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeSearchHandlers();
         initializeMediaSections();
+        restoreSearchType(); // Restore the radio button state
     }
-
+    // Restore the selected search type from the previous screen
+    private void restoreSearchType() {
+        switch (currentSearchType) {
+            case "title" -> searchOptionGroup.selectToggle(titleOption);
+            case "genre" -> searchOptionGroup.selectToggle(genreOption);
+            case "actor" -> searchOptionGroup.selectToggle(actorOption);
+            case "director" -> searchOptionGroup.selectToggle(directorOption);
+        }
+    }
+    // Update the search type when navigating
+    public void setSearchType(String searchType) {
+        this.currentSearchType = searchType;
+        restoreSearchType();
+    }
     private void initializeSearchHandlers() {
         searchHandler = new SearchHandler();
         searchButton.disableProperty().bind(searchField.textProperty().length().lessThan(2));
         searchField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) handleSearch(null);
         });
+    }
+
+    // Modified initialization to accept search type
+    public void initializeWithSearchType(String searchType) {
+        currentSearchType = searchType;
+        switch (searchType) {
+            case "title" -> searchOptionGroup.selectToggle(titleOption);
+            case "genre" -> searchOptionGroup.selectToggle(genreOption);
+            case "actor" -> searchOptionGroup.selectToggle(actorOption);
+            case "director" -> searchOptionGroup.selectToggle(directorOption);
+        }
+        initialize(null, null); // Trigger normal initialization
+    }
+    private String getSelectedSearchType() {
+        RadioButton selected = (RadioButton) searchOptionGroup.getSelectedToggle();
+        if (selected == titleOption) return "title";
+        if (selected == genreOption) return "genre";
+        if (selected == actorOption) return "actor";
+        if (selected == directorOption) return "director";
+        return "title"; // default
     }
 
     private void initializeMediaSections() {
@@ -141,11 +178,11 @@ public class SearchResultsController implements Initializable {
 
     @FXML
     private void handleSearch(ActionEvent event) {
-        String query = searchField.getText();
-        if (query == null || query.trim().isEmpty() || query.length() < 2) return;
-        searchHandler.handleSearch(query, searchField);
+        String query = searchField.getText().trim();
+        if (query.isEmpty()) return;
+        String searchType = getSelectedSearchType();
+        searchHandler.handleSearch(query, searchField, searchType, searchType);
     }
-
     // Updated method to include MouseEvent parameter
     private void handleMediaSelection(Media media, MouseEvent event) {
         try {
