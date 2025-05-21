@@ -19,27 +19,33 @@ public class SearchHandler {
         Task<Void> searchTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
-                List<Media> mediaItems = switch (searchType) {
-                    case "title" -> tmdbManager.searchMedia(query);
-                    case "genre" -> tmdbManager.searchByGenre(query);
-                    case "actor" -> tmdbManager.searchByActor(query);
-                    case "director" -> tmdbManager.searchByDirector(query);
-                    default -> tmdbManager.searchMedia(query);
-                };
+                try {
+                    List<Media> mediaItems = switch (searchType) {
+                        case "title" -> tmdbManager.searchMedia(query);
+                        case "genre" -> tmdbManager.searchByGenre(query);
+                        case "actor" -> tmdbManager.searchByActor(query);
+                        case "director" -> tmdbManager.searchByDirector(query);
+                        default -> tmdbManager.searchMedia(query);
+                    };
+                    System.out.println("Fetched " + mediaItems.size() + " items"); // Debug log
 
-                Platform.runLater(() -> {
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("Search Results_Selected.fxml"));
-                        Parent root = loader.load();
-                        SearchResultsController controller = loader.getController();
-                        controller.setSearchType(persistSearchType); // Pass the search type
-                        controller.setMedia(mediaItems);
-                        controller.setSearchQuery(query);
-                        sourceNode.getScene().setRoot(root);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
+                    Platform.runLater(() -> {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("Search Results_Selected.fxml"));
+                            Parent root = loader.load();
+                            SearchResultsController controller = loader.getController();
+                            controller.setSearchType(persistSearchType);
+                            controller.setMedia(mediaItems);
+                            controller.setSearchQuery(query);
+                            sourceNode.getScene().setRoot(root);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                } catch (Exception e) {
+                    System.err.println("Search failed: " + e.getMessage()); // Catch-all error
+                    e.printStackTrace();
+                }
                 return null;
             }
         };

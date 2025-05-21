@@ -127,9 +127,13 @@ public class SearchResultsController implements Initializable {
     public void setMedia(List<Media> mediaItems) {
         if (mediaFlowPane != null) {
             mediaFlowPane.getChildren().clear();
+            System.out.println("Number of media items: " + mediaItems.size()); // Debug log
             for (Media media : mediaItems) {
-                mediaFlowPane.getChildren().add(createMediaPane(media));
+                Pane mediaPane = createMediaPane(media);
+                mediaFlowPane.getChildren().add(mediaPane);
             }
+        } else {
+            System.err.println("mediaFlowPane is null!"); // Identify FXML binding issues
         }
     }
 
