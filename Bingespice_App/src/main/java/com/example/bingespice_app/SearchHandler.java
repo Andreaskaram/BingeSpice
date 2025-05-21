@@ -34,6 +34,7 @@ public class SearchHandler {
                         SearchResultsController controller = loader.getController();
                         controller.setSearchType(persistSearchType); // Pass the search type
                         controller.setMedia(mediaItems);
+                        controller.setSearchQuery(query);
                         sourceNode.getScene().setRoot(root);
                     } catch (IOException e) {
                         e.printStackTrace();

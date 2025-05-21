@@ -86,7 +86,7 @@
             </HBox>
 
             <!-- Search Results Title -->
-            <Label style="-fx-text-fill: #FD6108; -fx-font-size: 24px; -fx-font-weight: bold;" text="Search Results:" />
+            <Label fx:id="searchResultsTitleLabel" style="-fx-text-fill: #FD6108; -fx-font-size: 24px; -fx-font-weight: bold;" text="Search Results for:" />
 
             <!-- FlowPane for Grid Layout -->
             <FlowPane fx:id="mediaFlowPane" hgap="20" prefWrapLength="1000" style="-fx-background-color: #2C2D40; -fx-cursor: hand;" vgap="20">

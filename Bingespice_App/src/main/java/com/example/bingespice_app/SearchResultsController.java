@@ -38,6 +38,7 @@ public class SearchResultsController implements Initializable {
     private String currentSearchType = "title";
     private SearchHandler searchHandler;
     private TMDBManager tmdbManager;
+    @FXML private Label searchResultsTitleLabel;
 
 
 
@@ -197,15 +198,8 @@ public class SearchResultsController implements Initializable {
         }
     }
 
-    @FXML
-    private void handleSearchOption(ActionEvent event) {}
+    public void setSearchQuery(String query) {
+        searchResultsTitleLabel.setText("Search Results for: " + query);
+    }
 
-    @FXML
-    private void loadHomepage() throws IOException {}
-
-    @FXML
-    private void loadSettings() throws IOException {}
-
-    @FXML
-    private void loadProfile() throws IOException {}
 }
