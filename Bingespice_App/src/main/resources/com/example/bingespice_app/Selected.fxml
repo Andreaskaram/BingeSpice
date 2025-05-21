@@ -80,20 +80,30 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-            <HBox prefHeight="46.0" prefWidth="338.0">
+            <HBox prefHeight="46.0" prefWidth="638.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="190.0" style="-fx-background-color: #FD6108; -fx-text-fill: #000000; -fx-cursor: hand; -fx-font-weight: bold;" text="Mark as Watched">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
+                  <Label fx:id="overviewLabel1" prefHeight="46.0" prefWidth="6.0" style="-fx-wrap-text: true; -fx-max-height: Infinity;" textFill="#fd6108">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
                   <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="Add to Watchlist">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
                     </items>
                   </MenuButton>
-                  <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="Add to Shared Watchlist">
+                  <Label fx:id="overviewLabel11" prefHeight="46.0" prefWidth="6.0" style="-fx-wrap-text: true; -fx-max-height: Infinity;" textFill="#fd6108">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="183.0" style="-fx-font-weight: bold;" text="Add to Shared Watchlist">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
