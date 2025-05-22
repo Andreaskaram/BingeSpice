@@ -1,5 +1,7 @@
 package com.example.bingespice_app;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -14,11 +16,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class SelectedController implements Initializable {
     @FXML private ImageView posterImageView;
@@ -49,6 +51,7 @@ public class SelectedController implements Initializable {
     public void setMediaDetails(Media media) {
         this.selectedMedia = media;
         try {
+            // Load basic media details first
             JSONObject details = tmdbManager.getMediaDetails(media.getId(), media.getType());
             this.selectedJson = details;
 
@@ -58,8 +61,8 @@ public class SelectedController implements Initializable {
             typeLabel.setText(media.getType().equalsIgnoreCase("movie") ? "Movie" : "TV Series");
 
             if (media.getType().equalsIgnoreCase("tv")) {
-                fetchSeriesSeasons();
-                updateSeasonAccordion();
+                // Start loading seasons in background
+                loadSeasonsAndEpisodesAsync();
             }
             if (media.getPosterUrl() != null) {
                 posterImageView.setImage(new Image(media.getPosterUrl(), true));
@@ -81,12 +84,13 @@ public class SelectedController implements Initializable {
             if (media.getType().equalsIgnoreCase("movie")) {
                 int runtime = details.optInt("runtime", 0);
                 runtimeLabel.setText("Duration: " + runtime + " mins");
-                seasonsLabel.setVisible(false); // Hide for movies
+                seasonsLabel.setVisible(false);
             } else {
                 runtimeLabel.setText("Episodes: " + details.optInt("episodes", 0));
                 seasonsLabel.setText("Seasons: " + details.optInt("seasons", 0));
                 seasonsLabel.setVisible(true);
             }
+
             WatchedHandler watched = new WatchedHandler();
             boolean watchedStatus = watched.checkIfWatched(selectedMedia);
             if (watchedStatus) {
@@ -96,6 +100,31 @@ public class SelectedController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void loadSeasonsAndEpisodesAsync() {
+        Task<Void> loadTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                fetchSeriesSeasons();
+                return null;
+            }
+
+            @Override
+            protected void succeeded() {
+                Platform.runLater(() -> {
+                    updateSeasonAccordion();
+                    seasonsAccordion.setVisible(true);
+                });
+            }
+
+            @Override
+            protected void failed() {
+                System.err.println("Failed to load seasons and episodes");
+            }
+        };
+
+        new Thread(loadTask).start();
     }
 
     @FXML
@@ -149,9 +178,9 @@ public class SelectedController implements Initializable {
 
         for (int i = 1; i <= seasonCount; i++) {
             try {
-                System.out.println("trying to fetch season " + i);
+                System.out.println("Fetching season " + i);
                 JSONObject seasonDetails = tmdbManager.getSeasonDetails(selectedMedia.getId(), i);
-                System.out.println("found season " + i);
+                System.out.println("Found season " + i);
 
                 JSONArray episodesArray = seasonDetails.optJSONArray("episodes");
                 if (episodesArray != null) {
@@ -171,6 +200,7 @@ public class SelectedController implements Initializable {
             }
         }
     }
+
     private void updateSeasonAccordion() {
         seasonsAccordion.getPanes().clear();
         seasonsAccordion.setVisible(true);
@@ -194,8 +224,8 @@ public class SelectedController implements Initializable {
     }
 
     private VBox createEpisodesBox(List<String> episodes) {
-        VBox episodesBox = new VBox(3); // Reduced spacing
-        episodesBox.setPadding(new Insets(5, 10, 10, 20)); // Compact padding
+        VBox episodesBox = new VBox(3);
+        episodesBox.setPadding(new Insets(5, 10, 10, 20));
 
         for (String episode : episodes) {
             HBox episodeRow = createEpisodeRow(episode);
@@ -206,17 +236,15 @@ public class SelectedController implements Initializable {
     }
 
     private HBox createEpisodeRow(String episode) {
-        HBox row = new HBox(8); // Reduced spacing
+        HBox row = new HBox(8);
         row.setAlignment(Pos.CENTER_LEFT);
-        row.setPadding(new Insets(2, 0, 2, 0)); // Compact vertical padding
+        row.setPadding(new Insets(2, 0, 2, 0));
 
-        // Episode label styling
         Label episodeLabel = new Label(episode);
         episodeLabel.setStyle("-fx-text-fill: #FD6108; -fx-font-size: 13px;");
         episodeLabel.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(episodeLabel, Priority.ALWAYS);
 
-        // Compact toggle button for "Mark as Watched"
         ToggleButton markAsWatchedButton = createCompactButton();
 
         row.getChildren().addAll(episodeLabel, markAsWatchedButton);
@@ -230,7 +258,7 @@ public class SelectedController implements Initializable {
                         "-fx-text-fill: #FD6108; " +
                         "-fx-font-size: 12px; " +
                         "-fx-font-weight: bold; " +
-                        "-fx-padding: 2 6; " +  // More compact
+                        "-fx-padding: 2 6; " +
                         "-fx-border-color: #FD6108; " +
                         "-fx-border-radius: 3; " +
                         "-fx-background-radius: 3; " +
@@ -239,10 +267,9 @@ public class SelectedController implements Initializable {
 
         button.selectedProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal) {
-                // Selected state: orange background, blue checkmark
                 button.setStyle(
                         "-fx-background-color: #FD6108; " +
-                                "-fx-text-fill: #0033cc; " + // Blue checkmark color
+                                "-fx-text-fill: #0033cc; " +
                                 "-fx-font-size: 12px; " +
                                 "-fx-font-weight: bold; " +
                                 "-fx-padding: 2 6; " +
@@ -252,7 +279,6 @@ public class SelectedController implements Initializable {
                                 "-fx-border-width: 1.5;"
                 );
             } else {
-                // Normal state: transparent background, orange checkmark
                 button.setStyle(
                         "-fx-background-color: transparent; " +
                                 "-fx-text-fill: #FD6108; " +
@@ -267,11 +293,10 @@ public class SelectedController implements Initializable {
             }
         });
 
-        // Hover effects should be updated based on the selected state
         button.setOnMouseEntered(e -> {
             if (!button.isSelected()) {
                 button.setStyle(
-                        "-fx-background-color: rgba(253, 97, 8, 0.1); " + // Slight orange tint
+                        "-fx-background-color: rgba(253, 97, 8, 0.1); " +
                                 "-fx-text-fill: #FD6108; " +
                                 "-fx-font-size: 12px; " +
                                 "-fx-font-weight: bold; " +
@@ -302,5 +327,4 @@ public class SelectedController implements Initializable {
 
         return button;
     }
-
 }
