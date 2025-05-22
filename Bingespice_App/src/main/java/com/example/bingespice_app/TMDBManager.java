@@ -203,4 +203,13 @@ public class TMDBManager {
 
         return json;
     }
+
+    public JSONObject getSeasonDetails(int id, int seasonNum) throws Exception {
+        String url = BASE_URL + "/tv/" + id + "/season/" + seasonNum + "?api_key=" + API_KEY;
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return new JSONObject(response.body());
+    }
 }

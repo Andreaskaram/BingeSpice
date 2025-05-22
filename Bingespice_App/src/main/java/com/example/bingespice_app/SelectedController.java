@@ -11,6 +11,10 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 public class SelectedController implements Initializable {
     @FXML private ImageView posterImageView;
@@ -30,6 +34,8 @@ public class SelectedController implements Initializable {
 
     private TMDBManager tmdbManager;
     private Media selectedMedia;
+    private JSONObject selectedJson;
+    private Map<Integer, List<String>> seasonEpisodesMap = new HashMap<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,6 +46,7 @@ public class SelectedController implements Initializable {
         this.selectedMedia = media;
         try {
             JSONObject details = tmdbManager.getMediaDetails(media.getId(), media.getType());
+            this.selectedJson = details;
 
             titleLabel.setText(media.getTitle());
             overviewLabel.setText(media.getOverview());
@@ -92,6 +99,7 @@ public class SelectedController implements Initializable {
         } else {
             System.out.println("Error marking as watched");
         }
+        fetchSeriesSeasons();
     }
 
     @FXML
@@ -118,5 +126,42 @@ public class SelectedController implements Initializable {
         markAsWatchedButton.setDisable(true);
         removeFromWatchedButton.setVisible(true);
         removeFromWatchedButton.setDisable(false);
+    }
+
+    private void fetchSeriesSeasons() {
+        if (!selectedMedia.getType().equalsIgnoreCase("tv")) {
+            return;
+        }
+
+        int seasonCount = selectedJson.optInt("number_of_seasons", 0);
+        if (seasonCount == 0) {
+            return;
+        }
+
+        seasonEpisodesMap.clear();
+
+        for (int i = 1; i <= seasonCount; i++) {
+            try {
+                System.out.println("trying to fetch season " + i);
+                JSONObject seasonDetails = tmdbManager.getSeasonDetails(selectedMedia.getId(), i);
+                System.out.println("found season " + i);
+
+                JSONArray episodesArray = seasonDetails.optJSONArray("episodes");
+                if (episodesArray != null) {
+                    List<String> episodeNames = new ArrayList<>();
+                    for (int j = 0; j < episodesArray.length(); j++) {
+                        JSONObject episode = episodesArray.getJSONObject(j);
+                        String episodeName = episode.optString("name", "Unnamed Episode");
+                        int episodeNumber = episode.optInt("episode_number", j + 1);
+                        System.out.println("Season " + i + " - Episode " + episodeNumber + ": " + episodeName);
+                        episodeNames.add("Episode " + episodeNumber + ": " + episodeName);
+                    }
+                    seasonEpisodesMap.put(i, episodeNames);
+                }
+            } catch (Exception e) {
+                System.err.println("Failed to fetch details for Season " + i);
+                e.printStackTrace();
+            }
+        }
     }
 }
