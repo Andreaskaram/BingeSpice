@@ -13,6 +13,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -28,6 +29,8 @@ public class WatchlistController implements Initializable {
     @FXML private FlowPane watchedMoviesFlowPane;
     @FXML private FlowPane watchedSeriesFlowPane;
     @FXML private Button watchedButton;
+    @FXML private Text moviesText;
+    @FXML private Text seriesText;
 
     private TMDBManager tmdbManager;
 
@@ -89,6 +92,10 @@ public class WatchlistController implements Initializable {
             watchedMoviesFlowPane.getChildren().clear();
             watchedSeriesFlowPane.getChildren().clear();
 
+            // Update headers with colons
+            moviesText.setText("Movies Watched:");
+            seriesText.setText("Series Watched:");
+
             // Add movies
             for (Media movie : watchedMovies) {
                 watchedMoviesFlowPane.getChildren().add(createMediaPane(movie));
@@ -109,7 +116,7 @@ public class WatchlistController implements Initializable {
         Pane pane = new Pane();
         pane.setPrefSize(186, 320);
         pane.setStyle("-fx-background-color: #2C2D40;");
-        pane.setOnMouseClicked(event -> handleMediaSelection(media, event)); // Pass event here
+        pane.setOnMouseClicked(event -> handleMediaSelection(media, event));
 
         VBox contentBox = new VBox(5);
         contentBox.setAlignment(javafx.geometry.Pos.CENTER);
@@ -152,7 +159,6 @@ public class WatchlistController implements Initializable {
 
         return pane;
     }
-
 
     private void handleMediaSelection(Media media, MouseEvent event) {
         try {

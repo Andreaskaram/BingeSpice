@@ -30,7 +30,7 @@
             <!-- Search Bar -->
             <fx:include source="SearchBar.fxml" />
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
-              <buttons>
+               <buttons>
                   <Button fx:id="watchedButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" style="-fx-background-color: #FD6108; -fx-cursor: hand;" text="Watched">
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -51,17 +51,16 @@
                         <MenuItem mnemonicParsing="false" text="Action 2" />
                      </items>
                   </MenuButton>
-              </buttons>
+               </buttons>
             </ButtonBar>
 
-                     <!-- Watched Movies Section -->
+            <!-- Watched Movies Section -->
             <VBox spacing="20">
-               <Text style="-fx-fill: #FD6108;">
+               <Text fx:id="moviesText" style="-fx-fill: #FD6108;">
                   <font>
                      <Font name="System Bold" size="24" />
                   </font>
-                  Movies Watched
-                           </Text>
+               </Text>
                <FlowPane fx:id="watchedMoviesFlowPane" hgap="10" style="-fx-background-color: #2C2D40; -fx-cursor: hand;" vgap="10">
                   <children>
                      <HBox prefHeight="100.0" prefWidth="200.0" />
@@ -69,14 +68,13 @@
                </FlowPane>
             </VBox>
 
-                     <!-- Watched Series Section -->
+            <!-- Watched Series Section -->
             <VBox spacing="20">
-               <Text style="-fx-fill: #FD6108;">
+               <Text fx:id="seriesText" style="-fx-fill: #FD6108;">
                   <font>
                      <Font name="System Bold" size="24" />
                   </font>
-                  Series Watched
-                           </Text>
+               </Text>
                <FlowPane fx:id="watchedSeriesFlowPane" hgap="10" style="-fx-background-color: #2C2D40; -fx-cursor: hand;" vgap="10">
                   <children>
                      <HBox prefHeight="100.0" prefWidth="200.0" />
