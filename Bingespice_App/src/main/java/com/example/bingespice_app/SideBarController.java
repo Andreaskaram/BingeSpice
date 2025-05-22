@@ -81,6 +81,12 @@ public class SideBarController {
         currentScene.setRoot(watchlistRoot);
     }
 
+    public void loadInbox(ActionEvent event) throws IOException {
+        Parent inboxRoot = FXMLLoader.load(getClass().getResource("Inbox.fxml"));
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        currentScene.setRoot(inboxRoot);
+    }
+
     @FXML
     private void handleLogout(ActionEvent event) throws IOException {
         Preferences prefs = Preferences.userNodeForPackage(Main.class);
