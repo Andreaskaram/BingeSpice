@@ -75,10 +75,7 @@ public class SelectedController implements Initializable {
             WatchedHandler watched = new WatchedHandler();
             boolean watchedStatus = watched.checkIfWatched(selectedMedia);
             if (watchedStatus) {
-                markAsWatchedButton.setVisible(false);
-                markAsWatchedButton.setDisable(true);
-                removeFromWatchedButton.setVisible(true);
-                removeFromWatchedButton.setDisable(false);
+                setRemoveFromWatchedButton();
             }
 
         } catch (Exception e) {
@@ -91,12 +88,35 @@ public class SelectedController implements Initializable {
         WatchedHandler watched = new WatchedHandler();
         boolean success = watched.markAsWatched(selectedMedia);
         if(success) {
-            markAsWatchedButton.setVisible(false);
-            markAsWatchedButton.setDisable(true);
-            removeFromWatchedButton.setVisible(true);
-            removeFromWatchedButton.setDisable(false);
+            setRemoveFromWatchedButton();
         } else {
             System.out.println("Error marking as watched");
         }
+    }
+
+    @FXML
+    private void handleRemoveFromWatched() {
+        System.out.println("handleRemoveFromWatched");
+        WatchedHandler watched = new WatchedHandler();
+        boolean success = watched.deleteFromWatched(selectedMedia);
+        if(success) {
+            setMarkAsWatchedButton();
+        } else {
+            System.out.println("Error deleting from watched");
+        }
+    }
+
+    private void setMarkAsWatchedButton() {
+        removeFromWatchedButton.setVisible(false);
+        removeFromWatchedButton.setDisable(true);
+        markAsWatchedButton.setVisible(true);
+        markAsWatchedButton.setDisable(false);
+    }
+
+    private void setRemoveFromWatchedButton() {
+        markAsWatchedButton.setVisible(false);
+        markAsWatchedButton.setDisable(true);
+        removeFromWatchedButton.setVisible(true);
+        removeFromWatchedButton.setDisable(false);
     }
 }

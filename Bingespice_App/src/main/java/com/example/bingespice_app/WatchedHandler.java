@@ -8,6 +8,10 @@ public class WatchedHandler {
         return BingespiceDBManager.updateWatchedCategory(Session.getUserID(), media.getId(), media.getType());
     }
 
+    public boolean deleteFromWatched(Media media) {
+        return BingespiceDBManager.removeFromWatched(Session.getUserID(), media.getId());
+    }
+
     public boolean checkIfWatched(Media media) {
         return BingespiceDBManager.checkIfWatched(Session.getUserID(), media.getId());
     }

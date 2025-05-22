@@ -192,5 +192,23 @@ public class BingespiceDBManager {
         }
         return false;
     }
+
+    public static boolean removeFromWatched(int UserId, int ContentId) {
+        String sql = "DELETE FROM WatchedMoviesSeries WHERE UserID = ? AND ContentID = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, UserId);
+            stmt.setInt(2, ContentId);
+            stmt.executeUpdate();
+            System.out.println("📺 Content Removed successfully.");
+            return true;
+        } catch (SQLException e) {
+            System.out.println("⚠️ Could not update watched category: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 
