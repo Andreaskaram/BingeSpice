@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -219,15 +216,15 @@ public class SelectedController implements Initializable {
         episodeLabel.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(episodeLabel, Priority.ALWAYS);
 
-        // Compact button
-        Button markAsWatchedButton = createCompactButton();
+        // Compact toggle button for "Mark as Watched"
+        ToggleButton markAsWatchedButton = createCompactButton();
 
         row.getChildren().addAll(episodeLabel, markAsWatchedButton);
         return row;
     }
 
-    private Button createCompactButton() {
-        Button button = new Button("✓");
+    private ToggleButton createCompactButton() {
+        ToggleButton button = new ToggleButton("✓");
         button.setStyle(
                 "-fx-background-color: transparent; " +
                         "-fx-text-fill: #FD6108; " +
@@ -240,29 +237,68 @@ public class SelectedController implements Initializable {
                         "-fx-border-width: 1.5;"
         );
 
-        button.setOnMouseEntered(e -> button.setStyle(
-                "-fx-background-color: rgba(253, 97, 8, 0.1); " + // Slight orange tint
-                        "-fx-text-fill: #FD6108; " +
-                        "-fx-font-size: 12px; " +
-                        "-fx-font-weight: bold; " +
-                        "-fx-padding: 2 6; " +
-                        "-fx-border-color: #FD6108; " +
-                        "-fx-border-radius: 3; " +
-                        "-fx-background-radius: 3; " +
-                        "-fx-border-width: 1.5;"
-        ));
+        button.selectedProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal) {
+                // Selected state: orange background, blue checkmark
+                button.setStyle(
+                        "-fx-background-color: #FD6108; " +
+                                "-fx-text-fill: #0033cc; " + // Blue checkmark color
+                                "-fx-font-size: 12px; " +
+                                "-fx-font-weight: bold; " +
+                                "-fx-padding: 2 6; " +
+                                "-fx-border-color: #FD6108; " +
+                                "-fx-border-radius: 3; " +
+                                "-fx-background-radius: 3; " +
+                                "-fx-border-width: 1.5;"
+                );
+            } else {
+                // Normal state: transparent background, orange checkmark
+                button.setStyle(
+                        "-fx-background-color: transparent; " +
+                                "-fx-text-fill: #FD6108; " +
+                                "-fx-font-size: 12px; " +
+                                "-fx-font-weight: bold; " +
+                                "-fx-padding: 2 6; " +
+                                "-fx-border-color: #FD6108; " +
+                                "-fx-border-radius: 3; " +
+                                "-fx-background-radius: 3; " +
+                                "-fx-border-width: 1.5;"
+                );
+            }
+        });
 
-        button.setOnMouseExited(e -> button.setStyle(
-                "-fx-background-color: transparent; " +
-                        "-fx-text-fill: #FD6108; " +
-                        "-fx-font-size: 12px; " +
-                        "-fx-font-weight: bold; " +
-                        "-fx-padding: 2 6; " +
-                        "-fx-border-color: #FD6108; " +
-                        "-fx-border-radius: 3; " +
-                        "-fx-background-radius: 3; " +
-                        "-fx-border-width: 1.5;"
-        ));
+        // Hover effects should be updated based on the selected state
+        button.setOnMouseEntered(e -> {
+            if (!button.isSelected()) {
+                button.setStyle(
+                        "-fx-background-color: rgba(253, 97, 8, 0.1); " + // Slight orange tint
+                                "-fx-text-fill: #FD6108; " +
+                                "-fx-font-size: 12px; " +
+                                "-fx-font-weight: bold; " +
+                                "-fx-padding: 2 6; " +
+                                "-fx-border-color: #FD6108; " +
+                                "-fx-border-radius: 3; " +
+                                "-fx-background-radius: 3; " +
+                                "-fx-border-width: 1.5;"
+                );
+            }
+        });
+
+        button.setOnMouseExited(e -> {
+            if (!button.isSelected()) {
+                button.setStyle(
+                        "-fx-background-color: transparent; " +
+                                "-fx-text-fill: #FD6108; " +
+                                "-fx-font-size: 12px; " +
+                                "-fx-font-weight: bold; " +
+                                "-fx-padding: 2 6; " +
+                                "-fx-border-color: #FD6108; " +
+                                "-fx-border-radius: 3; " +
+                                "-fx-background-radius: 3; " +
+                                "-fx-border-width: 1.5;"
+                );
+            }
+        });
 
         return button;
     }
