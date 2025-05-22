@@ -28,6 +28,7 @@
                <HBox prefHeight="111.0" prefWidth="675.0">
                   <children>
                      <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Notifications:" textFill="#fd6108" />
+                     <HBox prefHeight="35.0" prefWidth="462.0" />
                      <Button contentDisplay="CENTER" maxWidth="509.0" onAction="#handleLoginAttempt" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #FD6108;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-cursor: hand;" text="clear" />
                   </children>
                </HBox>
