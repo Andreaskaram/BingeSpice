@@ -3,12 +3,15 @@ package com.example.bingespice_app;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -179,21 +182,89 @@ public class SelectedController implements Initializable {
             int seasonNumber = entry.getKey();
             List<String> episodes = entry.getValue();
 
-            TitledPane seasonPane = new TitledPane();
-            seasonPane.setText("Season " + seasonNumber);
-            seasonPane.setStyle("-fx-text-fill: #FD6108; -fx-font-weight: bold;");
-
-            VBox episodesBox = new VBox(5);
-            episodesBox.setPadding(new Insets(10));
-
-            for (String episode : episodes) {
-                Label episodeLabel = new Label(episode);
-                episodeLabel.setStyle("-fx-text-fill: #FD6108;");
-                episodesBox.getChildren().add(episodeLabel);
-            }
-
+            TitledPane seasonPane = newTitledPane(seasonNumber);
+            VBox episodesBox = createEpisodesBox(episodes);
             seasonPane.setContent(episodesBox);
             seasonsAccordion.getPanes().add(seasonPane);
         }
     }
+
+    private TitledPane newTitledPane(int seasonNumber) {
+        TitledPane pane = new TitledPane();
+        pane.setText("Season " + seasonNumber);
+        pane.setStyle("-fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 14px;");
+        return pane;
+    }
+
+    private VBox createEpisodesBox(List<String> episodes) {
+        VBox episodesBox = new VBox(3); // Reduced spacing
+        episodesBox.setPadding(new Insets(5, 10, 10, 20)); // Compact padding
+
+        for (String episode : episodes) {
+            HBox episodeRow = createEpisodeRow(episode);
+            episodesBox.getChildren().add(episodeRow);
+        }
+
+        return episodesBox;
+    }
+
+    private HBox createEpisodeRow(String episode) {
+        HBox row = new HBox(8); // Reduced spacing
+        row.setAlignment(Pos.CENTER_LEFT);
+        row.setPadding(new Insets(2, 0, 2, 0)); // Compact vertical padding
+
+        // Episode label styling
+        Label episodeLabel = new Label(episode);
+        episodeLabel.setStyle("-fx-text-fill: #FD6108; -fx-font-size: 13px;");
+        episodeLabel.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(episodeLabel, Priority.ALWAYS);
+
+        // Compact button
+        Button markAsWatchedButton = createCompactButton();
+
+        row.getChildren().addAll(episodeLabel, markAsWatchedButton);
+        return row;
+    }
+
+    private Button createCompactButton() {
+        Button button = new Button("✓");
+        button.setStyle(
+                "-fx-background-color: transparent; " +
+                        "-fx-text-fill: #FD6108; " +
+                        "-fx-font-size: 12px; " +
+                        "-fx-font-weight: bold; " +
+                        "-fx-padding: 2 6; " +  // More compact
+                        "-fx-border-color: #FD6108; " +
+                        "-fx-border-radius: 3; " +
+                        "-fx-background-radius: 3; " +
+                        "-fx-border-width: 1.5;"
+        );
+
+        button.setOnMouseEntered(e -> button.setStyle(
+                "-fx-background-color: rgba(253, 97, 8, 0.1); " + // Slight orange tint
+                        "-fx-text-fill: #FD6108; " +
+                        "-fx-font-size: 12px; " +
+                        "-fx-font-weight: bold; " +
+                        "-fx-padding: 2 6; " +
+                        "-fx-border-color: #FD6108; " +
+                        "-fx-border-radius: 3; " +
+                        "-fx-background-radius: 3; " +
+                        "-fx-border-width: 1.5;"
+        ));
+
+        button.setOnMouseExited(e -> button.setStyle(
+                "-fx-background-color: transparent; " +
+                        "-fx-text-fill: #FD6108; " +
+                        "-fx-font-size: 12px; " +
+                        "-fx-font-weight: bold; " +
+                        "-fx-padding: 2 6; " +
+                        "-fx-border-color: #FD6108; " +
+                        "-fx-border-radius: 3; " +
+                        "-fx-background-radius: 3; " +
+                        "-fx-border-width: 1.5;"
+        ));
+
+        return button;
+    }
+
 }
