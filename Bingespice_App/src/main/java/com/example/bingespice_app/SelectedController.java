@@ -2,10 +2,14 @@ package com.example.bingespice_app;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -28,7 +32,7 @@ public class SelectedController implements Initializable {
     @FXML private Label directorsLabel;
     @FXML private Label runtimeLabel;
     @FXML private Label seasonsLabel;
-
+    @FXML private Accordion seasonsAccordion;
     @FXML private Button removeFromWatchedButton;
     @FXML private Button markAsWatchedButton;
 
@@ -53,6 +57,10 @@ public class SelectedController implements Initializable {
             ratingLabel.setText(String.format("★ %.1f/10", media.getVoteAverage()));
             typeLabel.setText(media.getType().equalsIgnoreCase("movie") ? "Movie" : "TV Series");
 
+            if (media.getType().equalsIgnoreCase("tv")) {
+                fetchSeriesSeasons();
+                updateSeasonAccordion();
+            }
             if (media.getPosterUrl() != null) {
                 posterImageView.setImage(new Image(media.getPosterUrl(), true));
             }
@@ -99,7 +107,6 @@ public class SelectedController implements Initializable {
         } else {
             System.out.println("Error marking as watched");
         }
-        fetchSeriesSeasons();
     }
 
     @FXML
@@ -162,6 +169,31 @@ public class SelectedController implements Initializable {
                 System.err.println("Failed to fetch details for Season " + i);
                 e.printStackTrace();
             }
+        }
+    }
+    private void updateSeasonAccordion() {
+        seasonsAccordion.getPanes().clear();
+        seasonsAccordion.setVisible(true);
+
+        for (Map.Entry<Integer, List<String>> entry : seasonEpisodesMap.entrySet()) {
+            int seasonNumber = entry.getKey();
+            List<String> episodes = entry.getValue();
+
+            TitledPane seasonPane = new TitledPane();
+            seasonPane.setText("Season " + seasonNumber);
+            seasonPane.setStyle("-fx-text-fill: #FD6108; -fx-font-weight: bold;");
+
+            VBox episodesBox = new VBox(5);
+            episodesBox.setPadding(new Insets(10));
+
+            for (String episode : episodes) {
+                Label episodeLabel = new Label(episode);
+                episodeLabel.setStyle("-fx-text-fill: #FD6108;");
+                episodesBox.getChildren().add(episodeLabel);
+            }
+
+            seasonPane.setContent(episodesBox);
+            seasonsAccordion.getPanes().add(seasonPane);
         }
     }
 }

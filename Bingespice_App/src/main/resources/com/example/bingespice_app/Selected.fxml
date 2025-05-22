@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
@@ -74,9 +75,11 @@
                             </font>
                         </Label>
                     </VBox>
+                   <Accordion fx:id="seasonsAccordion" style="-fx-background-color: #2C2D40; -fx-background-color: #2C2D40;" visible="false">
+                </Accordion>
                 </HBox>
 
-                            <!-- Seasons (Visible only for TV) -->
+                                        <!-- Seasons (Visible only for TV) -->
                 <Label fx:id="overviewLabel" prefWidth="1000.0" style="-fx-wrap-text: true; -fx-max-height: Infinity;" textFill="#fd6108">
                     <font>
                         <Font name="System Bold" size="18.0" />
