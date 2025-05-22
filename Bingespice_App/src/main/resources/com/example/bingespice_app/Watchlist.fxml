@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.ProfileHandler">
+<BorderPane style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.WatchlistController">
 
    <!-- Left Sidebar -->
    <left>
@@ -27,48 +29,60 @@
          <VBox spacing="30" style="-fx-padding: 20; -fx-background-color: #2C2D40;">
             <!-- Search Bar -->
             <fx:include source="SearchBar.fxml" />
-            <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" style="-fx-background-color: #FD6108;" text="Watched">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" text="Choose Shared Watchlist">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </MenuButton>
-            <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" style="-fx-font-weight: bold;" text="Choose Watchlist">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-            </MenuButton>
-
-            <!-- Content Sections (unchanged) -->
-            <VBox spacing="40">
-               <!-- Recommended Section -->
-               <VBox spacing="20">
-                  <Text style="-fx-fill: #FD6108;">
+            <ButtonBar prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                  <Button fx:id="watchedButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" style="-fx-background-color: #FD6108; -fx-cursor: hand;" text="Watched">
                      <font>
-                        <Font name="System Bold" size="24" />
+                        <Font name="System Bold" size="12.0" />
                      </font>
-                  </Text>
-                  <FlowPane hgap="20" prefWrapLength="1000" vgap="20" />
-               </VBox>
+                  </Button>
+                  <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" style="-fx-cursor: hand;" text="Choose Shared Watchlist">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                     </items>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </MenuButton>
+                  <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" style="-fx-font-weight: bold; -fx-cursor: hand;" text="Choose Watchlist">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                     </items>
+                  </MenuButton>
+              </buttons>
+            </ButtonBar>
 
-               <!-- Watch Next Section -->
-               <VBox prefHeight="259.0" prefWidth="1000.0" spacing="20">
-                  <FlowPane hgap="20" prefWrapLength="1000" vgap="20" />
-               </VBox>
+                     <!-- Watched Movies Section -->
+            <VBox spacing="20">
+               <Text style="-fx-fill: #FD6108;">
+                  <font>
+                     <Font name="System Bold" size="24" />
+                  </font>
+                  Movies Watched
+                           </Text>
+               <FlowPane fx:id="watchedMoviesFlowPane" hgap="10" style="-fx-background-color: #2C2D40; -fx-cursor: hand;" vgap="10">
+                  <children>
+                     <HBox prefHeight="100.0" prefWidth="200.0" />
+                  </children>
+               </FlowPane>
             </VBox>
-            <Text style="-fx-fill: #FD6108;">
-               <font>
-                  <Font name="System Bold" size="24" />
-               </font>
-            </Text>
+
+                     <!-- Watched Series Section -->
+            <VBox spacing="20">
+               <Text style="-fx-fill: #FD6108;">
+                  <font>
+                     <Font name="System Bold" size="24" />
+                  </font>
+                  Series Watched
+                           </Text>
+               <FlowPane fx:id="watchedSeriesFlowPane" hgap="10" style="-fx-background-color: #2C2D40; -fx-cursor: hand;" vgap="10">
+                  <children>
+                     <HBox prefHeight="100.0" prefWidth="200.0" />
+                  </children>
+               </FlowPane>
+            </VBox>
          </VBox>
       </ScrollPane>
    </center>
