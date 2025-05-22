@@ -1,16 +1,21 @@
 package com.example.bingespice_app;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -104,6 +109,7 @@ public class WatchlistController implements Initializable {
         Pane pane = new Pane();
         pane.setPrefSize(186, 320);
         pane.setStyle("-fx-background-color: #2C2D40;");
+        pane.setOnMouseClicked(event -> handleMediaSelection(media, event)); // Pass event here
 
         VBox contentBox = new VBox(5);
         contentBox.setAlignment(javafx.geometry.Pos.CENTER);
@@ -145,5 +151,19 @@ public class WatchlistController implements Initializable {
         });
 
         return pane;
+    }
+
+
+    private void handleMediaSelection(Media media, MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Selected.fxml"));
+            Parent root = loader.load();
+            SelectedController controller = loader.getController();
+            controller.setMediaDetails(media);
+            Node sourceNode = (Node) event.getSource();
+            sourceNode.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
