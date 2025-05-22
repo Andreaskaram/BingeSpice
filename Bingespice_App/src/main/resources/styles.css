@@ -2,3 +2,17 @@
     -fx-border-width: 4px;
     -fx-border-color: transparent;
 }
+.accordion .titled-pane > .title {
+    -fx-background-color: #3A3B4F;
+    -fx-text-fill: #FD6108;
+}
+
+.accordion .titled-pane > .title:hover {
+    -fx-background-color: #4A4B5F;
+}
+
+.accordion .titled-pane > .content {
+    -fx-background-color: #2C2D40;
+    -fx-border-color: #FD6108;
+    -fx-border-width: 0 1 1 1;
+}

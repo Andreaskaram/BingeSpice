@@ -75,7 +75,7 @@
                             </font>
                         </Label>
                     </VBox>
-                   <Accordion fx:id="seasonsAccordion" style="-fx-background-color: #2C2D40; -fx-background-color: #2C2D40;" visible="false">
+                   <Accordion fx:id="seasonsAccordion" style="-fx-background-color: #2C2D40; -fx-background-color: #2C2D40;" stylesheets="@../../../styles.css" visible="false">
                 </Accordion>
                 </HBox>
 
