@@ -178,9 +178,7 @@ public class SelectedController implements Initializable {
 
         for (int i = 1; i <= seasonCount; i++) {
             try {
-                System.out.println("Fetching season " + i);
                 JSONObject seasonDetails = tmdbManager.getSeasonDetails(selectedMedia.getId(), i);
-                System.out.println("Found season " + i);
 
                 JSONArray episodesArray = seasonDetails.optJSONArray("episodes");
                 if (episodesArray != null) {
@@ -189,8 +187,7 @@ public class SelectedController implements Initializable {
                         JSONObject episode = episodesArray.getJSONObject(j);
                         String episodeName = episode.optString("name", "Unnamed Episode");
                         int episodeNumber = episode.optInt("episode_number", j + 1);
-                        System.out.println("Season " + i + " - Episode " + episodeNumber + ": " + episodeName);
-                        episodeNames.add("Episode " + episodeNumber + ": " + episodeName);
+                        episodeNames.add("Ep. " + episodeNumber + ": " + episodeName);
                     }
                     seasonEpisodesMap.put(i, episodeNames);
                 }
