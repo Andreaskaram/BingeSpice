@@ -1,6 +1,8 @@
 package com.example.bingespice_app;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BingespiceDBManager {
 
@@ -209,6 +211,67 @@ public class BingespiceDBManager {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static boolean markEpisodeAsWatched(int UserId, int ContentId, int SeasonNumber, int EpisodeNumber) {
+        String sql = "INSERT INTO WatchedSeriesEpisodes (UserID, ContentID, SeasonNumber, SeasonEpisode) VALUES (?, ?, ?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, UserId);
+            stmt.setInt(2, ContentId);
+            stmt.setInt(3, SeasonNumber);
+            stmt.setInt(4, EpisodeNumber);
+            return true;
+        } catch (SQLException e) {
+            System.out.println("⚠️ Could not update watched category: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean removeEpisodeFromWatched(int UserId, int ContentId, int SeasonNumber, int EpisodeNumber) {
+        String sql = "DELETE FROM WatchedSeriesEpisodes WHERE UserID = ? AND ContentID = ? AND SeasonNumber = ? AND EpisodeNumber = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, UserId);
+            stmt.setInt(2, ContentId);
+            stmt.setInt(3, SeasonNumber);
+            stmt.setInt(4, EpisodeNumber);
+            stmt.executeUpdate();
+            System.out.println("📺 Content Removed successfully.");
+            return true;
+        } catch (SQLException e) {
+            System.out.println("⚠️ Could not update watched category: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static List<int[]> checkEpisodeIfWatched(int UserId, int ContentId) {
+        String sql = "SELECT * FROM WatchedSeriesEpisodes WHERE UserID = ? AND ContentID = ?";
+        List<int[]> watchedEpisodes = new ArrayList<>();
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, UserId);
+            stmt.setInt(2, ContentId);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int season = rs.getInt("SeasonNumber");
+                int episode = rs.getInt("EpisodeNumber");
+                watchedEpisodes.add(new int[]{season, episode});
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ SQL Error during login: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return watchedEpisodes;
     }
 }
 
