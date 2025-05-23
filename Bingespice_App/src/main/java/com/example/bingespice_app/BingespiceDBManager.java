@@ -273,5 +273,64 @@ public class BingespiceDBManager {
         }
         return watchedEpisodes;
     }
+
+
+    public static List<Notification> getNotifications(int userId) {
+        List<Notification> notifications = new ArrayList<>();
+        String sql = "SELECT Content, Date, Status FROM Notifications WHERE UserID = ? ORDER BY Date DESC";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String content = rs.getString("Content");
+                Timestamp date = rs.getTimestamp("Date");
+                String status = rs.getString("Status");
+                notifications.add(new Notification(content, date, status));
+            }
+        } catch (Exception e) {
+            System.out.println("❌ Error fetching notifications: " + e.getMessage());
+        }
+        return notifications;
+    }
+
+    public static boolean deleteNotifications(int userId) {
+        String sql = "DELETE FROM Notifications WHERE UserID = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("❌ Error deleting notifications: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean updateNotificationStatus(int userId, String content, Timestamp date) {
+        String sql = "UPDATE Notifications SET Status = 'Read' WHERE UserID = ? AND Content = ? AND Date = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            stmt.setString(2, content);
+            stmt.setTimestamp(3, date);
+
+            int updated = stmt.executeUpdate();
+            return updated > 0;
+        } catch (SQLException e) {
+            System.out.println("❌ Error updating notification status: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 

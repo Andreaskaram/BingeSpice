@@ -16,3 +16,18 @@
     -fx-border-color: #FD6108;
     -fx-border-width: 0 1 1 1;
 }
+
+.notification-button {
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-padding: 10;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-alignment: center-left;
+    -fx-max-width: infinity;
+}
+
+.notification-button:hover {
+    -fx-background-color: #4A4055; /* Slightly lighter than #3A3045 */
+    -fx-cursor: hand;
+}
