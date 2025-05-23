@@ -212,4 +212,14 @@ public class TMDBManager {
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return new JSONObject(response.body());
     }
+
+    public int getTotalEpisodes(int seriesId) {
+        try {
+            JSONObject seriesDetails = getMediaDetails(seriesId, "tv");
+            return seriesDetails.getInt("number_of_episodes");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

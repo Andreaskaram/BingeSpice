@@ -221,6 +221,7 @@ public class BingespiceDBManager {
             stmt.setInt(2, ContentId);
             stmt.setInt(3, SeasonNumber);
             stmt.setInt(4, EpisodeNumber);
+            stmt.executeUpdate();
             return true;
         } catch (SQLException e) {
             System.out.println("⚠️ Could not update watched category: " + e.getMessage());
@@ -232,7 +233,7 @@ public class BingespiceDBManager {
     }
 
     public static boolean removeEpisodeFromWatched(int UserId, int ContentId, int SeasonNumber, int EpisodeNumber) {
-        String sql = "DELETE FROM WatchedSeriesEpisodes WHERE UserID = ? AND ContentID = ? AND SeasonNumber = ? AND EpisodeNumber = ?";
+        String sql = "DELETE FROM WatchedSeriesEpisodes WHERE UserID = ? AND ContentID = ? AND SeasonNumber = ? AND SeasonEpisode = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, UserId);
@@ -263,7 +264,7 @@ public class BingespiceDBManager {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int season = rs.getInt("SeasonNumber");
-                int episode = rs.getInt("EpisodeNumber");
+                int episode = rs.getInt("SeasonEpisode");
                 watchedEpisodes.add(new int[]{season, episode});
             }
         } catch (SQLException e) {
@@ -332,5 +333,6 @@ public class BingespiceDBManager {
             return false;
         }
     }
+
 }
 

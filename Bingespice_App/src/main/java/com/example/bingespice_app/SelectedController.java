@@ -207,7 +207,7 @@ public class SelectedController implements Initializable {
             List<String> episodes = entry.getValue();
 
             TitledPane seasonPane = newTitledPane(seasonNumber);
-            VBox episodesBox = createEpisodesBox(episodes);
+            VBox episodesBox = createEpisodesBox(episodes, seasonNumber);
             seasonPane.setContent(episodesBox);
             seasonsAccordion.getPanes().add(seasonPane);
         }
@@ -220,19 +220,19 @@ public class SelectedController implements Initializable {
         return pane;
     }
 
-    private VBox createEpisodesBox(List<String> episodes) {
+    private VBox createEpisodesBox(List<String> episodes, int seasonNumber) {
         VBox episodesBox = new VBox(3);
         episodesBox.setPadding(new Insets(5, 10, 10, 20));
 
-        for (String episode : episodes) {
-            HBox episodeRow = createEpisodeRow(episode);
+        for (int i = 0; i < episodes.size(); i++) {
+            HBox episodeRow = createEpisodeRow(episodes.get(i), seasonNumber, i + 1);
             episodesBox.getChildren().add(episodeRow);
         }
 
         return episodesBox;
     }
 
-    private HBox createEpisodeRow(String episode) {
+    private HBox createEpisodeRow(String episode, int seasonNumber, int episodeNumber) {
         HBox row = new HBox(8);
         row.setAlignment(Pos.CENTER_LEFT);
         row.setPadding(new Insets(2, 0, 2, 0));
@@ -244,9 +244,25 @@ public class SelectedController implements Initializable {
 
         ToggleButton markAsWatchedButton = createCompactButton();
 
+        // Check if episode is already watched
+        boolean isWatched = checkIfEpisodeWatched(seasonNumber, episodeNumber);
+        markAsWatchedButton.setSelected(isWatched);
+        updateButtonStyle(markAsWatchedButton, isWatched);
+
+        markAsWatchedButton.setOnAction(event -> {
+            boolean newState = markAsWatchedButton.isSelected();
+            if (newState) {
+                markEpisodeAsWatched(seasonNumber, episodeNumber);
+            } else {
+                removeEpisodeFromWatched(seasonNumber, episodeNumber);
+            }
+            updateButtonStyle(markAsWatchedButton, newState);
+        });
+
         row.getChildren().addAll(episodeLabel, markAsWatchedButton);
         return row;
     }
+
 
     private ToggleButton createCompactButton() {
         ToggleButton button = new ToggleButton("✓");
@@ -324,4 +340,65 @@ public class SelectedController implements Initializable {
 
         return button;
     }
+    private void updateButtonStyle(ToggleButton button, boolean isSelected) {
+        if (isSelected) {
+            button.setStyle(
+                    "-fx-background-color: #FD6108; " +
+                            "-fx-text-fill: #0033cc; " +
+                            "-fx-font-size: 12px; " +
+                            "-fx-font-weight: bold; " +
+                            "-fx-padding: 2 6; " +
+                            "-fx-border-color: #FD6108; " +
+                            "-fx-border-radius: 3; " +
+                            "-fx-background-radius: 3; " +
+                            "-fx-border-width: 1.5;"
+            );
+        } else {
+            button.setStyle(
+                    "-fx-background-color: transparent; " +
+                            "-fx-text-fill: #FD6108; " +
+                            "-fx-font-size: 12px; " +
+                            "-fx-font-weight: bold; " +
+                            "-fx-padding: 2 6; " +
+                            "-fx-border-color: #FD6108; " +
+                            "-fx-border-radius: 3; " +
+                            "-fx-background-radius: 3; " +
+                            "-fx-border-width: 1.5;"
+            );
+        }
+    }
+
+    private boolean checkIfEpisodeWatched(int seasonNumber, int episodeNumber) {
+        List<int[]> watchedEpisodes = BingespiceDBManager.checkEpisodeIfWatched(
+                Session.getUserID(),
+                selectedMedia.getId()
+        );
+
+        for (int[] episode : watchedEpisodes) {
+            if (episode[0] == seasonNumber && episode[1] == episodeNumber) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean markEpisodeAsWatched(int seasonNumber, int episodeNumber) {
+        return BingespiceDBManager.markEpisodeAsWatched(
+                Session.getUserID(),
+                selectedMedia.getId(),
+                seasonNumber,
+                episodeNumber
+        );
+    }
+
+    private boolean removeEpisodeFromWatched(int seasonNumber, int episodeNumber) {
+        return BingespiceDBManager.removeEpisodeFromWatched(
+                Session.getUserID(),
+                selectedMedia.getId(),
+                seasonNumber,
+                episodeNumber
+        );
+    }
+
+
 }
