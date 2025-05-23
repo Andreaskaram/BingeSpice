@@ -383,22 +383,58 @@ public class SelectedController implements Initializable {
     }
 
     private boolean markEpisodeAsWatched(int seasonNumber, int episodeNumber) {
-        return BingespiceDBManager.markEpisodeAsWatched(
+        boolean result = BingespiceDBManager.markEpisodeAsWatched(
                 Session.getUserID(),
                 selectedMedia.getId(),
                 seasonNumber,
                 episodeNumber
         );
+        if (result) {
+            checkAndMarkSeriesIfAllEpisodesWatched();
+        }
+        return result;
     }
 
     private boolean removeEpisodeFromWatched(int seasonNumber, int episodeNumber) {
-        return BingespiceDBManager.removeEpisodeFromWatched(
+        boolean result = BingespiceDBManager.removeEpisodeFromWatched(
                 Session.getUserID(),
                 selectedMedia.getId(),
                 seasonNumber,
                 episodeNumber
         );
+        if (result) {
+            // If removing an episode, we should unmark the series if it was marked as watched
+            if (removeFromWatchedButton.isVisible()) {
+                handleRemoveFromWatched();
+            }
+        }
+        return result;
     }
 
+    private void checkAndMarkSeriesIfAllEpisodesWatched() {
+        if (selectedMedia == null || !selectedMedia.getType().equalsIgnoreCase("tv")) {
+            return;
+        }
+
+        // Get total number of episodes from the TMDB API
+        int totalEpisodes = tmdbManager.getTotalEpisodes(selectedMedia.getId());
+        if (totalEpisodes == 0) return;
+
+        // Get all watched episodes from the database
+        List<int[]> watchedEpisodes = BingespiceDBManager.checkEpisodeIfWatched(
+                Session.getUserID(),
+                selectedMedia.getId()
+        );
+
+        // If the number of watched episodes matches total episodes, mark series as watched
+        if (watchedEpisodes.size() >= totalEpisodes) {
+            WatchedHandler watched = new WatchedHandler();
+            boolean success = watched.markAsWatched(selectedMedia);
+            if (success) {
+                setRemoveFromWatchedButton();
+                System.out.println("All episodes watched - Series marked as watched");
+            }
+        }
+    }
 
 }
