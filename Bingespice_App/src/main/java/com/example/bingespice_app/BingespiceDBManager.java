@@ -334,5 +334,53 @@ public class BingespiceDBManager {
         }
     }
 
-}
+    // Refactored: createNewWatchlist to return boolean, store newWatchlistId, and link user to watchlist
+    public static boolean createNewWatchlist(String name, String type, int UserId) {
+        String sql = "INSERT INTO Watchlist (Name, Type) VALUES (?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setString(1, name);
+            stmt.setString(2, type);
+            int affectedRows = stmt.executeUpdate();
 
+            if (affectedRows == 0) {
+                throw new SQLException("Creating watchlist failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int newWatchlistId = generatedKeys.getInt(1);
+                    // Placeholder: use dummy userId (0) for now
+                    // TODO: Replace 0 with actual userId
+                    return linkUserToWatchlist(UserId, newWatchlistId);
+                } else {
+                    throw new SQLException("Creating watchlist failed, no ID obtained.");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("⚠️ Could not create Watchlist: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean linkUserToWatchlist(int userId, int watchlistId) {
+        String sql = "INSERT INTO UserWatchlist (UserID, WatchlistID) VALUES (?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            stmt.setInt(2, watchlistId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("⚠️ Could not link user to watchlist: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+}
