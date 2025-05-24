@@ -2,7 +2,9 @@ package com.example.bingespice_app;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BingespiceDBManager {
 
@@ -275,6 +277,34 @@ public class BingespiceDBManager {
         return watchedEpisodes;
     }
 
+    public static Map<Integer, List<Integer>> getAllWatchedEpisodes(int userId, int contentId) {
+        String sql = "SELECT SeasonNumber, SeasonEpisode FROM WatchedSeriesEpisodes WHERE UserId = ? AND ContentId = ?";
+        Map<Integer, List<Integer>> watchedEpisodes = new HashMap<>();
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            stmt.setInt(2, contentId);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int season = rs.getInt("SeasonNumber");
+                int episode = rs.getInt("SeasonEpisode");
+
+                if (!watchedEpisodes.containsKey(season)) {
+                    watchedEpisodes.put(season, new ArrayList<>());
+                }
+                watchedEpisodes.get(season).add(episode);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e) {
+        System.out.println("❌ Unexpected error fetching watched episodes: " + e.getMessage());
+        e.printStackTrace();
+    }
+        return watchedEpisodes;
+    }
 
     public static List<Notification> getNotifications(int userId) {
         List<Notification> notifications = new ArrayList<>();

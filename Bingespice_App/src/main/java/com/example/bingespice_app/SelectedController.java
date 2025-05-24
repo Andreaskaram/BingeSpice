@@ -37,6 +37,7 @@ public class SelectedController implements Initializable {
     @FXML private Accordion seasonsAccordion;
     @FXML private Button removeFromWatchedButton;
     @FXML private Button markAsWatchedButton;
+    private Map<Integer, List<Integer>> watchedEpisodesMap;
 
     private TMDBManager tmdbManager;
     private Media selectedMedia;
@@ -46,11 +47,19 @@ public class SelectedController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tmdbManager = new TMDBManager();
+        // Initialize the map
+        watchedEpisodesMap = new HashMap<>();
     }
 
     public void setMediaDetails(Media media) {
         this.selectedMedia = media;
-        try {
+        // Load all watched episodes for this content once
+        this.watchedEpisodesMap = BingespiceDBManager.getAllWatchedEpisodes(
+                Session.getUserID(),
+                media.getId()
+            );
+
+            try {
             // Load basic media details first
             JSONObject details = tmdbManager.getMediaDetails(media.getId(), media.getType());
             this.selectedJson = details;
@@ -244,10 +253,11 @@ public class SelectedController implements Initializable {
 
         ToggleButton markAsWatchedButton = createCompactButton();
 
-        // Check if episode is already watched
-        boolean isWatched = checkIfEpisodeWatched(seasonNumber, episodeNumber);
-        markAsWatchedButton.setSelected(isWatched);
+
+        boolean isWatched = watchedEpisodesMap.containsKey(seasonNumber) &&
+                watchedEpisodesMap.get(seasonNumber).contains(episodeNumber);
         updateButtonStyle(markAsWatchedButton, isWatched);
+
 
         markAsWatchedButton.setOnAction(event -> {
             boolean newState = markAsWatchedButton.isSelected();
@@ -368,19 +378,6 @@ public class SelectedController implements Initializable {
         }
     }
 
-    private boolean checkIfEpisodeWatched(int seasonNumber, int episodeNumber) {
-        List<int[]> watchedEpisodes = BingespiceDBManager.checkEpisodeIfWatched(
-                Session.getUserID(),
-                selectedMedia.getId()
-        );
-
-        for (int[] episode : watchedEpisodes) {
-            if (episode[0] == seasonNumber && episode[1] == episodeNumber) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     private boolean markEpisodeAsWatched(int seasonNumber, int episodeNumber) {
         boolean result = BingespiceDBManager.markEpisodeAsWatched(
@@ -437,4 +434,14 @@ public class SelectedController implements Initializable {
         }
     }
 
+
+
+    private boolean checkIfEpisodeWatched(int seasonNumber, int episodeNumber) {
+        // Now this just checks the pre-loaded map
+        if (watchedEpisodesMap.containsKey(seasonNumber)) {
+            return watchedEpisodesMap.get(seasonNumber).contains(episodeNumber);
+        }
+        return false;
+    }
 }
+
