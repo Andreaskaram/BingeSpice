@@ -36,6 +36,21 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
+                  <Button fx:id="createwatchlist" mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" style="-fx-background-color: #FD6108; -fx-cursor: hand;" text="Create Watchlist">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="editwatchlist" mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" style="-fx-background-color: #FD6108; -fx-cursor: hand;" text="Edit Watchlist">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="insertwatchlistid" mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" style="-fx-background-color: #FD6108; -fx-cursor: hand;" text="Insert Shared Watchlist Id">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
                   <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" style="-fx-cursor: hand;" text="Choose Shared Watchlist">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Action 1" />
