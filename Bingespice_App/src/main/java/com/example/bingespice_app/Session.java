@@ -6,6 +6,7 @@ package com.example.bingespice_app;
 public class Session {
     private static String username;
     private static int UserID;
+    private static int selectedWatchlistID;
 
     /**
      * Set the currently logged-in username.
@@ -18,6 +19,8 @@ public class Session {
         UserID = id;
     }
 
+    public static void setSelectedWatchlistID(int id) { selectedWatchlistID = id; }
+
     /**
      * Get the currently logged-in username.
      */
@@ -25,7 +28,7 @@ public class Session {
         return username;
     }
 
-    public static int getUserID() {
-        return UserID;
-    }
+    public static int getUserID() { return UserID; }
+
+    public static int getSelectedWatchlistID() { return selectedWatchlistID; }
 }

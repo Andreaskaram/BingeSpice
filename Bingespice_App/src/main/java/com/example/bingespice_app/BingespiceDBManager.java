@@ -334,7 +334,6 @@ public class BingespiceDBManager {
         }
     }
 
-    // Refactored: createNewWatchlist to return boolean, store newWatchlistId, and link user to watchlist
     public static boolean createNewWatchlist(String name, String type, int UserId) {
         String sql = "INSERT INTO Watchlist (Name, Type) VALUES (?, ?)";
         try (Connection conn = getConnection();
@@ -376,6 +375,22 @@ public class BingespiceDBManager {
             return true;
         } catch (SQLException e) {
             System.out.println("⚠️ Could not link user to watchlist: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean deleteWatchlist(int WatchlistId) {
+        String sql = "DELETE FROM Watchlist WHERE WatchlistID = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, WatchlistId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("❌ Error deleting Watchlist: " + e.getMessage());
             return false;
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,10 +1,12 @@
 package com.example.bingespice_app;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -171,5 +173,33 @@ public class WatchlistController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void handleCreateWatchlistButton(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("WatchlistEditor.fxml"));
+        Parent editorRoot = loader.load();
+
+        // Now get the controller and pass arguments
+        CreateEditWatchlistScreen controller = loader.getController();
+        controller.setParameters("Create"); // This method must be defined in your controller
+
+        // Switch scene
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        currentScene.setRoot(editorRoot);
+    }
+
+    @FXML
+    private void handleEditWatchlistButton(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("WatchlistEditor.fxml"));
+        Parent editorRoot = loader.load();
+
+        // Now get the controller and pass arguments
+        CreateEditWatchlistScreen controller = loader.getController();
+        controller.setParameters("Edit"); // This method must be defined in your controller
+
+        // Switch scene
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        currentScene.setRoot(editorRoot);
     }
 }
