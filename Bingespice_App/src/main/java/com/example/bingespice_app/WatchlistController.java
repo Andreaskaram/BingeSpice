@@ -8,6 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -25,6 +27,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class WatchlistController implements Initializable {
@@ -33,12 +36,21 @@ public class WatchlistController implements Initializable {
     @FXML private Button watchedButton;
     @FXML private Text moviesText;
     @FXML private Text seriesText;
+    @FXML private MenuButton watchlistSelector;
 
     private TMDBManager tmdbManager;
+    private List<Map.Entry<Integer, String>> userWatchlists;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tmdbManager = new TMDBManager();
+
+        Session.clearSelectedWatchlist();
+
+        // Get user watchlist names
+        this.userWatchlists = WatchlistHandler.searchUserWatchlists();
+        createWatchlistMenu();
+
         watchedButton.setOnAction(event -> loadWatchedContent());
     }
 
@@ -201,5 +213,19 @@ public class WatchlistController implements Initializable {
         // Switch scene
         Scene currentScene = ((Node) event.getSource()).getScene();
         currentScene.setRoot(editorRoot);
+    }
+
+    private void createWatchlistMenu(){
+        for (Map.Entry<Integer, String> entry : userWatchlists) {
+            String name = entry.getValue();
+            MenuItem menuItem = new MenuItem(name);
+
+            menuItem.setOnAction(e -> {
+                watchlistSelector.setText(name);
+                Session.setSelectedWatchlist(entry.getKey(), name);
+            });
+
+            watchlistSelector.getItems().add(menuItem);
+        }
     }
 }

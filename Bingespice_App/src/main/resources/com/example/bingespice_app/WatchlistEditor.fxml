@@ -5,6 +5,9 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -30,8 +33,24 @@
                   <Font size="35.0" />
                </font>
             </Label>
-            <TextField promptText="Enter Watchlsit name" />
-            <Button contentDisplay="CENTER" mnemonicParsing="false" text="Confirm" />
+            <TextField fx:id="watchlistName" promptText="Enter Watchlsit name" />
+            <HBox alignment="TOP_RIGHT" prefHeight="66.0">
+               <children>
+                  <StackPane alignment="TOP_CENTER" prefHeight="66.0" prefWidth="77.0">
+                     <children>
+                        <Button fx:id="confirmButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleConfirmButton" text="Confirm" />
+                        <Button fx:id="confirmChangesButton" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#handleConfirmChangesButton" text="Confirm" visible="false" />
+                     </children>
+                  </StackPane>
+                  <Region prefHeight="66.0" prefWidth="125.0" />
+                  <Button fx:id="deleteButton" alignment="TOP_RIGHT" disable="true" mnemonicParsing="false" onAction="#handleDeleteButton" text="DELETE WATCHLIST" visible="false" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="errorLabel" text="Label" textFill="RED" visible="false" />
+               </children>
+            </HBox>
          </VBox>
       </ScrollPane>
    </center>
