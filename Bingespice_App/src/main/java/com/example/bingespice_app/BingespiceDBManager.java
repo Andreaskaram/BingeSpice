@@ -1,6 +1,7 @@
 package com.example.bingespice_app;
 
 import java.sql.*;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -364,7 +365,6 @@ public class BingespiceDBManager {
         }
     }
 
-    // Refactored: createNewWatchlist to return boolean, store newWatchlistId, and link user to watchlist
     public static boolean createNewWatchlist(String name, String type, int UserId) {
         String sql = "INSERT INTO Watchlist (Name, Type) VALUES (?, ?)";
         try (Connection conn = getConnection();
@@ -411,6 +411,88 @@ public class BingespiceDBManager {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static boolean updateWatchlistName(int WatchlistId, String newName) {
+        String sql = "UPDATE Watchlist SET Name = ? WHERE WatchlistID = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, newName);
+            stmt.setInt(2, WatchlistId);
+
+            int updated = stmt.executeUpdate();
+            return updated > 0;
+        } catch (SQLException e) {
+            System.out.println("❌ Error updating Watchlist: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean deleteWatchlist(int WatchlistId) {
+        String sql = "DELETE FROM Watchlist WHERE WatchlistID = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, WatchlistId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("❌ Error deleting Watchlist: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private static List<Integer> getWatchlistIdsForUser(int userId) {
+        List<Integer> watchlistIds = new ArrayList<>();
+        String sql = "SELECT WatchlistID FROM UserWatchlist WHERE UserID = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                watchlistIds.add(rs.getInt("WatchlistID"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return watchlistIds;
+    }
+
+    public static List<Map.Entry<Integer, String>> getUserWatchlists(int userId) {
+        List<Map.Entry<Integer, String>> result = new ArrayList<>();
+        List<Integer> watchlistIds = getWatchlistIdsForUser(userId);
+
+        if (watchlistIds.isEmpty()) return result;
+
+        String sql = "SELECT WatchlistID, Name FROM Watchlist WHERE WatchlistID = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            for (int id : watchlistIds) {
+                stmt.setInt(1, id);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    int watchlistId = rs.getInt("WatchlistID");
+                    String name = rs.getString("Name");
+                    result.add(new AbstractMap.SimpleEntry<>(watchlistId, name));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
 }

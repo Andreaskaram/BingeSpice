@@ -1,0 +1,2 @@
+[ ] - Να ενώοσυμε search και select
+[ ] - Αλλαγη robustness sequence σε view watchlsit
