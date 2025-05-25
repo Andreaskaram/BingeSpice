@@ -38,12 +38,12 @@
                <children>
                   <StackPane alignment="TOP_CENTER" prefHeight="66.0" prefWidth="77.0">
                      <children>
-                        <Button fx:id="confirmButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleConfirmButton" text="Confirm" />
-                        <Button fx:id="confirmChangesButton" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#handleConfirmChangesButton" text="Confirm" visible="false" />
+                        <Button fx:id="confirmChangesButton" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#handleConfirmChangesButton" style="-fx-background-color: #fd6108;" text="Confirm" visible="false" />
+                        <Button fx:id="confirmButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleConfirmButton" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: #fd6108;" text="Confirm" />
                      </children>
                   </StackPane>
                   <Region prefHeight="66.0" prefWidth="125.0" />
-                  <Button fx:id="deleteButton" alignment="TOP_RIGHT" disable="true" mnemonicParsing="false" onAction="#handleDeleteButton" text="DELETE WATCHLIST" visible="false" />
+                  <Button fx:id="deleteButton" alignment="TOP_RIGHT" disable="true" mnemonicParsing="false" onAction="#handleDeleteButton" style="-fx-background-color: #fd6108;" text="DELETE WATCHLIST" visible="false" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
