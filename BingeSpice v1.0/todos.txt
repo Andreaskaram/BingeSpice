@@ -1,2 +1,3 @@
 [ ] - Να ενώοσυμε search και select
 [ ] - Αλλαγη robustness sequence σε view watchlsit
+[ ] - Αλλαγή sequence σε view/edit profile
