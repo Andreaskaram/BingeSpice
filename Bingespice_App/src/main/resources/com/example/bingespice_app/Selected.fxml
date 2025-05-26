@@ -117,7 +117,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="Add to Watchlist">
+                   <MenuButton fx:id="watchlistMenuButton" text="Add to Watchlist" style="-fx-background-color: #FD6108; -fx-text-fill: white;">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />

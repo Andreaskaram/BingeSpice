@@ -20,4 +20,14 @@ public class WatchlistHandler {
     public static List<Map.Entry<Integer, String>> searchUserWatchlists(){
         return BingespiceDBManager.getUserWatchlists(Session.getUserID());
     }
+
+    public static boolean isContentInWatchlist(int watchlistId, Media media) {
+        String dbType = media.getType().equals("movie") ? "Movie" : "Series";
+        return BingespiceDBManager.isContentInWatchlist(watchlistId, media.getId(), dbType);
+    }
+
+    public static boolean addToWatchlist(int watchlistId, Media media) {
+        String dbType = media.getType().equals("movie") ? "Movie" : "Series";
+        return BingespiceDBManager.addToWatchlist(watchlistId, media.getId(), dbType);
+    }
 }

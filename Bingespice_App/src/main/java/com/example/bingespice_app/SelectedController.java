@@ -37,6 +37,7 @@ public class SelectedController implements Initializable {
     @FXML private Accordion seasonsAccordion;
     @FXML private Button removeFromWatchedButton;
     @FXML private Button markAsWatchedButton;
+    @FXML private MenuButton watchlistMenuButton;
     private Map<Integer, List<Integer>> watchedEpisodesMap;
 
     private TMDBManager tmdbManager;
@@ -105,7 +106,7 @@ public class SelectedController implements Initializable {
             if (watchedStatus) {
                 setRemoveFromWatchedButton();
             }
-
+                populateWatchlistMenu();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -442,6 +443,48 @@ public class SelectedController implements Initializable {
             return watchedEpisodesMap.get(seasonNumber).contains(episodeNumber);
         }
         return false;
+    }
+
+    private void populateWatchlistMenu() {
+        List<Map.Entry<Integer, String>> watchlists = WatchlistHandler.searchUserWatchlists();
+        watchlistMenuButton.getItems().clear();
+        if (watchlists.isEmpty()) {
+            MenuItem noWatchlistItem = new MenuItem("No watchlists available");
+            noWatchlistItem.setDisable(true);
+            watchlistMenuButton.getItems().add(noWatchlistItem);
+        } else {
+            for (Map.Entry<Integer, String> entry : watchlists) {
+                MenuItem item = new MenuItem(entry.getValue());
+                item.setOnAction(e -> addToWatchlistMessage(entry.getKey(), selectedMedia));
+                watchlistMenuButton.getItems().add(item);
+            }
+        }
+    }
+
+    private void addToWatchlistMessage(int watchlistId, Media media) {
+        boolean isAlreadyInWatchlist = WatchlistHandler.isContentInWatchlist(watchlistId, media);
+        if (isAlreadyInWatchlist) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText(null);
+            alert.setContentText("This content is already in the selected watchlist.");
+            alert.showAndWait();
+        } else {
+            boolean success = WatchlistHandler.addToWatchlist(watchlistId, media);
+            if (success) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Added to watchlist successfully.");
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Failed to add to watchlist.");
+                alert.showAndWait();
+            }
+        }
     }
 }
 

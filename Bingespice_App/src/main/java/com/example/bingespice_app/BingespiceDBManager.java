@@ -495,4 +495,36 @@ public class BingespiceDBManager {
         return result;
     }
 
+    public static boolean isContentInWatchlist(int watchlistId, int contentId, String type) {
+        String sql = "SELECT * FROM WatchlistContents WHERE WatchlistID = ? AND ContentID = ? AND Type = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, watchlistId);
+            stmt.setInt(2, contentId);
+            stmt.setString(3, type); // Expects 'Movie' or 'Series'
+            ResultSet rs = stmt.executeQuery();
+            return rs.next(); // True if a row exists
+        } catch (Exception e) {
+            System.err.println("Error checking watchlist content: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean addToWatchlist(int watchlistId, int contentId, String type) {
+        String sql = "INSERT INTO WatchlistContents (WatchlistID, ContentID, Type) VALUES (?, ?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, watchlistId);
+            stmt.setInt(2, contentId);
+            stmt.setString(3, type); // Expects 'Movie' or 'Series'
+            stmt.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error adding to watchlist: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
