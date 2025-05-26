@@ -33,7 +33,7 @@
                 <HBox spacing="30">
                     <ImageView fx:id="posterImageView" fitHeight="346.0" fitWidth="242.0" preserveRatio="true" />
                     <VBox spacing="15" style="-fx-text-fill: #FD6108;">
-                        <Label fx:id="titleLabel" style="-fx-font-size: 32px; -fx-font-weight: bold;" textFill="#fd6108">
+                        <Label fx:id="titleLabel" style="-fx-font-size: 32px; -fx-font-weight: bold;" textFill="#fd6108" wrapText="true">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Label>
@@ -117,7 +117,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                   <MenuButton fx:id="watchlistMenuButton" text="Add to Watchlist" style="-fx-background-color: #FD6108; -fx-text-fill: white;">
+                   <MenuButton fx:id="watchlistMenuButton" style="-fx-background-color: #FD6108; -fx-text-fill: white;" text="Add to Watchlist">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -134,6 +134,11 @@
                       <MenuItem mnemonicParsing="false" text="Action 2" />
                     </items>
                   </MenuButton>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="errorLabel" text="Label" textFill="RED" visible="false" />
                </children>
             </HBox>
             </VBox>

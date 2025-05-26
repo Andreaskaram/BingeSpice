@@ -38,6 +38,7 @@ public class SelectedController implements Initializable {
     @FXML private Button removeFromWatchedButton;
     @FXML private Button markAsWatchedButton;
     @FXML private MenuButton watchlistMenuButton;
+    @FXML private Label errorLabel;
     private Map<Integer, List<Integer>> watchedEpisodesMap;
 
     private TMDBManager tmdbManager;
@@ -464,25 +465,19 @@ public class SelectedController implements Initializable {
     private void addToWatchlistMessage(int watchlistId, Media media) {
         boolean isAlreadyInWatchlist = WatchlistHandler.isContentInWatchlist(watchlistId, media);
         if (isAlreadyInWatchlist) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information");
-            alert.setHeaderText(null);
-            alert.setContentText("This content is already in the selected watchlist.");
-            alert.showAndWait();
+            errorLabel.setText("Content already in Watchlist");
+            errorLabel.setStyle("-fx-text-fill: #FF0000;");
+            errorLabel.setVisible(true);
         } else {
             boolean success = WatchlistHandler.addToWatchlist(watchlistId, media);
             if (success) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText(null);
-                alert.setContentText("Added to watchlist successfully.");
-                alert.showAndWait();
+                errorLabel.setText("Content added to Watchlist successfully");
+                errorLabel.setStyle("-fx-text-fill: #00FF00;");
+                errorLabel.setVisible(true);
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText(null);
-                alert.setContentText("Failed to add to watchlist.");
-                alert.showAndWait();
+                errorLabel.setText("Error while adding watchlist");
+                errorLabel.setStyle("-fx-text-fill: #FF0000;");
+                errorLabel.setVisible(true);
             }
         }
     }
