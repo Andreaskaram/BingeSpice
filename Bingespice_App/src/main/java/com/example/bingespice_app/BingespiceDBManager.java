@@ -527,4 +527,21 @@ public class BingespiceDBManager {
         }
     }
 
+    public static List<Map.Entry<Integer, String>> getWatchlistContents(int watchlistId) {
+        List<Map.Entry<Integer, String>> contents = new ArrayList<>();
+        String sql = "SELECT ContentID, Type FROM WatchlistContents WHERE WatchlistID = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, watchlistId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int contentId = rs.getInt("ContentID");
+                String type = rs.getString("Type");
+                contents.add(new AbstractMap.SimpleEntry<>(contentId, type));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return contents;
+    }
 }

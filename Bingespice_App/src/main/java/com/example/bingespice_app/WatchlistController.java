@@ -215,17 +215,66 @@ public class WatchlistController implements Initializable {
         currentScene.setRoot(editorRoot);
     }
 
-    private void createWatchlistMenu(){
+    private void createWatchlistMenu() {
         for (Map.Entry<Integer, String> entry : userWatchlists) {
             String name = entry.getValue();
             MenuItem menuItem = new MenuItem(name);
-
             menuItem.setOnAction(e -> {
                 watchlistSelector.setText(name);
                 Session.setSelectedWatchlist(entry.getKey(), name);
+                loadWatchlistContents(); // Trigger content loading
             });
-
             watchlistSelector.getItems().add(menuItem);
+        }
+    }
+    private void loadWatchlistContents() {
+        int watchlistId = Session.getSelectedWatchlistID();
+        List<Map.Entry<Integer, String>> contents = BingespiceDBManager.getWatchlistContents(watchlistId);
+        List<Media> movies = new ArrayList<>();
+        List<Media> series = new ArrayList<>();
+
+        for (Map.Entry<Integer, String> entry : contents) {
+            int contentId = entry.getKey();
+            String type = entry.getValue().equals("Movie") ? "movie" : "tv";
+
+            try {
+                JSONObject details = tmdbManager.getMediaDetails(contentId, type);
+                String title = type.equals("movie") ? details.getString("title") : details.getString("name");
+                String posterPath = details.optString("poster_path");
+                String posterUrl = posterPath.isEmpty()
+                        ? "http://via.placeholder.com/1080x1580"
+                        : "https://image.tmdb.org/t/p/w154" + posterPath;
+
+                Media media = new Media(
+                        contentId,
+                        title,
+                        posterUrl,
+                        details.getDouble("vote_average"),
+                        details.getString("overview"),
+                        type
+                );
+
+                if (type.equals("movie")) {
+                    movies.add(media);
+                } else {
+                    series.add(media);
+                }
+            } catch (Exception e) {
+                System.err.println("Error fetching content ID " + contentId + ": " + e.getMessage());
+            }
+        }
+
+        // Update UI
+        watchedMoviesFlowPane.getChildren().clear();
+        watchedSeriesFlowPane.getChildren().clear();
+        moviesText.setText(Session.getSelectedWatchlistName() + " Movies:");
+        seriesText.setText(Session.getSelectedWatchlistName() + " Series:");
+
+        for (Media movie : movies) {
+            watchedMoviesFlowPane.getChildren().add(createMediaPane(movie));
+        }
+        for (Media tv : series) {
+            watchedSeriesFlowPane.getChildren().add(createMediaPane(tv));
         }
     }
 }
