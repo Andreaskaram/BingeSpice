@@ -134,17 +134,4 @@ public class ProfileHandler {
         }
     }
 
-
-    @FXML
-    private void handleSettingsButton(ActionEvent event) {
-        Button clickedButton = (Button) event.getSource();
-        settingsContentText.setText(clickedButton.getText());
-        switch (clickedButton.getText()) {
-            case "Account Settings": settingsContentText.setText("Account Settings"); break;
-            case "Privacy Settings": settingsContentText.setText("Privacy Settings"); break;
-            case "App Settings": settingsContentText.setText("App Settings"); break;
-            case "Notifications": settingsContentText.setText("Notification settings"); break;
-            case "Support": settingsContentText.setText("Support"); break;
-        }
-    }
 }
