@@ -1,0 +1,9 @@
+
+USE CASE:
+https://lucid.app/lucidchart/a4f6c65e-823a-4245-9a7c-26bb79e88156/edit?viewport_loc=-4618%2C-4137%2C7168%2C3443%2C0_0&invitationId=inv_f33d3b99-e0c5-43e5-93cd-8703d362393e
+
+DOMAIN MODEL:
+https://lucid.app/lucidchart/de60188d-d403-44cc-872b-588d7b42860b/edit?viewport_loc=-3354%2C-2158%2C2984%2C1400%2C0_0&invitationId=inv_69b9df78-f08d-4e86-9f50-3ebcbe41af2d
+
+FIGMA MOCK-UP:
+https://www.figma.com/design/ptXJNZXFczkjsXXHDJ7cZK/Immigrant?node-id=4-771&p=f&t=aYyXabXpAaTyC7rs-0
