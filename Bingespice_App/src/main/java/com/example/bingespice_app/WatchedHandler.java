@@ -5,8 +5,6 @@ import java.util.List;
 public class WatchedHandler {
 
     public boolean markAsWatched(Media media) {
-        //System.out.println(media.getId());
-        //System.out.println(Session.getUserID());
         return BingespiceDBManager.updateWatchedCategory(Session.getUserID(), media.getId(), media.getType());
     }
 

@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class WatchlistController implements Initializable {
+public class WatchlistScreen implements Initializable {
     @FXML private FlowPane watchedMoviesFlowPane;
     @FXML private FlowPane watchedSeriesFlowPane;
     @FXML private Button watchedButton;
