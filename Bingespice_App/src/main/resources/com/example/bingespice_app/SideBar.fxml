@@ -62,7 +62,7 @@
                   </Button>
 
                   <!-- Settings -->
-            <Button contentDisplay="LEFT" graphicTextGap="10" onAction="#loadSettings" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand; " text="Settings">
+            <Button contentDisplay="LEFT" graphicTextGap="10" onAction="#loadSettings" style="-fx-background-color: transparent; -fx-text-fill: #FD6108; -fx-font-weight: bold; -fx-font-size: 18; -fx-cursor: hand; " text="Credits">
                 <graphic>
                     <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
                         <image>

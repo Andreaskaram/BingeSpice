@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -13,17 +11,16 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane style="-fx-background-color: #2A2035;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bingespice_app.ProfileHandler">
 
    <!-- Left Sidebar -->
    <left>
-      <fx:include source="SideBar.fxml"/>
+      <fx:include source="SideBar.fxml" />
    </left>
 
    <top>
-      <fx:include source="TopBar.fxml"/>
+      <fx:include source="TopBar.fxml" />
    </top>
 
    <!-- Main Content Area -->
@@ -31,21 +28,49 @@
       <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #2C2D40;">
          <VBox spacing="30" style="-fx-padding: 20; -fx-background-color: #2C2D40;">
             <!-- Search Bar -->
-            <fx:include source="SearchBar.fxml"></fx:include>
-            <Pane prefHeight="860.0" prefWidth="1123.0">
+            <fx:include source="SearchBar.fxml" />
+            <Pane prefHeight="900.0" prefWidth="1590.0">
                <children>
-                  <Pane layoutX="20.0" layoutY="14.0" prefHeight="274.0" prefWidth="200.0" style="-fx-background-color: #2A2035;">
+                  <StackPane prefHeight="836.0" prefWidth="1129.0" style="-fx-background-color: #2A2035;">
                      <children>
-                        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold; -fx-cursor: hand;" text="Account Settings" textFill="#fd6108" />
-                        <Button layoutY="102.0" mnemonicParsing="false" onAction="#handleSettingsButton" prefHeight="44.0" prefWidth="201.0" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold; -fx-cursor: hand;" text="App Settings" textFill="#fd6108" />
-                        <Button layoutX="19.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold; -fx-cursor: hand;" text="Privacy Settings" textFill="#fd6108" />
-                        <Button layoutX="26.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold; -fx-cursor: hand;" text="Notifications" textFill="#fd6108" />
-                        <Button layoutX="34.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #2A2035; -fx-font-size: 20; -fx-font-weight: bold; -fx-cursor: hand;" text="Support" textFill="#fd6108" />
-                     </children>
-                  </Pane>
-                  <StackPane layoutX="291.0" layoutY="14.0" prefHeight="732.0" prefWidth="571.0" style="-fx-background-color: #2A2035;">
-                     <children>
-                        <Text fx:id="settingsContentText" fill="#fd6108" style="-fx-font-size: 20; -fx-font-weight: bold;" StackPane.alignment="TOP_CENTER" />
+                        <VBox prefHeight="836.0" prefWidth="216.0">
+                           <children>
+                              <HBox prefHeight="37.0" prefWidth="1130.0" />
+                              <HBox alignment="CENTER_LEFT" prefHeight="190.0" prefWidth="1130.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="28.0" />
+                                    <ImageView fitHeight="151.0" fitWidth="356.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../blue_square_2.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label prefHeight="18.0" prefWidth="28.0" />
+                                    <Label prefHeight="212.0" prefWidth="404.0" text="BingeSpice uses the TMDB (The Movie Database) API to provide detailed information about movies and TV series, including titles, posters, synopses, genres, and ratings.While we rely on TMDB’s extensive database to enhance your viewing experience, this product is not officially endorsed or certified by TMDB.© 2025 TMDB. All rights reserved.Learn more at:" textFill="#fd6108" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="30.0" prefWidth="1130.0">
+                                 <children>
+                                    <HBox prefHeight="30.0" prefWidth="268.0" />
+                                    <Hyperlink text="https://www.themoviedb.org" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="167.0" prefWidth="1101.0">
+                                 <children>
+                                    <Label prefHeight="82.0" prefWidth="18.0" />
+                                    <Label prefHeight="171.0" prefWidth="844.0" text="BingeSpice is a movie and TV series discovery platform developed as part of an academic project by five students of the Department of Computer Engineering and Informatics (CEID) at the University of Patras.The application was designed with a focus on user experience, performance, and intelligent content organization, aiming to offer a personalized and engaging entertainment companion.We would like to thank TMDB (The Movie Database) for providing the movie and series data used in the app." textFill="#fd6108" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children>
                   </StackPane>
                </children>
