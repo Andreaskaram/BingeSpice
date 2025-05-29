@@ -28,18 +28,25 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class SearchResultsController implements Initializable {
-    @FXML private FlowPane mediaFlowPane;
-    @FXML private TextField searchField;
-    @FXML private Button searchButton;
-    @FXML private HBox PopularHBox;
-    @FXML private HBox NewArrivalsHBox;
-    @FXML private ToggleGroup searchOptionGroup;
-    @FXML private RadioButton titleOption, genreOption, actorOption, directorOption;
+    @FXML
+    private FlowPane mediaFlowPane;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private Button searchButton;
+    @FXML
+    private HBox PopularHBox;
+    @FXML
+    private HBox NewArrivalsHBox;
+    @FXML
+    private ToggleGroup searchOptionGroup;
+    @FXML
+    private RadioButton titleOption, genreOption, actorOption, directorOption;
     private String currentSearchType = "title";
     private SearchHandler searchHandler;
     private TMDBManager tmdbManager;
-    @FXML private Label searchResultsTitleLabel;
-
+    @FXML
+    private Label searchResultsTitleLabel;
 
 
     @Override
@@ -48,6 +55,7 @@ public class SearchResultsController implements Initializable {
         initializeMediaSections();
         restoreSearchType(); // Restore the radio button state
     }
+
     // Restore the selected search type from the previous screen
     private void restoreSearchType() {
         switch (currentSearchType) {
@@ -57,11 +65,13 @@ public class SearchResultsController implements Initializable {
             case "director" -> searchOptionGroup.selectToggle(directorOption);
         }
     }
+
     // Update the search type when navigating
     public void setSearchType(String searchType) {
         this.currentSearchType = searchType;
         restoreSearchType();
     }
+
     private void initializeSearchHandlers() {
         searchHandler = new SearchHandler();
         searchButton.disableProperty().bind(searchField.textProperty().length().lessThan(2));
@@ -189,6 +199,7 @@ public class SearchResultsController implements Initializable {
         String searchType = getSelectedSearchType();
         searchHandler.handleSearch(query, searchField, searchType, searchType);
     }
+
     // Updated method to include MouseEvent parameter
     private void handleMediaSelection(Media media, MouseEvent event) {
         try {
@@ -204,7 +215,12 @@ public class SearchResultsController implements Initializable {
     }
 
     public void setSearchQuery(String query) {
-        searchResultsTitleLabel.setText("Search Results for: " + query);
-    }
+        if (mediaFlowPane.getChildren().isEmpty()) {
+            searchResultsTitleLabel.setText("No Results found for: " + query);
+        } else {
+            searchResultsTitleLabel.setText("Search Results for: " + query);
+        }
 
+
+    }
 }
