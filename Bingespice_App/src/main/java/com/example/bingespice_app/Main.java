@@ -2,6 +2,7 @@ package com.example.bingespice_app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -20,6 +21,8 @@ public class Main extends Application {
     private static final String PREF_USER_ID = "savedUserID";
     private static final String PREF_PASS = "savedPass";
 
+    int test = 0;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Retrieve stored preferences (if any)
@@ -30,20 +33,24 @@ public class Main extends Application {
 
         Parent root;
         // If credentials exist, auto-login to homepage
-        if (!savedUser.isEmpty() && !savedPass.isEmpty()) {
-            // Store in session for use in other controllers
+        if (!savedPass.isEmpty()) {
             Session.setUsername(savedUser);
             int savedUserIdint = Integer.parseInt(savedUserID);
             Session.setUserID(savedUserIdint);
-            root = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/com/example/bingespice_app/Homepage.fxml"));
         } else {
-            // Else, show login screen first
-            root = FXMLLoader.load(getClass().getResource("login.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/com/example/bingespice_app/Homepage.fxml"));
+            test = 1;
         }
 
         // Create scene and apply CSS
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+
+        if (test == 1) {
+            Parent loginRoot = FXMLLoader.load(getClass().getResource("/com/example/bingespice_app/Login.fxml"));
+            scene.setRoot(loginRoot);
+        }
 
         // Set default window size and center on screen
         primaryStage.setWidth(1280);
