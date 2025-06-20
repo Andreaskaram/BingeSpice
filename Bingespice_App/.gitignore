@@ -8,6 +8,7 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -38,5 +39,6 @@ build/
 .DS_Store
 
 /javafx-sdk-24*
-target/
-out/
+/target/
+/out/
+/${project.build.directory}
